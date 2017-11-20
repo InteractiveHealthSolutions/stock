@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- Assume test is the database name -->
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost:3306/mydb
+		</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.connection.username">
+			root
+		</property>
+		<property name="hibernate.connection.autocommit">true</property>
+		<property name="hibernate.connection.password">
+			ihs_dev
+		</property>
+		<property name="hibernate.connection.useUnicode">true</property>
+		<property name="hibernate.connection.characterEncoding">UTF-8</property>
+		<property name="hibernate.connection.charSet">UTF-8</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<mapping class="com.ihs.stock.api.model.Item" />
+		
+		<mapping class="com.ihs.stock.api.model.Inventory" />
+		<mapping class="com.ihs.stock.api.model.Requisition" />
+		<mapping class="com.ihs.stock.api.model.Consumer" />
+		<mapping class="com.ihs.stock.api.model.DailyStats" />
+		<mapping class="com.ihs.stock.api.model.MonthlyStats" />
+		<mapping class="com.ihs.stock.api.model.ItemType" />
+		<mapping class="com.ihs.stock.api.model.ILRDailyStatus" />
+		<mapping class="com.ihs.stock.api.model.ItemAttribute" />
+		<mapping class="com.ihs.stock.api.model.ItemAttributeType" />
+		<mapping class="com.ihs.stock.api.model.Receival"/>
+		<mapping class="com.ihs.locationmanagement.api.model.Location" />
+		<mapping class="com.ihs.locationmanagement.api.model.LocationType" />
+		<mapping class="com.ihs.locationmanagement.api.model.LocationAttribute" />
+		<mapping class="com.ihs.locationmanagement.api.model.LocationAttributeType" />
+
+	</session-factory>
+</hibernate-configuration>
