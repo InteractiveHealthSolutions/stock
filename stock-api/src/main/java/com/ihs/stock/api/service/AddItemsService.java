@@ -7,11 +7,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+
 import com.ihs.stock.api.DAO.DAOItem;
 import com.ihs.stock.api.DAO.DAOItemAttribute;
 import com.ihs.stock.api.DAO.DAOItemAttributeType;
 import com.ihs.stock.api.DAO.DAOItemType;
 import com.ihs.stock.api.beans.AddItemBean;
+import com.ihs.stock.api.context.ServiceContextStock;
+import com.ihs.stock.api.context.SessionFactoryUtil;
 import com.ihs.stock.api.model.App;
 import com.ihs.stock.api.model.Item;
 import com.ihs.stock.api.model.ItemAttribute;
@@ -23,37 +27,55 @@ public class AddItemsService {
 	
 	public Item AddItems(AddItemBean aib) throws ParseException
 	{
-		DAOItemType itemTypeDAO = new DAOItemType();
-		ItemType itemType = itemTypeDAO.getByName(aib.gettype());
+		 
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		try
+		{
+			ItemType itemType = scSTK.itemTypeDAO.getByName(aib.gettype());
+			
+			Item item = new Item();
+			
+			item.setname(aib.getname());
+			item.setshortName(aib.getshortName());
+			item.setbrand(aib.getbrand());
+			item.setmanufacturer(aib.getmanufacturer());
+			item.setexpiryAfterOpening(aib.getexpirationDurationAfterOpening());
+			item.setenclosedQuantity(aib.getenclosedQuantity());
+			item.setexpiryUnit(aib.getexpiryUnit());
+			item.setitemType(itemType.gettypeId());
+			item.setbarcode(aib.getbarcode());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = sdf.parse(sdf.format(new Date()));
+			
+			item.setdateCreated(date);
+			
 		
-		Item item = new Item();
-		
-		item.setname(aib.getname());
-		item.setshortName(aib.getshortName());
-		item.setbrand(aib.getbrand());
-		item.setmanufacturer(aib.getmanufacturer());
-		item.setexpiryAfterOpening(aib.getexpirationDurationAfterOpening());
-		item.setenclosedQuantity(aib.getenclosedQuantity());
-		item.setexpiryUnit(aib.getexpiryUnit());
-		item.setitemType(itemType);
-		item.setbarcode(aib.getbarcode());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(sdf.format(new Date()));
-		
-		item.setdateCreated(date);
-		
-		DAOItem itemDAO = new DAOItem();
-		itemDAO.save(item);
-		//item = itemDAO.getByName(item.getname());
-		//generateDynamicColumns(item,aib.getcolumnName(),aib.getcolumnValue());
-		return item;
+			scSTK.itemDAO.save(item);
+			
+			//item = itemDAO.getByName(item.getname());
+			//generateDynamicColumns(item,aib.getcolumnName(),aib.getcolumnValue());
+			return item;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		finally
+		{
+			scSTK.commitTransaction();
+			scSTK.closeSession();
+		}
+		return null;
 		
 	}
 	
 	public ItemAttributeType addItemAttributeType(ItemAttributeType atype)
 	{
-		DAOItemAttributeType type = new DAOItemAttributeType();
-		type.save(atype);
+		 
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		scSTK.itemAttributeTypeDAO.save(atype);
+		scSTK.commitTransaction();
+		scSTK.closeSession();
 		return atype;
 	}
 	

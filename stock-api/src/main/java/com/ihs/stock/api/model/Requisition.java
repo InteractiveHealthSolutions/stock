@@ -4,19 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.ForeignKey;
-
-import com.ihs.locationmanagement.api.model.Location;
 @Entity
 @Table(name="requisition")
 public class Requisition {
@@ -26,18 +20,14 @@ public class Requisition {
 	@Column(name="requisition_id")
 	private Integer requisitionId;
 	
-	@ManyToOne(targetEntity = Item.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "item")
-	@ForeignKey(name = "requirement_itemId_item_mappedId_FK")
-	private Item item;
+	@Column(name="item")
+	private Integer item;
 	
-	@ManyToOne(targetEntity = Location.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "consumer_location")
-	@ForeignKey(name = "requirement_locationId_location_mappedId_FK")
-	private Location consumerlocation;
+	@Column(name="user_location")
+	private Integer userlocation;
 	
 	@Column(name = "quantity")
-	private Integer quantity;
+	private Long quantity;
 	
 	@Column(name = "comments")
 	private String comments;
@@ -60,18 +50,15 @@ public class Requisition {
 	@Column(name="requisition_by")
 	private Integer requisitionBy;//this will be a user id who's entering the the data in th form
 	
-	@ManyToOne(targetEntity = Inventory.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "approval_reference")
-	@ForeignKey(name = "requisition_inventoryId_inventory_mappedId_FK")
-	private Inventory approvalReference;
+
+	@Column(name="approval_reference")
+    private Integer approvalReferenceInventory;
 	
 	@Column(name="approval_status")
 	private String approvalStatus;
 	
-	@ManyToOne(targetEntity = Location.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "requisition_location")
-	@ForeignKey(name = "requisition_locationId_location_mappedId_FK")
-	private Location requisitionLocation ;
+	@Column(name="requisition_location")
+	private Integer requisitionLocation ;
 	
 	@Column(name="date_created")
 	@Temporal(TemporalType.DATE)
@@ -90,19 +77,19 @@ public class Requisition {
 		this.comments = comments;
 	}
 	
-	public void setitem(Item item) {
+	public void setitem(Integer item) {
 		this.item = item;
 	}
 	
-	public void setquantity(Integer quantity) {
+	public void setquantity(Long quantity) {
 		this.quantity = quantity;
 	}
 	
-	public Item getitem() {
+	public Integer getitem() {
 		return item;
 	}
 	
-	public Integer getquantity() {
+	public Long getquantity() {
 		return quantity;
 	}
 	
@@ -148,12 +135,12 @@ public class Requisition {
 		return year;
 	}
 	
-	public Location getconsumerLocation() {
-		return consumerlocation;
+	public Integer getuserLocation() {
+		return userlocation;
 	}
 	
-	public void setconsumerLocation(Location location) {
-		this.consumerlocation = location;
+	public void setuserLocation(Integer location) {
+		this.userlocation = location;
 	}
 	
 	public Integer getDay() {
@@ -164,7 +151,7 @@ public class Requisition {
 		this.day = day;
 	}
 	
-    public void setVoided(boolean voided) {
+    public void setvoided(boolean voided) {
 		this.voided = voided;
 	}
     
@@ -189,27 +176,27 @@ public class Requisition {
 		return requisitionBy;
 	}
     
-    public void setApprovalReference(Inventory approvalReference) {
-		this.approvalReference = approvalReference;
+    public void setapprovalReferenceInventory(Integer approvalReference) {
+		this.approvalReferenceInventory = approvalReference;
 	}
     
-    public Inventory getApprovalReference() {
-		return approvalReference;
+    public Integer getapprovalReferenceInventory() {
+		return approvalReferenceInventory;
 	}
     
-    public void setApprovalStatus(String approvalStatus) {
+    public void setapprovalStatus(String approvalStatus) {
 		this.approvalStatus = approvalStatus;
 	}
     
-    public String getApprovalStatus() {
+    public String getapprovalStatus() {
 		return approvalStatus;
 	}
     
-    public Location getRequisitionLocation() {
+    public Integer getRequisitionLocation() {
 		return requisitionLocation;
 	}
     
-    public void setRequisitionLocation(Location requisitionLocation) {
+    public void setRequisitionLocation(Integer requisitionLocation) {
 		this.requisitionLocation = requisitionLocation;
 	}
 	

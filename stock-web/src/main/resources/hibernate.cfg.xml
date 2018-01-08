@@ -14,7 +14,7 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- Assume test is the database name -->
 		<property name="hibernate.connection.url">
-			jdbc:mysql://localhost:3306/mydb
+			jdbc:mysql://localhost:3306/stock_management
 		</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.connection.username">
@@ -41,11 +41,10 @@
 		<mapping class="com.ihs.stock.api.model.ILRDailyStatus" />
 		<mapping class="com.ihs.stock.api.model.ItemAttribute" />
 		<mapping class="com.ihs.stock.api.model.ItemAttributeType" />
-		<mapping class="com.ihs.stock.api.model.Receival" />
-		<mapping class="com.ihs.locationmanagement.api.model.Location" />
-		<mapping class="com.ihs.locationmanagement.api.model.LocationType" />
-		<mapping class="com.ihs.locationmanagement.api.model.LocationAttribute" />
-		<mapping class="com.ihs.locationmanagement.api.model.LocationAttributeType" />
+		<mapping class="org.ird.unfepi.model.Location" />
+		<mapping class="org.ird.unfepi.model.LocationType" />
+		<mapping class="org.ird.unfepi.model.LocationAttribute" />
+		<mapping class="org.ird.unfepi.model.LocationAttributeType" />
 		
 	</session-factory>
 </hibernate-configuration>

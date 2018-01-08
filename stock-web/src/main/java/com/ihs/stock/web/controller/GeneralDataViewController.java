@@ -8,6 +8,7 @@ import java.util.List;
 import javax.management.InstanceAlreadyExistsException;
 
 import org.hibernate.HibernateException;
+import org.ird.unfepi.model.Location;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -18,10 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ihs.stock.api.beans.SearchInventoryBean;
+import com.ihs.stock.api.beans.SearchBean;
 import com.ihs.stock.api.model.Inventory;
 import com.ihs.stock.api.model.Item;
-import com.ihs.locationmanagement.api.model.Location;
 import com.ihs.stock.api.service.GeneralDataViewService;
 import com.ihs.stock.web.validator.SearchBoxValidator;
 
@@ -85,7 +85,7 @@ public class GeneralDataViewController {
 	}
 	
 	@RequestMapping(value = "/searchinventory" , method = RequestMethod.POST)
-	public ModelAndView searchInventory(@ModelAttribute("search") @Validated SearchInventoryBean sib ,BindingResult result, ModelAndView modelAndView) throws InstanceAlreadyExistsException
+	public ModelAndView searchInventory(@ModelAttribute("search") @Validated SearchBean sib ,BindingResult result, ModelAndView modelAndView) throws InstanceAlreadyExistsException
 	{
 		SearchBoxValidator searchBoxValidator = new SearchBoxValidator();
 		searchBoxValidator.validate(sib, result);

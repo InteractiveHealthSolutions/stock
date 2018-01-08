@@ -51,13 +51,9 @@
     <version>1.0.0.Final</version>
 </dependency>
     <dependency>
-	     <groupId>
-	     com.ihs
-	     </groupId>
-	     <artifactId>
-	     location-management-api
-	     </artifactId>
-	     <version>0.0.1-SNAPSHOT</version>
+			<groupId>com.ihs</groupId>
+			<artifactId>location-management-api</artifactId>
+			<version>1.0.0a</version>
 		</dependency>
   </dependencies>
 	<build>

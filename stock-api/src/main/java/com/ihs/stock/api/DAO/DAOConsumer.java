@@ -9,21 +9,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.ihs.stock.api.model.Consumer;
-import com.ihs.stock.api.service.SessionFactoryUtil;
 
 public class DAOConsumer {
 
 	private Session s;
-	private SessionFactory sf = SessionFactoryUtil.getSessionFactory();
-	Transaction tx;
-
+	
+	public DAOConsumer(Session session)
+	{
+		this.s = session;
+	}
 	public Consumer getById(int id) {
-		s = sf.getCurrentSession();
-		tx = s.beginTransaction();
+	
 		Query query = s.createQuery("from Consumer where consumerId = :i");
 		query.setParameter("i", id);
 		Consumer con = (Consumer) query.uniqueResult();
-		tx.commit();
+		
 		return con;
 
 	}
@@ -32,14 +32,13 @@ public class DAOConsumer {
 	{
 		try
 		{
-			s = sf.getCurrentSession();
-			tx = s.beginTransaction();
+			
 			s.save(con);
-			tx.commit();
+		
 		}
 		catch(HibernateException e)
 		{
-			tx.rollback();
+			
 			e.printStackTrace();
 		}
 		return con;
@@ -47,11 +46,8 @@ public class DAOConsumer {
 	
 	public List<Consumer> getAllConsumers()
 	{
-		s = sf.getCurrentSession();
-		tx = s.beginTransaction();
 		Query query = s.createQuery("from Consumer where dateVoided = null");
 		List<Consumer> consumerList = query.list();
-		tx.commit();
 		return consumerList;
 	}
 	
@@ -59,14 +55,10 @@ public class DAOConsumer {
 	{
 		try
 		{
-			s = sf.getCurrentSession();
-			tx = s.beginTransaction();
 			s.update(con);
-			tx.commit();
 		}
 		catch(HibernateException e)
 		{
-			tx.rollback();
 			e.printStackTrace();
 		}
 		return con;

@@ -14,7 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import java.util.Date;
-import com.ihs.locationmanagement.api.model.Location;
 import org.hibernate.annotations.ForeignKey;
 
 @Entity
@@ -29,10 +28,8 @@ public class Consumer {
 	@Column(name = "name")
 	private String name;
 	
-	@ManyToOne(targetEntity = Location.class , fetch = FetchType.EAGER , cascade=CascadeType.ALL)
-	@JoinColumn(name = "location_id")
-	@ForeignKey(name = "consumer_locationID_location_mappedId_FK")
-	private Location location;
+	@Column(name="location")
+	private Integer location;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_created")
@@ -62,12 +59,12 @@ public class Consumer {
 		return name;
 	}
 	
-	public Location getlocation()
+	public Integer getlocation()
 	{
 		return location;
 	}
 	
-	public void setlocation(Location loc)
+	public void setlocation(Integer loc)
 	{
 		this.location = loc ;
 	}

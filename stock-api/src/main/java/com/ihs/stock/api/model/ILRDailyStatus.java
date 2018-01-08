@@ -6,17 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import com.ihs.locationmanagement.api.model.Location;
-import org.hibernate.annotations.ForeignKey;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="ilr_daily_status")
@@ -24,9 +21,9 @@ public class ILRDailyStatus {
 
 	public enum Status{
 		
-		ILRNonFunctional ,
-		ILRNotAvailable ,
-		TempratureMonitorNotFunctionl ,
+		ILRNonFunctional,
+		ILRNotAvailable,
+		TempratureMonitorNotFunctional,
 		TempratureMonitorNotAvailable,
 		TempratureRecorded
 		
@@ -40,9 +37,20 @@ public class ILRDailyStatus {
 	@Column(name="ilr_identifier")
 	private String ilrIdentifier;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "date_today")
+	@Column(name = "dateToday")
 	private Date dateToday;
+	
+	@JsonFormat(pattern="HH:mm:ss")
+	@Temporal(TemporalType.TIME)
+	@Column(name = "morningTime")
+	private Date morningTime;
+	
+	@JsonFormat(pattern="HH:mm:ss")
+	@Temporal(TemporalType.TIME)
+	@Column(name = "dayendTime")
+	private Date dayendTime;
 	
 	@Column(name = "opening_temprature")
 	private Double openingTemprature;
@@ -52,12 +60,27 @@ public class ILRDailyStatus {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30)
-	private Status ilrStatus;
+	private Status morningILRStatus;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date")
-	private Date date;
+	@Enumerated(EnumType.STRING)
+	@Column(length = 30)
+	private Status dayendTMStatus;
 	
+	@Enumerated(EnumType.STRING)
+	@Column(length = 30)
+	private Status morningTMStatus;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(length = 30)
+	private Status dayendILRStatus;
+	@Column(name="day")
+	private Integer day;
+	
+	@Column(name = "month")
+	private Integer month ;
+	
+	@Column(name = "year")
+	private Integer year;
 	@Column(name="voided")
 	private boolean voided;
 
@@ -77,22 +100,18 @@ public class ILRDailyStatus {
 	@Column(name="date_voided")
 	private Date dateVoided;
 	
-	@ManyToOne(targetEntity = Location.class , fetch = FetchType.EAGER)
-	@JoinColumn(name="location_id")
-	@ForeignKey(name="ILRdailyStatus_id_location_mappedId_Fk")
-	private Location location;
+	@Column(name = "location_id")
+	private Integer location;
 	
-	@ManyToOne(targetEntity = Consumer.class , fetch = FetchType.EAGER)
-	@JoinColumn(name="consumer_id")
-	@ForeignKey(name="ILRdailyStatus_id_consumer_mappedId_Fk")
-	private Consumer consumer;
+	@Column(name="user")
+	private Integer user;
 	
-	public void setconsumer(Consumer consumer) {
-		this.consumer = consumer;
+	public void setuser(Integer consumer) {
+		this.user = consumer;
 	}
 	
-	public Consumer getconsumer() {
-		return consumer;
+	public Integer getuser() {
+		return user;
 	}
 
 	public void setid(int id) {
@@ -127,18 +146,39 @@ public class ILRDailyStatus {
 		return closingTemprature;
 	}
 
-	public void setilrStatus(Status s) {
-		this.ilrStatus = s;
-	}
+public Status getMorningILRStatus() {
+	return morningILRStatus;
+}
 
-	public Status getilrStatus() {
-		return ilrStatus;
-	}
-	public void setlocation(Location location) {
+public void setMorningILRStatus(Status morningStatus) {
+	this.morningILRStatus = morningStatus;
+}
+
+
+public Status getdayendTMStatus() {
+	return dayendTMStatus;
+}
+
+public void setdayendTMStatus(Status dayendTMStatus) {
+	this.dayendTMStatus = dayendTMStatus;
+}
+public void setmorningTMStatus(Status morningTMILRStatus) {
+	this.morningTMStatus = morningTMILRStatus;
+}
+public Status getmorningTMStatus() {
+	return morningTMStatus;
+}
+public Status getdayendILRStatus() {
+	return dayendILRStatus;
+}
+public void setdayendILRStatus(Status dayendTMStatus) {
+	this.dayendTMStatus = dayendTMStatus;
+}
+	public void setlocation(Integer location) {
 		this.location = location;
 	}
 	
-	public Location getlocation() {
+	public Integer getlocation() {
 		return location;
 	}
 	
@@ -171,10 +211,54 @@ public class ILRDailyStatus {
 		return voided;
 	}
 	
-	public Date getdate() {
-		return date;
+
+	public Integer getmonth()
+	{
+		 return month;
 	}
-	public void setdate(Date date) {
-		this.date = date;
+	
+	public Integer getyear()
+	{
+		return year;
 	}
+	public void setmonth(Integer month)
+	{
+		
+		this.month = month;
+	}
+	
+	public void setyear(Integer year)
+	{
+		this.year = year;
+	}
+	public Integer getday() {
+		return day;
+	}
+	
+	public void setday(Integer day) {
+		this.day = day;
+	}
+	public void setdateVoided(Date dateVoided) {
+		this.dateVoided = dateVoided;
+	}
+	
+	public Date getdateVoided() {
+		return dateVoided;
+	}
+	
+	public void setdayendTime(Date dayendTime) {
+		this.dayendTime = dayendTime;
+	}
+	
+	public Date getdayendTime() {
+		return dayendTime;
+	}
+	
+	public void setmorningTime(Date morningTime) {
+		this.morningTime = morningTime;
+	}
+	
+   public Date getmorningTime() {
+	return morningTime;
+}
 }

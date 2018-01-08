@@ -3,17 +3,13 @@ package com.ihs.stock.api.model;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import java.util.Date;
 
@@ -59,10 +55,8 @@ public class Item {
 	@Column(name = "expiry_unit")
 	private ExpiryUnit expiryUnit;
 	
-	@ManyToOne(targetEntity = ItemType.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "type_id")
-	@ForeignKey(name = "item_itemtypeId_itemtype_mappedId_FK")
-	private ItemType itemType;
+	@Column(name="type_id")
+	private Integer itemType;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_created")
@@ -175,12 +169,12 @@ public class Item {
 		return enclosedQuantity;
 	}
 	
-	public void setitemType(ItemType type)
+	public void setitemType(Integer type)
 	{
 		this.itemType = type;
 	}
 	
-	public ItemType getitemType()
+	public Integer getitemType()
 	{
 		return itemType;
 	}

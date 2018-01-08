@@ -16,18 +16,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
-import com.ihs.stock.api.DAO.DAODailyStats;
-import com.ihs.stock.api.DAO.DAOInventory;
-import com.ihs.stock.api.DAO.DAOItem;
 import com.ihs.stock.api.DAO.DAOItemAttribute;
 import com.ihs.stock.api.beans.UpdateRequirementBean;
-import com.ihs.stock.api.service.SessionFactoryUtil;
+import com.ihs.stock.api.context.ServiceContextStock;
+import com.ihs.stock.api.context.SessionFactoryUtil;
 
 public class App {
 public static HashMap<String , String> dynamicColumns = new HashMap<String,String>();
@@ -79,7 +78,7 @@ public static HashMap<String , String> dynamicColumns = new HashMap<String,Strin
 //	    
 	    	
 	  
-	   SessionFactoryUtil.getSessionFactory();
+	   //SessionFactoryUtil.getSessionFactory();
 	    ///hb.setCheckWriteOperations(false);
 //	 //   hb.saveOrUpdate(item);
 //	   // hb.flush();
@@ -134,12 +133,54 @@ public static HashMap<String , String> dynamicColumns = new HashMap<String,Strin
 //	System.out.println(location.get(0).getname());
 //	System.out.println(location.get(1).getname());
 //	
-//		String date = "2017/10/25";
+	
 //		//Integer i1 = Integer.parseInt(date);
 //		
-//		Date dateToday = (Date) new SimpleDateFormat("yyyy/MM/dd").parse(date);
+//		Date dateToday = new Date(date);
+//		cal.setTime(dateToday);
 //		System.out.println(dateToday);
-	
+//		System.out.println(cal.get(Calendar.MONTH)+1);
+//		System.out.println(cal.get(Calendar.DAY_OF_MONTH));
+//		System.out.println("year "+cal.get(Calendar.YEAR));
+		Double a = -1.0;
+		Double b = 9.0;
+		System.out.println(a*b);
+		
+		@SuppressWarnings("deprecation")
+		Date temp = new Date();
+		System.out.println(temp.toString());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(sdf.format(temp));
+		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sdf.format(temp));
+		Calendar cal1 = Calendar.getInstance();
+		cal1.setTime(date1);
+		System.out.println(cal1.get(Calendar.MONTH)+1);
+		System.out.println(cal1.get(Calendar.YEAR));
+		System.out.println(cal1.get(Calendar.DAY_OF_MONTH));
+		
+	//	Pattern patternForComment = Pattern.compile("(?!^\\d+$)^.+$");
+//	   if(patternForComment.matcher("123").matches())
+//	   {
+//		   System.out.println("true");
+//	   }
+	//   SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
+//		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+//		Item item = scSTK.itemDAO.getByName("BCG");
+//		System.out.println(item.getname());
+//		scSTK.commitTransaction();
+//		scSTK.closeSession();
+//		Date date = null;
+//		System.out.println(date);
+//	   SessionFactory sf = SessionFactoryUtil.getSessionFactory();
+//		Session s = sf.getCurrentSession();
+//		Transaction tx = s.beginTransaction();
+//		DAOLocationImpl daoLocationImpl = new DAOLocationImpl(s);
+//		List<Location> loc = daoLocationImpl.getAll(true, null);
+//		tx.commit();
+//		System.out.println(loc.size());
+		
+//		ILRDailyStatus ilr = SessionFactoryUtil.getServiceContext().ilrDailyStatusDAO.getMorningStatus(1, 1, new Date("2018-01-04 11:15:00"));
 	}
 //	public void AddItems(Item item)
 //	{

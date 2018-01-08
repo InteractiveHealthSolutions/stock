@@ -17,11 +17,11 @@ public class DailyMorningEntryValidator implements Validator {
 	{
 		ILRDailyStatus ilr = (ILRDailyStatus) obj;
 		
-		if(ilr.getopeningTemprature() == null && ilr.getilrStatus().name().equals("TempratureRecorded"))
+		if(ilr.getopeningTemprature() == null && ilr.getMorningILRStatus().name().equals("TempratureRecorded"))
 		{
 			error.rejectValue("openingTemprature", "ILR.input");
 		}
-		ValidationUtils.rejectIfEmpty(error, "ilrStatus", "EmptyField.Invalid");
+		ValidationUtils.rejectIfEmpty(error, "morningILRStatus", "EmptyField.Invalid");
 	}
 
 }

@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import javax.management.InstanceAlreadyExistsException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,7 +32,7 @@ public class VaccinatorDataAccessController {
 	@RequestMapping(value= "/balance", method = RequestMethod.GET )
 	@ResponseBody
 	public ModelAndView getVaccinatorBalanceStats( /*@PathVariable int consumer,*/HttpServletRequest request, HttpServletResponse response,
-			ModelAndView modelAndView,HttpSession session)
+			ModelAndView modelAndView,HttpSession session) throws InstanceAlreadyExistsException
 	{
 		vacDataAccess = new VaccinatorDataAccessService();
 		
@@ -48,34 +49,34 @@ public class VaccinatorDataAccessController {
 		
 	}
 	
-	@RequestMapping(value = "/locationBalance/{consumer}" , method = RequestMethod.GET)
-	@ResponseBody
-	public ModelAndView viewLocationStats(@PathVariable int consumer,ModelAndView modelAndView)
-	{
-		vacDataAccess = new VaccinatorDataAccessService();
-		List<Inventory> vacMonStats = (List<Inventory>) vacDataAccess.viewLocationBalance(consumer);
-		
-		String monthString = new DateFormatSymbols().getMonths()[vacMonStats.get(0).getmonth()-1];
-	    modelAndView.addObject("year", vacMonStats.get(0).getyear());
-		modelAndView.addObject("month", monthString);
-		modelAndView.addObject("list", vacMonStats);
-		modelAndView.setViewName("vaccinator_locationBalance");
-		
-		return modelAndView;
-		
-	}
-	@RequestMapping(value = "/dailystats" , method = RequestMethod.GET)
-	public ModelAndView viewDailyStats(/*@PathVariable int customer ,*/ ModelAndView modelAndView) throws ParseException
-	{
-		vacDataAccess = new VaccinatorDataAccessService();
-		List<DailyStats> dailyStats = (List<DailyStats>) vacDataAccess.viewDailyStats(1);
-	    String date = dailyStats.get(0).getdateCreated().toString().substring(0, 10);
-		modelAndView.addObject("date", date);
-		modelAndView.addObject("dailyStats", dailyStats);
-		modelAndView.setViewName("view_dailystats");
-		return modelAndView;
-		
-	}
+//	@RequestMapping(value = "/locationBalance/{consumer}" , method = RequestMethod.GET)
+//	@ResponseBody
+//	public ModelAndView viewLocationStats(@PathVariable int consumer,ModelAndView modelAndView)
+//	{
+//		vacDataAccess = new VaccinatorDataAccessService();
+//		List<Inventory> vacMonStats = (List<Inventory>) vacDataAccess.viewLocationBalance(consumer);
+//		
+//		String monthString = new DateFormatSymbols().getMonths()[vacMonStats.get(0).getmonth()-1];
+//	    modelAndView.addObject("year", vacMonStats.get(0).getyear());
+//		modelAndView.addObject("month", monthString);
+//		modelAndView.addObject("list", vacMonStats);
+//		modelAndView.setViewName("vaccinator_locationBalance");
+//		
+//		return modelAndView;
+//		
+//	}
+//	@RequestMapping(value = "/dailystats" , method = RequestMethod.GET)
+//	public ModelAndView viewDailyStats(/*@PathVariable int customer ,*/ ModelAndView modelAndView) throws ParseException
+//	{
+//		vacDataAccess = new VaccinatorDataAccessService();
+//		List<DailyStats> dailyStats = (List<DailyStats>) vacDataAccess.viewDailyStats(1);
+//	    String date = dailyStats.get(0).getdateCreated().toString().substring(0, 10);
+//		modelAndView.addObject("date", date);
+//		modelAndView.addObject("dailyStats", dailyStats);
+//		modelAndView.setViewName("view_dailystats");
+//		return modelAndView;
+//		
+//	}
 	
 	
 

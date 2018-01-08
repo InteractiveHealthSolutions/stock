@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.ihs.locationmanagement.api.model.Location;
+import org.hibernate.SessionFactory;
+
+
 import com.ihs.stock.api.DAO.DAOItem;
+import com.ihs.stock.api.context.ServiceContextStock;
+import com.ihs.stock.api.context.SessionFactoryUtil;
 import com.ihs.stock.api.model.Item;
+import com.ihs.stock.api.model.Requisition;
 
 public class UpdateRequirementBean {
 
@@ -18,15 +23,22 @@ public class UpdateRequirementBean {
 	
 	private List<String> comments = new ArrayList<String>();
 	
+	private Boolean[] check ;
+	
 	public UpdateRequirementBean() {
 		// TODO Auto-generated constructor stub
-		DAOItem itemDAO = new DAOItem();
-		String[] integers = new String[itemDAO.getallItems().size()];
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		String[] integers = new String[scSTK.itemDAO.getallItems().size()];
+		scSTK.commitTransaction();
+		scSTK.closeSession();
 		Arrays.fill(integers, null);
 		quantity = Arrays.asList(integers);
 		String[] comment = new String[quantity.size()];
 		Arrays.fill(comment, null);
 		comments = Arrays.asList(comment);
+				check = new Boolean[comments.size()];
+		//Arrays.fill(check, null);
+		//checks = Arrays.asList(check);
 	}
 	
 	public void setquantity(List<String> q)
@@ -53,5 +65,12 @@ public class UpdateRequirementBean {
 	
 	public void setcomments(List<String> comments) {
 		this.comments = comments;
+	}
+	public Boolean[] getcheck() {
+		return check;
+	}
+	
+	public void setchecks(Boolean[] checks) {
+		this.check = checks;
 	}
 }

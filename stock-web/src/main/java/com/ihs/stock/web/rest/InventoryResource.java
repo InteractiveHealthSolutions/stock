@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ihs.stock.api.DAO.DAOInventory;
 import com.ihs.stock.api.beans.InventoryBean;
+import com.ihs.stock.api.context.ServiceContextStock;
+import com.ihs.stock.api.context.SessionFactoryUtil;
 import com.ihs.stock.api.model.Inventory;
 import com.ihs.stock.api.service.AddInInventoryService;
 
@@ -28,17 +31,25 @@ public class InventoryResource {
 	@RequestMapping(value = "/" , method = RequestMethod.GET , produces = "application/json")
 	public ResponseEntity<List<Inventory>> getAllInventory()
 	{
-		DAOInventory invDAO = new DAOInventory();
-		List<Inventory> inventories = invDAO.getAllInventory();
+		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		
+		List<Inventory> inventories = scSTK.inventoryDAO.getAllInventory();
+		scSTK.commitTransaction();
+		scSTK.closeSession();
 		return new ResponseEntity<List<Inventory>>(inventories , HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/{identifier}" , method = RequestMethod.GET , produces = "application/json")
 	public ResponseEntity<Inventory> getInventory(@PathVariable("identifier") String identifier)
 	{
-		DAOInventory invDAO = new DAOInventory();
+		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		
 		Integer id = Integer.parseInt(identifier);
-		Inventory inventories = (Inventory) invDAO.getById(id);
+		Inventory inventories = (Inventory) scSTK.inventoryDAO.getById(id);
+		scSTK.commitTransaction();
+		scSTK.closeSession();
 		if(inventories == null)
 		{
 			return new ResponseEntity<Inventory>(HttpStatus.NOT_FOUND);
@@ -49,9 +60,11 @@ public class InventoryResource {
 	@RequestMapping(value="/update/{identifier}", method = RequestMethod.PUT , consumes = "application/json")
 	public ResponseEntity<Inventory> updateInventory(@PathVariable("identifier") String identifier , @RequestBody Inventory inv) throws ParseException
 	{
-		DAOInventory daoInventory = new DAOInventory();
+		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		
 		Integer id = Integer.parseInt(identifier);
-		Inventory inventory = (Inventory) daoInventory.getById(id);
+		Inventory inventory = (Inventory) scSTK.inventoryDAO.getById(id);
 		
 		if(inv.getcurrentMonthContainers()!=null)
 		{
@@ -62,8 +75,9 @@ public class InventoryResource {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = sdf.parse(sdf.format(new Date()));
 		
-		daoInventory.update(inventory);
-		
+		scSTK.inventoryDAO.update(inventory);
+		scSTK.commitTransaction();
+		scSTK.closeSession();
 		return new ResponseEntity<Inventory>(inventory,HttpStatus.OK);
 		
 	}
@@ -79,9 +93,10 @@ public class InventoryResource {
 	@RequestMapping(value = "/delete/{identifier}" , method = RequestMethod.DELETE)
 	public ResponseEntity<Inventory> deleteInventory(@PathVariable("identifier") String identifier) throws ParseException
 	{
-		DAOInventory daoInventory = new DAOInventory();
+		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		Integer id = Integer.parseInt(identifier);
-		Inventory inv = (Inventory) daoInventory.getById(id);
+		Inventory inv = (Inventory) scSTK.inventoryDAO.getById(id);
 		
 		if(inv == null)
 		{
@@ -91,7 +106,7 @@ public class InventoryResource {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = sdf.parse(sdf.format(new Date()));	
 		inv.setdateVoided(date);
-		daoInventory.update(inv);
+		scSTK.inventoryDAO.update(inv);
 		return new ResponseEntity<Inventory>(inv, HttpStatus.OK);
 	}
 	

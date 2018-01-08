@@ -2,20 +2,15 @@ package com.ihs.stock.api.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.ForeignKey;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 @Entity
 @Table(name = "daily_stats")
@@ -65,17 +60,19 @@ public class DailyStats {
 	@Column(name="voided_by")
 	private Integer voidedBy;
 	
-	@ManyToOne(targetEntity = Consumer.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "consumer")
-	@ForeignKey(name = "dailyStats_consumerID_consumer_mappedId_FK")
-	private Consumer consumer;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_today")
+	private Date dateToday;
 	
-	@ManyToOne(targetEntity = Item.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "item")
-	@ForeignKey(name = "dailyStats_itemId_item_mappedId_FK")
-	private Item item;
+	@Column(name="user")
+	private Integer user;
 	
-	  
+	@Column(name="item")
+	private Integer item;
+	
+	@Column(name="user_location")
+	private Integer userLocation;
+	
 	public int getDailyStats()
 	{
 		return dailyStats;
@@ -134,24 +131,24 @@ public class DailyStats {
 		return wastedContainers;
 	}
 
-	public void setitem(Item vac)
+	public void setitem(Integer vac)
 	{
 		this.item = vac;
 	}
 	
-	public Item getitem()
+	public Integer getitem()
 	{
 		return item;
 	}
 	
-	public Consumer getconsumer()
+	public Integer getuser()
 	{
-		return consumer;
+		return user;
 	}
 	
-	public void setconsumer(Consumer vac)
+	public void setuser(Integer vac)
 	{
-		this.consumer = vac ;
+		this.user = vac ;
 	}
 
 	public void setdateVoided(Date dateVoided) {

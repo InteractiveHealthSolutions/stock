@@ -67,10 +67,11 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>com.ihs</groupId>
-			<artifactId>location-management-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+  <groupId>com.fasterxml.jackson.datatype</groupId>
+  <artifactId>jackson-datatype-hibernate4</artifactId>
+  <version>2.5.3</version>
+</dependency>  
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>

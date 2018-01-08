@@ -2,59 +2,71 @@ package com.ihs.stock.api.service;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import javax.management.InstanceAlreadyExistsException;
 
-import com.ihs.stock.api.DAO.DAOConsumer;
-import com.ihs.stock.api.DAO.DAODailyStats;
-import com.ihs.stock.api.DAO.DAOInventory;
-import com.ihs.stock.api.DAO.DAOMonthlyStats;
-import com.ihs.stock.api.model.Consumer;
+
+import com.ihs.stock.api.context.ServiceContextStock;
+import com.ihs.stock.api.context.SessionFactoryUtil;
 import com.ihs.stock.api.model.Inventory;
-import com.ihs.locationmanagement.api.model.Location;
-import com.ihs.stock.api.model.MonthlyStats;
 
 public class VaccinatorDataAccessService {
 
-	
-	public List<?> viewMyBalance(int vac)
-	{
-		DAOConsumer consumerDAO = new DAOConsumer();
-		Consumer vaccinator = consumerDAO.getById(vac);
-		
-		DAOMonthlyStats vacMonStatsDAO = new DAOMonthlyStats();
-		
-		Calendar cal = Calendar.getInstance();
-		int month = cal.get(Calendar.MONTH)+1;
-		int year = cal.get(Calendar.YEAR);
-		
-		List<MonthlyStats> monthlyBalance = vacMonStatsDAO.getMonthlyRecordForAllItems(vaccinator, month, year);  
-		
-		return monthlyBalance;
+	public List<?> viewMyBalance(int locationId) throws InstanceAlreadyExistsException {
+
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		try {
+			Calendar cal = Calendar.getInstance();
+			int month = cal.get(Calendar.MONTH) + 1;
+			int year = cal.get(Calendar.YEAR);
+
+			List<Inventory> monthlyBalance = scSTK.inventoryDAO.getForLocationMonthYear(locationId, month, year);
+
+			return monthlyBalance;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			scSTK.closeSession();
+		}
+
+		return null;
+
 	}
-	
-	public List<?> viewLocationBalance(int vac)
-	{
-		DAOConsumer consumerDAO = new DAOConsumer();
-		Consumer consumer = consumerDAO.getById(vac);
-		
-		DAOInventory inventoryDAO = new DAOInventory();
-		Location loc = consumer.getlocation();
-		//List<Inventory> inventoryList = (List<Inventory>) inventoryDAO.getBalanceForLocationAllItems(vaccinator.getvaccinatorLocation());
-		List<Inventory> inventoryList = (List<Inventory>) inventoryDAO.getBalanceForLocationAllItems(loc);
-		
-		return inventoryList;
-		
+
+	// public List<?> viewLocationBalance(int vac) {
+	//
+	// ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+	//
+	// Consumer consumer = scSTK.consumerDAO.getById(vac);
+	//
+	// Location loc = consumer.getlocation();
+	// // List<Inventory> inventoryList = (List<Inventory>)
+	// //
+	// inventoryDAO.getBalanceForLocationAllItems(vaccinator.getvaccinatorLocation());
+	// List<Inventory> inventoryList = (List<Inventory>)
+	// scSTK.inventoryDAO.getBalanceForLocationAllItems(loc);
+	// scSTK.commitTransaction();
+	// scSTK.closeSession();
+	// return inventoryList;
+	//
+	// }
+
+	public List<?> viewDailyStats(int vac, Date date) throws ParseException {
+
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		try {
+			List<?> dStats = scSTK.dailyStatsDAO.getDailyStatsForToday(vac, date);
+			return dStats;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			scSTK.closeSession();
+		}
+		return null;
+
 	}
-	
-	public List<?> viewDailyStats(int vac) throws ParseException
-	{
-		DAODailyStats dailyStatsDAO = new DAODailyStats();
-		List<?> dStats = dailyStatsDAO.getDailyStatsForToday(vac);
-		
-		return dStats;
-		
-	}
-	
-	
+
 }

@@ -26,7 +26,7 @@ public class InventoryFormValidator implements Validator {
 		
 		
 		InventoryBean inventoryBean = (InventoryBean) obj;
-		DAOInventory invDAO = new DAOInventory();
+
 		ValidationUtils.rejectIfEmptyOrWhitespace(error, "inventoryInitialVialsCount", "EmptyField.Invalid");
 		ValidationUtils.rejectIfEmpty(error, "itemName", "Value.NotValid");
 		ValidationUtils.rejectIfEmptyOrWhitespace(error, "consumerLocation", "Value.NotValid");

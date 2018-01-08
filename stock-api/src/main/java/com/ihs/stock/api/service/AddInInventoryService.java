@@ -8,22 +8,25 @@ import java.util.List;
 
 import javax.management.InstanceAlreadyExistsException;
 
+import org.hibernate.SessionFactory;
+import org.ird.unfepi.context.LocationContext;
+import org.ird.unfepi.context.LocationServiceContext;
+import org.ird.unfepi.model.Location;
 
-
+import com.ihs.stock.api.DAO.DAOConsumer;
 import com.ihs.stock.api.DAO.DAOInventory;
 import com.ihs.stock.api.DAO.DAOItem;
 
-import com.ihs.stock.api.DAO.DAOReceival;
-
 import com.ihs.stock.api.DAO.DAORequisition;
+import com.ihs.stock.api.beans.ApproveRequirementBean;
 import com.ihs.stock.api.beans.InventoryBean;
 import com.ihs.stock.api.beans.UpdateRequirementBean;
+import com.ihs.stock.api.beans.UpdateRequirementBeanMobile;
+import com.ihs.stock.api.context.ServiceContextStock;
+import com.ihs.stock.api.context.SessionFactoryUtil;
+import com.ihs.stock.api.model.Consumer;
 import com.ihs.stock.api.model.Inventory;
 import com.ihs.stock.api.model.Item;
-import com.ihs.locationmanagement.api.context.Context;
-import com.ihs.locationmanagement.api.context.ServiceContext;
-import com.ihs.locationmanagement.api.model.Location;
-import com.ihs.stock.api.model.Receival;
 
 import com.ihs.stock.api.model.Requisition;
 
@@ -32,172 +35,299 @@ public class AddInInventoryService {
 	Inventory inventory = new Inventory();
 
 	public Inventory insertInInventory(InventoryBean ib) throws Exception {
+		LocationServiceContext sc = LocationContext.getServices();
+		String consumerlocationName = ib.getconsumerLocation();
+		String parentlocationName = ib.getparentLocation();
+		Location location = null ;
+		try
+		{
+			location = sc.getLocationService().findLocationByName(parentlocationName, false, null);
+			inventory.setparentLocation(location.getLocationId());
+			location = sc.getLocationService().findLocationByName(consumerlocationName, false, null);
+			inventory.setconsumerLocation(location.getLocationId());
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			sc.closeSession();
+		}
 		String itemName = ib.getitemName();
-		DAOItem itemDAO = new DAOItem();
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		try
+		{
+			scSTK.beginTransaction();
+			Item item = scSTK.itemDAO.getByName(itemName);
+			inventory.setitem(item.getitemId());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = sdf.parse(sdf.format(new Date()));
+			Calendar cal = Calendar.getInstance();
+			int month = cal.get(Calendar.MONTH) + 1;
+			int year = cal.get(Calendar.YEAR);
+			int day = cal.get(Calendar.DAY_OF_MONTH);
 
-		Item item = itemDAO.getByName(itemName);
-		inventory.setitem(item);
+			Integer initial = 0;
 
-		String locationName = ib.getconsumerLocation();
-		Context.instantiate(null);
-		ServiceContext sc = Context.getServices();
-		// DAOLocationImpl locationDAO = new DAOLocationImpl(sc.);
-		sc.beginTransaction();
-		List location = sc.getLocationService().findLocationByName(locationName, false, null);
+			Inventory parentInventory = scSTK.inventoryDAO.getBalanceForLocationMonthItem(location.getLocationId(), item.getitemId());
 
-		inventory.setconsumerLocation((Location) location.get(0));
+			if (scSTK.inventoryDAO.prevMonthExist(location.getLocationId(), item.getitemId())) {
+				Inventory inv = scSTK.inventoryDAO.getPrevMonthInventory(location.getLocationId(), item.getitemId());
+				inventory.setbalanceContainer(inv.getprevMonthBalance());
+				inventory.settotalContainers(inv.getprevMonthBalance() + initial);
+			} else {
+				inventory.setbalanceContainer(0);
+				inventory.settotalContainers(initial);
+			}
 
-		locationName = ib.getparentLocation();
-		location = sc.getLocationService().findLocationByName(locationName, false, null);
+			inventory.setcurrentMonthContainers(ib.getinventoryInitialVialsCount());
 
-		sc.commitTransaction();
-		sc.closeSession();
-		inventory.setparentLocation((Location) location.get(0));
+			inventory.setyear(year);
+			inventory.setmonth(month);
+			inventory.setday(day);
+			inventory.setdateCreated(date);
 
-	
-		DAOInventory inventoryDAO = new DAOInventory();
+			scSTK.inventoryDAO.save(inventory);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(sdf.format(new Date()));
-		Calendar cal = Calendar.getInstance();
-		int month = cal.get(Calendar.MONTH) + 1;
-		int year = cal.get(Calendar.YEAR);
-
-		Receival req = new Receival();
-		req.setdateCreated(date);
-		req.setitem(item);
-		req.setlocation((Location) location.get(0));
-		req.setmonth(month);
-		req.setyear(year);
-		req.setrequiredAmount(ib.getinventoryInitialVialsCount());
-		Integer initial = 0;
-
-		Inventory parentInventory = inventoryDAO.getBalanceForLocationMonthItem((Location) location.get(0), item);
-		if (parentInventory.gettotalContainers() < ib.getinventoryInitialVialsCount()) {
-			initial = parentInventory.gettotalContainers();
-			req.setreceivedAmount(initial);
-			req.setstatus("Requirement not fulfilled");
-		} else {
-			initial = ib.getinventoryInitialVialsCount();
-			req.setreceivedAmount(initial);
-			req.setstatus("Requirement fulfilled");
+			parentInventory.settotalContainers(parentInventory.gettotalContainers() - initial);
+			scSTK.inventoryDAO.update(parentInventory);
+			return inventory;
 		}
-
-		if (inventoryDAO.prevMonthExist((Location) location.get(0) , item)) {
-			Inventory inv = inventoryDAO.getPrevMonthInventory((Location) location.get(0) , item);
-			inventory.setbalanceContainer(inv.getprevMonthBalance());
-			inventory.settotalContainers(inv.getprevMonthBalance() + initial);
-		} else {
-			inventory.setbalanceContainer(0);
-			inventory.settotalContainers(initial);
+		catch(Exception e)
+		{
+			e.printStackTrace();
 		}
-
-		inventory.setcurrentMonthContainers(ib.getinventoryInitialVialsCount());
-
-		inventory.setyear(year);
-		inventory.setmonth(month);
-		inventory.setdateCreated(date);
-
-		inventoryDAO.save(inventory);
-
-		parentInventory.settotalContainers(parentInventory.gettotalContainers() - initial);
-		inventoryDAO.update(parentInventory);
-
-		DAOReceival receivalDAO = new DAOReceival();
-		receivalDAO.save(req);
-		return inventory;
+		finally
+		{
+			scSTK.commitTransaction();
+			scSTK.closeSession();
+		}
+		
+		return null;
 	}
 
 	public Inventory insertInParentInventory(InventoryBean ib) throws ParseException, InstanceAlreadyExistsException {
-		DAOInventory inventoryDAO = new DAOInventory();
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		String locationName = ib.getconsumerLocation();
-		Context.instantiate(null);
-		ServiceContext sc = Context.getServices();
+		
+		LocationServiceContext sc =LocationContext.getServices();
 		// DAOLocationImpl locationDAO = new DAOLocationImpl(sc.);
-		sc.beginTransaction();
-		List location = sc.getLocationService().findLocationByName(locationName, false, null);
-		sc.commitTransaction();
-		sc.closeSession();
-		DAOItem itemDAO = new DAOItem();
-		String itemName = ib.getitemName();
-		Item item = itemDAO.getByName(itemName);
-        Inventory prevEntry ;
-		if(inventoryDAO.inventoryForMonthExist(item, (Location) location.get(0)))
+		try {
+			Location location = (Location) sc.getLocationService().findLocationByName(locationName, false, null);
+			scSTK.beginTransaction();
+			String itemName = ib.getitemName();
+			Item item = scSTK.itemDAO.getByName(itemName);
+			Inventory prevEntry;
+			if (scSTK.inventoryDAO.inventoryForMonthExist(item.getitemId(), location.getLocationId())) {
+				prevEntry = scSTK.inventoryDAO.getPrevForSameMonth(item.getitemId(), location.getLocationId());
+				inventory.settotalContainers(prevEntry.gettotalContainers());
+				prevEntry.setvoided(true);
+			}
+
+			inventory.setitem(item.getitemId());
+
+			inventory.setconsumerLocation(location.getLocationId());
+
+			Integer initial = ib.getinventoryInitialVialsCount();
+
+			if (scSTK.inventoryDAO.prevMonthExist(location.getLocationId(), item.getitemId())) {
+				Inventory inv = scSTK.inventoryDAO.getPrevMonthInventory(location.getLocationId(), item.getitemId());
+				inventory.setbalanceContainer(inv.getprevMonthBalance());
+				inventory.settotalContainers(inventory.gettotalContainers() + inv.getprevMonthBalance()
+						+ ib.getinventoryInitialVialsCount());
+			} else {
+				inventory.setbalanceContainer(0);
+				inventory.settotalContainers(inventory.gettotalContainers() + initial);
+			}
+
+			inventory.setcurrentMonthContainers(ib.getinventoryInitialVialsCount());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = sdf.parse(sdf.format(new Date()));
+			Calendar cal = Calendar.getInstance();
+			int month = cal.get(Calendar.MONTH) + 1;
+			int year = cal.get(Calendar.YEAR);
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			inventory.setday(day);
+			inventory.setyear(year);
+			inventory.setmonth(month);
+			inventory.setdateCreated(date);
+
+			scSTK.inventoryDAO.save(inventory);
+			return inventory;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+			sc.closeSession();
+			scSTK.closeSession();
+		}
+
+		return null;
+
+	}
+
+	public void updateRequirement(UpdateRequirementBean urb , int userid , int locationId) throws InstanceAlreadyExistsException, ParseException {
+		Requisition req;
+		Location location = null;
+		LocationServiceContext sc = LocationContext.getServices();
+		try
 		{
-			prevEntry = inventoryDAO.getPrevForSameMonth(item,(Location) location.get(0));
-			inventory.settotalContainers(prevEntry.gettotalContainers());
-			prevEntry.setvoided(true);
+			location = (Location) sc.getLocationService().findLocationByName(urb.getlocation(), false, null);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			sc.closeSession();
+		}
+		 
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+
+		try
+		{
+			List<Item> items = (List<Item>) scSTK.itemDAO.getallItems();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = sdf.parse(sdf.format(new Date()));
+			Calendar cal = Calendar.getInstance();
+			int month = cal.get(Calendar.MONTH) + 1;
+			int year = cal.get(Calendar.YEAR);
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			for (int i = 0; i < urb.getquantity().size(); i++) {
+				if (!urb.getquantity().get(i).isEmpty()) {
+					req = new Requisition();
+					req.setitem(items.get(i).getitemId());
+					//req.setuserLocation(location.getLocationId());//location of user submitting the form from web
+					req.setcomments(urb.getcomments().get(i));
+					req.setRequisitionBy(userid);
+					req.setRequisitionLocation(location.getLocationId());//selected from dropdown
+					req.setquantity(Long.parseLong(urb.getquantity().get(i)));
+					req.setdateCreated(date);
+					req.setmonth(month);
+					req.setyear(year);
+					req.setDay(day);
+					req.setapprovalStatus("Pending");
+					scSTK.requisitionDAO.save(req);
+				}
+
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			scSTK.commitTransaction();
+			scSTK.closeSession();
 		}
 		
-		inventory.setitem(item);
-       
-		inventory.setconsumerLocation((Location) location.get(0));
-		
-		Integer initial = ib.getinventoryInitialVialsCount();
-		
-		if (inventoryDAO.prevMonthExist((Location) location.get(0) , item)) {
-			Inventory inv = inventoryDAO.getPrevMonthInventory((Location) location.get(0) , item);
-			inventory.setbalanceContainer(inv.getprevMonthBalance());
-			inventory.settotalContainers(inventory.gettotalContainers()+inv.getprevMonthBalance() + ib.getinventoryInitialVialsCount());
-		} else {
-			inventory.setbalanceContainer(0);
-			inventory.settotalContainers(inventory.gettotalContainers()+initial);
-		}
-
-		inventory.setcurrentMonthContainers(ib.getinventoryInitialVialsCount());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(sdf.format(new Date()));
-		Calendar cal = Calendar.getInstance();
-		int month = cal.get(Calendar.MONTH) + 1;
-		int year = cal.get(Calendar.YEAR);
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		inventory.setday(day);
-		inventory.setyear(year);
-		inventory.setmonth(month);
-		inventory.setdateCreated(date);
-
-		inventoryDAO.save(inventory);
-
-		return inventory;
 	}
+
+	public void updateRequirementMobile(List<UpdateRequirementBeanMobile> urb, int userId , int locationId)
+			throws InstanceAlreadyExistsException, ParseException {
+		Requisition req;
+		 
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+
+		try
+		{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = sdf.parse(sdf.format(new Date()));
+			Calendar cal = Calendar.getInstance();
+			int month = cal.get(Calendar.MONTH) + 1;
+			int year = cal.get(Calendar.YEAR);
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			for (int i = 0; i < urb.size(); i++) {
+				req = new Requisition();
+				Item item = scSTK.itemDAO.getByName(urb.get(i).getitem());
+				if (item == null) {
+					item = scSTK.itemDAO.getById(Integer.parseInt(urb.get(i).getitem()));
+				}
+				req.setitem(item.getitemId());
+				req.setRequisitionBy(userId);
+				//req.setuserLocation(locationId);
+				req.setcomments(urb.get(i).getcomment());
+				req.setRequisitionBy(userId);
+				req.setRequisitionLocation(locationId);
+				req.setquantity((urb.get(i)).getquantity());
+				req.setdateCreated(date);
+				req.setmonth(month);
+				req.setyear(year);
+				req.setDay(day);
+				req.setapprovalStatus("Pending");
+				scSTK.requisitionDAO.save(req);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			scSTK.commitTransaction();
+			scSTK.closeSession();
+		}
+		
+	}
+
+	public void ApproveReq(ApproveRequirementBean arb, List<Requisition> requisitions)
+			throws InstanceAlreadyExistsException {
+
+		 
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		
+      Location location = null;
+      LocationServiceContext sc = LocationContext.getServices();
+      
+		try
+		{
+		for (int i = 0; i < requisitions.size(); i++) {
+			
+				if (arb.getcheck()[i].equalsIgnoreCase("approve")) {
+//					location = (Location) sc.getLocationService().findLocationById(requisitions.get(i).getRequisitionLocation(), false, null);
+//					Inventory inv = scSTK.inventoryDAO.getBalanceForLocationMonthItem(
+//							location.getParentLocation().getLocationId(),
+//							requisitions.get(i).getitem());
+//					if (inv.gettotalContainers() > requisitions.get(i).getquantity()) {
+//						inv.settotalContainers((int) (inv.gettotalContainers() - requisitions.get(i).getquantity()));
+//						scSTK.inventoryDAO.update(inv);
+//						requisitions.get(i).setapprovalReferenceInventory(inv.getinventoryID());
+//						requisitions.get(i).setapprovalStatus("Approved");
+//						scSTK.requisitionDAO.update(requisitions.get(i));
+//					} else {
+//						// requisitions.get(i).setcomments("Amount Unavailable");
+//						requisitions.get(i).setapprovalStatus("Amount Unavailable");
+//						scSTK.requisitionDAO.update(requisitions.get(i));
+//					}
+					//this code is only for time being because we are ignoring inventory check
+					requisitions.get(i).setapprovalStatus("Approved");
+					scSTK.requisitionDAO.update(requisitions.get(i));
+
+				}
+				if (arb.getcheck()[i].equalsIgnoreCase("unapprove")) {
+					requisitions.get(i).setapprovalStatus("Unapproved");
+					scSTK.requisitionDAO.update(requisitions.get(i));
+				}
+
+			}
+		}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			finally
+			{
+				sc.closeSession();
+				scSTK.commitTransaction();
+				scSTK.closeSession();
+			}
+			
+			
+	}	
 	
-	public void updateRequirement(UpdateRequirementBean urb) throws InstanceAlreadyExistsException, ParseException
-	{
-		Requisition req ;
-		DAORequisition requirementDAO = new DAORequisition();
-		DAOItem itemDAO = new DAOItem();
-		List<Item> items = (List<Item>) itemDAO.getallItems();
-		Context.instantiate(null);
-		ServiceContext sc = Context.getServices();
-		sc.beginTransaction();
-		List location = sc.getLocationService().findLocationByName(urb.getlocation(), false, null);
-	    sc.commitTransaction();
-	    sc.closeSession();
-	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(sdf.format(new Date()));
-		Calendar cal = Calendar.getInstance();
-		int month = cal.get(Calendar.MONTH) + 1;
-		int year = cal.get(Calendar.YEAR);
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-	    for(int i = 0 ; i < urb.getquantity().size() ;i++)
-	    {
-	    	if(!urb.getquantity().get(i).isEmpty())
-	    	{
-	    		req = new Requisition();
-	    		req.setitem(items.get(i));
-	    		req.setconsumerLocation((Location) location.get(0));
-	    		req.setcomments(urb.getcomments().get(i));
-	    		//req.setRequisitionBy(id of the person submitting the form);
-	    		//req.setRequisitionLocation(location of the person submitting the form);
-	    		req.setquantity(Integer.parseInt(urb.getquantity().get(i)));
-	    		req.setdateCreated(date);
-	    		req.setmonth(month);
-	    		req.setyear(year);
-	    		req.setDay(day);
-	    		req.setApprovalStatus("Pending");
-	    		requirementDAO.save(req);
-	    	}
-	    	
-	    }
-	}
 }

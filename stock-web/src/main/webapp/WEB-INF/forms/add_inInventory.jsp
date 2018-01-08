@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page import="com.ihs.stock.api.model.Inventory"%>
 <%@page import="com.ihs.stock.api.model.Item"%>
-<%@page import="com.ihs.stock.api.model.Location"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

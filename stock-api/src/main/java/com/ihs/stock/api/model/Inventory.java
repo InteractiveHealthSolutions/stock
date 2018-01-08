@@ -3,20 +3,15 @@ package com.ihs.stock.api.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import com.ihs.locationmanagement.api.model.Location;
-import org.hibernate.annotations.ForeignKey;
+
 
 @Entity
 @Table(name ="inventory")
@@ -69,20 +64,14 @@ public class Inventory {
 	@Column(name="date_voided")
 	private Date dateVoided;
 	
-	@ManyToOne(targetEntity = Item.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "item")
-	@ForeignKey(name = "inventory_itemid_item_mappedId_FK")
-	private Item item;
+	@Column(name="item")
+	private Integer item;
 	
-	@ManyToOne(targetEntity = Location.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "consumer_location")
-	@ForeignKey(name = "inventory_tolocationid_location_mappedId_FK")
-	private Location consumerLocation;
+	@Column(name="consumer_location")
+	private Integer consumerLocation;
 	
-	@ManyToOne(targetEntity = Location.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "parent_location")
-	@ForeignKey(name = "inventory_fromlocationid_location_mappedId_FK")
-	private Location parentLocation;
+	@Column(name="parent_location")
+	private Integer parentLocation;
 	
 	public void setinventoryId(int id)
 	{
@@ -109,32 +98,32 @@ public class Inventory {
 		return prevMonthBalance;
 	}
 	
-	public Item getitem()
+	public Integer getitem()
 	{
 		return item;
 	}
 	
-	public void setitem(Item item_inStock)
+	public void setitem(Integer item_inStock)
 	{
 		this.item = item_inStock;
 	}
 	
-	public Location getconsumerLocation()
+	public Integer getconsumerLocation()
 	{
 		return consumerLocation;
 	}
 	
-	public void setconsumerLocation(Location loc)
+	public void setconsumerLocation(Integer loc)
 	{
 		this.consumerLocation = loc;
 	}
 	
-	public Location getparentLocation()
+	public Integer getparentLocation()
 	{
 		return parentLocation;
 	}
 	
-	public void setparentLocation(Location loc)
+	public void setparentLocation(Integer loc)
 	{
 		this.parentLocation = loc;
 	}
