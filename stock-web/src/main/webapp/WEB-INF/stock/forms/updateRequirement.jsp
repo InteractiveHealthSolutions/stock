@@ -53,7 +53,7 @@ window.onbeforeunload = function(event) {
 <center><h2>Requisition Form for Vaccination Centers under town ${town}</h2></center>
 	<center>
 		<form:form method="POST" modelAttribute="reqList" id="reqform"
-			action="${pageContext.request.contextPath}/add/updatereq/${id}.htm">
+			action="${pageContext.request.contextPath}/add/updatereq/${user}/${id}.htm">
 			<table>
 				<tr>
 					<td>Select location *</td>

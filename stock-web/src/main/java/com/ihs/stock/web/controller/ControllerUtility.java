@@ -227,23 +227,19 @@ public class ControllerUtility {
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		try
 		{
-			Location location = sc.getLocationService().findLocationById(locationId, false, null);
-			List<Location> childLocations = sc.getLocationService().getAllChildLocations(locationId, false, null);
+			List<Location> location = sc.getLocationService().getAllLocation(false, null);
 			List<String> loc = new ArrayList<String>();
 			
-			for (int i = 0 ; i < childLocations.size() ; i++) {
-				List<Location> UCLocations = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
-				for(int j = 0 ; j < UCLocations.size() ; j++)
-				{
-					loc.add(UCLocations.get(j).getName());
-				}
+			for (int i = 0 ; i < location.size() ; i++) {
+			loc.add(location.get(i).getName());
+				
 
 			}
 			ModelAndView mD = new ModelAndView();
 			Collections.sort(loc, Collator.getInstance());
-			mD.addObject("town", location.getName());
-			mD.addObject("cLoc", loc);
 		
+			mD.addObject("cLoc", loc);
+		    mD.addObject("user", user);
 			
 			mD.addObject("item", scSTK.itemDAO.getAllItems());
 			mD.addObject("id", locationId);
