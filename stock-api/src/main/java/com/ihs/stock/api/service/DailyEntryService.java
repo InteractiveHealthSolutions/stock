@@ -35,11 +35,14 @@ public class DailyEntryService {
 
 			ilrDailyStatus.setlocation(ilrDailyStatus.getlocation());
 			Calendar cal = Calendar.getInstance();
-			ilrDailyStatus.setdateToday(date);
+			//ilrDailyStatus.setdateToday(date);
 			cal.setTime(ilrDailyStatus.getdateToday());
 			int month = cal.get(Calendar.MONTH) + 1;
 			int year = cal.get(Calendar.YEAR);
 			int day = cal.get(Calendar.DAY_OF_MONTH);
+			cal.setTime(ilrDailyStatus.getmorningTime());
+			cal.add(Calendar.HOUR, -5);
+			ilrDailyStatus.setmorningTime(cal.getTime());
 			ilrDailyStatus.setmonth(month);
 			ilrDailyStatus.setday(day);
 			ilrDailyStatus.setyear(year);
@@ -165,8 +168,13 @@ public class DailyEntryService {
 				}
 				if(ilrDailyStats.getdayendTime() != null)
 				{
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(ilrDailyStats.getdayendTime());
+					cal.add(Calendar.HOUR, -5);
+					ilrDailyStats.setdayendTime(cal.getTime());
 					ilrDailyStatus.setdayendTime(ilrDailyStats.getdayendTime());
 				}
+				
 
 			sc.ilrDailyStatusDAO.update(ilrDailyStatus);
 

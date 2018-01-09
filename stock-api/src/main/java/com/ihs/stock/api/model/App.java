@@ -123,6 +123,12 @@ public static HashMap<String , String> dynamicColumns = new HashMap<String,Strin
 //	System.out.println(wasted);
 		Calendar cal = Calendar.getInstance();
 		System.out.println(cal.get(Calendar.DAY_OF_MONTH));
+		Date startingDate = new Date();
+		System.out.println(startingDate.toString());
+		cal.setTime(startingDate);
+		cal.add(Calendar.HOUR, -4);
+		Date result = cal.getTime();
+		System.out.println("result "+result.toString());
 //		String month = new DateFormatSymbols().getMonths()[(cal.get(Calendar.MONTH)+1)-1];
 //		System.out.println(month);
 //	System.out.println(loc.getLocationID());
