@@ -37,7 +37,7 @@ public class ILRDailyStatus {
 	@Column(name="ilr_identifier")
 	private String ilrIdentifier;
 	
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd" ,locale = "en_PK")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "dateToday")
 	private Date dateToday;

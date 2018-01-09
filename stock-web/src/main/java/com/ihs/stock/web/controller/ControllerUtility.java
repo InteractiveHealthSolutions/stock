@@ -230,15 +230,25 @@ public class ControllerUtility {
 			Location location = sc.getLocationService().findLocationById(locationId, false, null);
 			List<Location> childLocations = sc.getLocationService().getAllChildLocations(locationId, false, null);
 			List<String> loc = new ArrayList<String>();
-			
-			for (int i = 0 ; i < childLocations.size() ; i++) {
-				List<Location> UCLocations = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
-				for(int j = 0 ; j < UCLocations.size() ; j++)
-				{
-					loc.add(UCLocations.get(j).getName());
-				}
+//			if(sc.getLocationService().getAllChildLocations(childLocations.get(0).getLocationId(), false, null).size() < 1)
+//			{
+//				for(int j = 0 ; j < childLocations.size() ; j++)
+//				{
+//					loc.add(childLocations.get(j).getName());
+//				}
+//			}
+//			else
+//			{
+				for (int i = 0 ; i < childLocations.size() ; i++) {
+					List<Location> UCLocations = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+					for(int j = 0 ; j < UCLocations.size() ; j++)
+					{
+						loc.add(UCLocations.get(j).getName());
+					}
 
-			}
+				}
+	//		}
+			
 			ModelAndView mD = new ModelAndView();
 			Collections.sort(loc, Collator.getInstance());
 			mD.addObject("town", location.getName());
