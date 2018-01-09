@@ -51,7 +51,7 @@ public class ILRController {
 		{
 			Location location = scL.getLocationService().findLocationByName(sb.getlocationName(), false, null);
 			List<ILRDailyStatus> dailyStatus = sc.ilrDailyStatusDAO.getForYearMonthLocation(location.getLocationId(), sb.getmonth(), sb.getyear());
-			if(dailyStatus == null)
+			if(dailyStatus.size() < 1)
 			{
 				modelAndView.addObject("error", "No data Found");
 				modelAndView.addObject("sb", sb);
