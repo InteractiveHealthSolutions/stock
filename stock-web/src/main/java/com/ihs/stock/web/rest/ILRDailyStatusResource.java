@@ -1,24 +1,16 @@
 package com.ihs.stock.web.rest;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
 import javax.management.InstanceAlreadyExistsException;
 
-import org.hibernate.SessionFactory;
-import org.ird.unfepi.context.LocationContext;
-import org.ird.unfepi.context.LocationServiceContext;
-import org.ird.unfepi.model.Location;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,7 +21,7 @@ import com.ihs.stock.api.service.DailyEntryService;
 
 @RestController
 @CrossOrigin//(origins = {"http://localhost:8080"}, maxAge = 4800, allowCredentials = "false")
-@RequestMapping("/ilr")
+@RequestMapping("/ilrws")
 public class ILRDailyStatusResource {
 
 	@RequestMapping(value="/add" , method = RequestMethod.POST /*, consumes = "application/json" , produces = "application/json"*/)

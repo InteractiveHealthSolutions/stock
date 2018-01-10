@@ -23,7 +23,7 @@ import com.ihs.stock.api.model.ILRDailyStatus;
 import com.ihs.stock.web.validator.ILRValidator;
 
 @Controller
-@RequestMapping("/viewgraph")
+@RequestMapping("/view")
 public class ILRController {
 
 	private ILRValidator ilrValidator;
@@ -33,7 +33,7 @@ public class ILRController {
 	{
 		binder.setValidator(ilrValidator);
 	}
-	@RequestMapping(value="/ilr" , method = RequestMethod.POST)
+	@RequestMapping(value="/ilrgraph" , method = RequestMethod.POST)
 	public ModelAndView viewGraph(ModelAndView modelAndView , @ModelAttribute("sb") SearchBean sb , BindingResult results)
 	{
 		ilrValidator = new ILRValidator();
@@ -45,6 +45,53 @@ public class ILRController {
 			return modelAndView;
 		}
 		modelAndView = ControllerUtility.setSearchILRGraph(modelAndView);
+		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
+		LocationServiceContext scL = LocationContext.getServices();
+		try
+		{
+			Location location = scL.getLocationService().findLocationByName(sb.getlocationName(), false, null);
+			List<ILRDailyStatus> dailyStatus = sc.ilrDailyStatusDAO.getForYearMonthLocation(location.getLocationId(), sb.getmonth(), sb.getyear());
+			if(dailyStatus == null)
+			{
+				modelAndView.addObject("error", "No data Found");
+				modelAndView.addObject("sb", sb);
+				return modelAndView;
+			}
+			modelAndView.addObject("loc", location);
+			modelAndView.addObject("mon", sb.getmonth());
+			modelAndView.addObject("yr", sb.getyear());
+			
+			modelAndView.addObject("sb", sb);
+			modelAndView.addObject("monName" , new DateFormatSymbols().getMonths()[sb.getmonth()-1]);
+			return modelAndView;
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			scL.closeSession();
+			sc.closeSession();
+		}
+		
+		return null;
+		
+	}
+	
+	@RequestMapping(value="/ilrtable" , method = RequestMethod.POST)
+	public ModelAndView viewilrTable(ModelAndView modelAndView , @ModelAttribute("sb") SearchBean sb , BindingResult results)
+	{
+		ilrValidator = new ILRValidator();
+		ilrValidator.validate(sb, results);
+		if(results.hasErrors())
+		{
+			modelAndView = ControllerUtility.setTempratureMonitoringILRTable(modelAndView);
+			modelAndView.addObject("sb", sb);
+			return modelAndView;
+		}
+		modelAndView = ControllerUtility.setTempratureMonitoringILRTable(modelAndView);
 		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
 		LocationServiceContext scL = LocationContext.getServices();
 		try

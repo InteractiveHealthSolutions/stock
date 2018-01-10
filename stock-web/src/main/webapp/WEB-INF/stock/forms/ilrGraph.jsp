@@ -50,7 +50,7 @@
 </head>
 <body>
 	<form:form method="POST" modelAttribute="sb" id="searchfrm"
-		action="${pageContext.request.contextPath}/viewgraph/ilr.htm">
+		action="${pageContext.request.contextPath}/view/ilrgraph.htm">
 
 
 		<tr>

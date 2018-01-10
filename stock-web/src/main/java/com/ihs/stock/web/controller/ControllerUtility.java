@@ -409,5 +409,42 @@ public class ControllerUtility {
 		}
 		return null;
 	}
+public static ModelAndView setTempratureMonitoringILRTable(ModelAndView modelAndView) {
+		
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		LocationServiceContext sc = LocationContext.getServices();
+		try
+		{
+			List<Integer> months = scSTK.ilrDailyStatusDAO.getDistinctMonths();
+			List<Integer> years = scSTK.ilrDailyStatusDAO.getDistinctYears();
+			List<Location> locationsObj = sc.getLocationService().findLocationByLocationType(12, false, null);
+			
+			List<String> locations = new ArrayList<String>();
+			for (int i = 0; i < locationsObj.size(); i++) {
+				locations.add(locationsObj.get(i).getName());
+			}
+			modelAndView.addObject("months", months);
+			modelAndView.addObject("years", years);
+			modelAndView.addObject("locations", locations);
+			SearchBean sb = new SearchBean();
+			sb.setmonth(months.get(0));
+			sb.setyear(years.get(0));
+			modelAndView.addObject("sb", sb);
+			modelAndView.setViewName("ilrTable");
+
+			return modelAndView;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			sc.closeSession();
+			scSTK.closeSession();
+		}
+		return null;
+	}
+
 
 }
