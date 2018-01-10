@@ -274,7 +274,7 @@ public class ControllerUtility {
 	}
 	public static ModelAndView setRequirement(ModelAndView mD, int locationId)
 			throws InstanceAlreadyExistsException {
-		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
+		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
 		LocationServiceContext sc = LocationContext.getServices();
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 	    try
