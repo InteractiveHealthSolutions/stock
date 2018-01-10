@@ -52,12 +52,16 @@ public class StarterController {
 		mD = ControllerUtility.setAddItemForm(mD);
 		return mD;
 	}
-	@RequestMapping(value = "/ilr" , method = RequestMethod.GET)
-	public ModelAndView ilrGraph(ModelAndView mD)
-	{
-		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
+	@RequestMapping(value = "/ilrgraph", method = RequestMethod.GET)
+	public ModelAndView ilrGraph(ModelAndView mD) {
 		mD.addObject("sb", new SearchBean());
 		return ControllerUtility.setSearchILRGraph(mD);
+	}
+
+	@RequestMapping(value = "/ilrtable", method = RequestMethod.GET)
+	public ModelAndView ilrTable(ModelAndView mD) {
+		mD.addObject("sb", new SearchBean());
+		return ControllerUtility.setTempratureMonitoringILRTable(mD);
 	}
 	@RequestMapping(value = "/req/{locationId}" , method = RequestMethod.GET)
 	public ModelAndView AllReq(@PathVariable("locationId") Integer locationId, ModelAndView mD) throws InstanceAlreadyExistsException, ParseException
