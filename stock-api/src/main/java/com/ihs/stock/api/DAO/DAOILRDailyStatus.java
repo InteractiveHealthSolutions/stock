@@ -72,7 +72,7 @@ public class DAOILRDailyStatus {
 	     {
 	    	 Location location = (Location) sc.getLocationService().findLocationById(locationId, false, null);
 	    	 
-		     Query query = s.createQuery("from ILRDailyStatus where month = :mon AND year = :yr AND location = :loc AND voided = :v");
+		     Query query = s.createQuery("from ILRDailyStatus where month = :mon AND year = :yr AND location = :loc AND voided = :v order by dateToday");
 		     query.setParameter("mon", month);
 		     query.setParameter("yr", year);
 		     query.setParameter("loc", location.getLocationId());

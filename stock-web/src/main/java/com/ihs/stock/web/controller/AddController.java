@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.ihs.stock.api.DAO.DAOInventory;
 import com.ihs.stock.api.DAO.DAOItem;
 import com.ihs.stock.api.DAO.DAOItemAttribute;
@@ -112,7 +111,7 @@ public class AddController {
 	@RequestMapping(value = "/itemattr", method = RequestMethod.POST)
 	public ModelAndView addItemAttributes(@ModelAttribute("attrBean") AddItemAttributeBean aiab,
 			ModelAndView modelAndView) throws ParseException {
-		
+
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 
 		Item item = scSTK.itemDAO.getByName(aiab.getitemName());
@@ -167,7 +166,7 @@ public class AddController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return new ModelAndView("done");
 
 	}
@@ -180,7 +179,7 @@ public class AddController {
 		requisitionFormValidator.validate(urb, result);
 		if (result.hasErrors()) {
 
-			modelAndView = ControllerUtility.updateMonthlyRequirement(location , userId);
+			modelAndView = ControllerUtility.updateMonthlyRequirement(location, userId);
 			// modelAndView.setViewName("updateRequirement");
 
 			return modelAndView;
@@ -193,55 +192,54 @@ public class AddController {
 
 	}
 
-//	@RequestMapping(value = "/approvereq/{locationId}")
-//	public ModelAndView approveReq(@ModelAttribute("urb") ApproveRequirementBean arb, BindingResult results,
-//			@PathVariable("locationId") Integer locationId, ModelAndView modelAndView)
-//			throws InstanceAlreadyExistsException {
+	@RequestMapping(value = "/approvereq/{user}/{locationId}")
+	public ModelAndView approveReq(@ModelAttribute("urb") ApproveRequirementBean arb, BindingResult results,
+			@PathVariable("user") Integer user, @PathVariable("locationId") Integer locationId,
+			ModelAndView modelAndView) throws InstanceAlreadyExistsException {
+
+		LocationServiceContext sc = LocationContext.getServices();
+
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+
+		try {
+
+			AddInInventoryService inv = new AddInInventoryService();
+			Location location = sc.getLocationService().findLocationById(locationId, false, null);
+			List<Location> childLocations = sc.getLocationService().getAllChildLocations(locationId, false, null);
+			int arbSize = 0;
+			List<Location> vacCenter = new ArrayList<Location>();
+			List<Requisition> requisitionsUnApproved = new ArrayList<Requisition>();
+			//List<Item> items = (List<Item>) scSTK.itemDAO.getallItems();
+			for(int i = 0 ; i < childLocations.size() ; i++)
+			{
+				List<Location> vaccinationcenter = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+				vacCenter.addAll(vaccinationcenter);
+			    for(int j = 0 ; j < vaccinationcenter.size() ; j++)
+			    {
+			    	requisitionsUnApproved.addAll( scSTK.requisitionDAO.getForLocationPending(vaccinationcenter.get(j).getLocationId())) ;
+			    }
+				
+				//requisitionsUnApproved.addAll(scSTK.requisitionDAO.getForLocationPending(childLocations.get(i).getLocationId()));
+				
+			}
+
+//			approveRequirementValidator = new ApproveRequirementValidator();
+//			approveRequirementValidator.validate(arb, results, requisitionsUnApproved);
+//			if (results.getErrorCount() > 0) {
+//				inv.ApproveReq(arb, requisitions);
+//				modelAndView = ControllerUtility.setRequirementApproval(modelAndView, locationId, user);
 //
-//		LocationServiceContext sc = LocationContext.getServices();
-//
-//		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
-//
-//		try {
-//			// Location loc =
-//			// sc.getLocationService().findLocationById(locationId, false,
-//			// null);
-//			// List<Requisition> requisitions =
-//			// sc.requisitionDAO.getForLocationPending((Location) loc);
-//			AddInInventoryService inv = new AddInInventoryService();
-//			Location location = (Location) sc.getLocationService().findLocationById(locationId, false, null);
-//			Set<Location> childLocations = location.getChildLocations();
-//			// List<Location> childLocations =
-//			// sc.getCustomQueryService().getDataByHQL("from Location where
-//			// parentLocation = "+location.getLocationId());
-//			int arbSize = 0;
-//			List<Requisition> requisitionsUnApproved = new ArrayList<Requisition>();
-//
-//			for (Iterator it = (Iterator) childLocations.iterator(); it.hasNext();) {
-//
-//				requisitionsUnApproved.addAll(scSTK.requisitionDAO.getForLocationPending(it.next()));
-//
+//				return modelAndView;
 //			}
-//
-////			approveRequirementValidator = new ApproveRequirementValidator();
-////			approveRequirementValidator.validate(arb, results, requisitionsUnApproved);
-//			// if (results.getErrorCount() > 0) {
-//			// inv.ApproveReq(arb, requisitions);
-//			// modelAndView =
-//			// ControllerUtility.setRequirementApproval(modelAndView,
-//			// locationId);
-//			//
-//			// return modelAndView;
-//			// }
-//			inv.ApproveReq(arb, requisitionsUnApproved);
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			sc.closeSession();
-//		}
-//		return new ModelAndView("done");
-//
-//	}
+			inv.ApproveReq(arb, requisitionsUnApproved);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sc.closeSession();
+		}
+		return ControllerUtility.setRequirementApproval(modelAndView, locationId, user);
+
+	}
 
 }

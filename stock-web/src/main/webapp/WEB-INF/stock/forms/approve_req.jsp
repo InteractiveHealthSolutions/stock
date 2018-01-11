@@ -45,7 +45,7 @@ th, td {
 	</script>
 
 	<form:form method="POST" modelAttribute="urb" id="approvereq"
-		action="${pageContext.request.contextPath}/add/approvereq/${locId.locationId}.htm">
+		action="${pageContext.request.contextPath}/add/approvereq/${user}/${locId.locationId}.htm">
 		<center>
 
 			<h2>
@@ -80,7 +80,7 @@ th, td {
 				<th>Approval Status</th>
 				<c:forEach items="${req}" var="req" varStatus="status">
 					<tr>
-						<td>${req.item.name}</td>
+						<td>${req.item}</td>
 						<td>${req.quantity}</td>
 						<td>${req.comments}</td>
 						<c:set var="y" value="${req.approvalStatus}" />
@@ -111,7 +111,7 @@ th, td {
 						<c:set var="m" value="Approved" />
 						<c:choose>
 							<c:when test="${y eq m}">
-								<td>${list.item.name}</td>
+								<td>${list.item}</td>
 								<td>${list.quantity}</td>
 								<td>${list.comments}</td>
 								<td>${list.approvalStatus}</td>

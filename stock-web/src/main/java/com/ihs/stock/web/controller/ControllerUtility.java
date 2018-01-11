@@ -340,14 +340,18 @@ public class ControllerUtility {
 			{
 				List<Location> vaccinationcenter = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
 				vacCenter.addAll(vaccinationcenter);
-			
-				//requisitionsUnApproved = sc.requisitionDAO.getForLocationUnApproved(childLocations.get(i));
-				requisitionsUnApproved.addAll(scSTK.requisitionDAO.getForLocationPending(childLocations.get(i).getLocationId()));
+			    for(int j = 0 ; j < vaccinationcenter.size() ; j++)
+			    {
+			    	requisitionsUnApproved.addAll( scSTK.requisitionDAO.getForLocationPending(vaccinationcenter.get(j).getLocationId())) ;
+			    }
+				
+				//requisitionsUnApproved.addAll(scSTK.requisitionDAO.getForLocationPending(childLocations.get(i).getLocationId()));
 				
 			}
 	    	mD.addObject("locId", (Location)location);
 			mD.addObject("req", requisitionsUnApproved);
 			mD.addObject("vacCenter" , vacCenter);
+			mD.addObject("user", user);
 			mD.addObject("i" , items);
 			ApproveRequirementBean arb = new ApproveRequirementBean(requisitionsUnApproved.size());
 			mD.addObject("urb", arb.getcheck());
@@ -361,12 +365,14 @@ public class ControllerUtility {
 		}
 		finally
 		{
+			scSTK.closeSession();
 			sc.closeSession();
 		}
 	    return null;
 
 	}
-
+	
+	
 	public static ModelAndView setDonePage(ModelAndView mD) {
 
 		mD.setViewName("done");
