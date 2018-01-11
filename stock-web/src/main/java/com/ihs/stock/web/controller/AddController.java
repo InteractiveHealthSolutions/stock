@@ -187,8 +187,9 @@ public class AddController {
 
 		AddInInventoryService ais = new AddInInventoryService();
 		ais.updateRequirement(urb, userId, location);
-
-		return ControllerUtility.setRequirement(modelAndView, location);
+        modelAndView = ControllerUtility.updateMonthlyRequirement(location,userId); 
+        modelAndView.addObject("message","Form Submitted" );
+		return modelAndView;
 
 	}
 
@@ -238,7 +239,9 @@ public class AddController {
 		} finally {
 			sc.closeSession();
 		}
-		return ControllerUtility.setRequirementApproval(modelAndView, locationId, user);
+		modelAndView = ControllerUtility.setRequirementApproval(modelAndView, locationId, user);
+		modelAndView.addObject("message", "Approval Status has been submitted");
+		return modelAndView;
 
 	}
 

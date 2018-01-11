@@ -34,17 +34,30 @@
 		function submitThisForm() {
 			checkB=0;
 			document.getElementById("reqform").submit();
+			
+	
 		}
 	
-	
+	function message()
+	{
+		var msg = "${message}";
+		if (typeof msg != 'undefined' && msg) {
+			alert(msg);
+		}
+	}
 window.onbeforeunload = function(event) {
 	 document.getElementById("reqform").reset();
 	
+		   
  if(checkB== 1)
 	 {
     return "Are u sure u want to navigate away";
 	 }
 };
+window.onload = function(event) {
+	
+	message();
+}
 
 </script>
 </head>
@@ -53,7 +66,7 @@ window.onbeforeunload = function(event) {
 <center><h2>Requisition Form for Vaccination Centers under town ${town}</h2></center>
 	<center>
 		<form:form method="POST" modelAttribute="reqList" id="reqform"
-			action="${pageContext.request.contextPath}/add/updatereq/${id}.htm">
+			action="${pageContext.request.contextPath}/add/updatereq/${id}/2.htm">
 			<table>
 				<tr>
 					<td>Select location *</td>

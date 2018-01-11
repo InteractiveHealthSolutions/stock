@@ -22,7 +22,7 @@
 <a href = "${pageContext.request.contextPath}/item.jsp"><button>Item options</button></a>
 <br>
 <br />
-<a href = "${pageContext.request.contextPath}/start/updaterquirement/1/1.htm"><button>Update Requirement</button></a>
+<a href = "${pageContext.request.contextPath}/start/updaterquirement/2/2.htm"><button>Update Requirement</button></a>
 <br>
 <a href = "${pageContext.request.contextPath}/start/ilr.htm"><button>ILR</button></a>
 <br>
