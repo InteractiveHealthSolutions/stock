@@ -13220,3 +13220,883 @@ Caused by: javax.el.PropertyNotFoundException: Property 'name' not found on type
 2018-01-11 13:07:17 DEBUG RequestMappingHandlerMapping:320 - Did not find handler method for [/start/ilr.htm]
 2018-01-11 13:07:17 WARN  PageNotFound:1172 - No mapping found for HTTP request with URI [/stock-web/start/ilr.htm] in DispatcherServlet with name 'mvc-dispatcher'
 2018-01-11 13:07:17 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:39:22 DEBUG DispatcherServlet:118 - Initializing servlet 'mvc-dispatcher'
+2018-01-11 16:39:22 DEBUG StandardServletEnvironment:109 - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+2018-01-11 16:39:22 DEBUG StandardServletEnvironment:109 - Adding [servletContextInitParams] PropertySource with lowest search precedence
+2018-01-11 16:39:22 DEBUG StandardServletEnvironment:109 - Adding [jndiProperties] PropertySource with lowest search precedence
+2018-01-11 16:39:22 DEBUG StandardServletEnvironment:109 - Adding [systemProperties] PropertySource with lowest search precedence
+2018-01-11 16:39:22 DEBUG StandardServletEnvironment:109 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2018-01-11 16:39:22 DEBUG StandardServletEnvironment:124 - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,jndiProperties,systemProperties,systemEnvironment]
+2018-01-11 16:39:22 INFO  DispatcherServlet:489 - FrameworkServlet 'mvc-dispatcher': initialization started
+2018-01-11 16:39:22 DEBUG DispatcherServlet:617 - Servlet with name 'mvc-dispatcher' will try to create custom WebApplicationContext context of class 'org.springframework.web.context.support.XmlWebApplicationContext', using parent context [null]
+2018-01-11 16:39:22 DEBUG StandardServletEnvironment:174 - Replacing [servletContextInitParams] PropertySource with [servletContextInitParams]
+2018-01-11 16:39:22 DEBUG StandardServletEnvironment:174 - Replacing [servletConfigInitParams] PropertySource with [servletConfigInitParams]
+2018-01-11 16:39:22 INFO  XmlWebApplicationContext:582 - Refreshing WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:39:22 PKT 2018]; root of context hierarchy
+2018-01-11 16:39:22 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/mvc-dispatcher-servlet.xml]
+2018-01-11 16:39:22 DEBUG XmlWebApplicationContext:616 - Bean factory for WebApplicationContext for namespace 'mvc-dispatcher-servlet': org.springframework.beans.factory.support.DefaultListableBeanFactory@15945de0: defining beans [addController,generalDataViewController,ILRController,starterController,vaccinatorDataAccessController,vaccinatorUpdateController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,dailyStatsResource,ILRDailyStatusResource,inventoryResource,itemResource,monthlyStatsResource,requisitionResource,dailyMorningEntryValidator,inventoryFormValidator,vaccinatorMonthlyUpdateValidator,contentNegotiationManager,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping,mvcCorsConfigurations,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter,mvcUriComponentsContributor,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,viewResolver,messageSource,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,jsonMessageConverter]; root of factory hierarchy
+2018-01-11 16:39:23 DEBUG XmlWebApplicationContext:723 - Using MessageSource [org.springframework.context.support.ReloadableResourceBundleMessageSource: basenames=[/WEB-INF/message]]
+2018-01-11 16:39:23 DEBUG XmlWebApplicationContext:757 - Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@6d0ce1b]
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:195 - Looking for request mappings in application context: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:39:22 PKT 2018]; root of context hierarchy
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 6 request handler methods found on class com.ihs.stock.web.controller.AddController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItemAttributes(com.ihs.stock.api.beans.AddItemAttributeBean,org.springframework.web.servlet.ModelAndView) throws java.text.ParseException={[/add/itemattr],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItemAttributeType(com.ihs.stock.api.model.ItemAttributeType,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView)={[/add/attributetype],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addInInventory(com.ihs.stock.api.beans.InventoryBean,org.springframework.validation.BindingResult,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/add/inventory],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.approveReq(com.ihs.stock.api.beans.ApproveRequirementBean,org.springframework.validation.BindingResult,java.lang.Integer,java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException={[/add/approvereq/{user}/{locationId}]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItems(com.ihs.stock.api.beans.AddItemBean,org.springframework.validation.BindingResult,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView) throws java.text.ParseException={[/add/item],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addRequirement(com.ihs.stock.api.beans.UpdateRequirementBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/add/updatereq/{userID}/{location}],methods=[POST]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/itemattr],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItemAttributes(com.ihs.stock.api.beans.AddItemAttributeBean,org.springframework.web.servlet.ModelAndView) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/attributetype],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItemAttributeType(com.ihs.stock.api.model.ItemAttributeType,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/inventory],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addInInventory(com.ihs.stock.api.beans.InventoryBean,org.springframework.validation.BindingResult,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/approvereq/{user}/{locationId}]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.approveReq(com.ihs.stock.api.beans.ApproveRequirementBean,org.springframework.validation.BindingResult,java.lang.Integer,java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/item],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItems(com.ihs.stock.api.beans.AddItemBean,org.springframework.validation.BindingResult,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/updatereq/{userID}/{location}],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addRequirement(com.ihs.stock.api.beans.UpdateRequirementBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 4 request handler methods found on class com.ihs.stock.web.controller.GeneralDataViewController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewCurrentMonthStatsLocation(org.springframework.web.servlet.ModelAndView)={[/view/statslocation],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewInventory(org.springframework.web.servlet.ModelAndView)={[/view/inventory],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewAllItems(org.springframework.web.servlet.ModelAndView)={[/view/items],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.searchInventory(com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException={[/view/searchinventory],methods=[POST]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/statslocation],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewCurrentMonthStatsLocation(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/inventory],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewInventory(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/items],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewAllItems(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/searchinventory],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.searchInventory(com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 2 request handler methods found on class com.ihs.stock.web.controller.ILRController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.ILRController.viewilrTable(org.springframework.web.servlet.ModelAndView,com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult)={[/view/ilrtable],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.ILRController.viewGraph(org.springframework.web.servlet.ModelAndView,com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult)={[/view/ilrgraph],methods=[POST]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/ilrtable],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.ILRController.viewilrTable(org.springframework.web.servlet.ModelAndView,com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/ilrgraph],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.ILRController.viewGraph(org.springframework.web.servlet.ModelAndView,com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult)
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 12 request handler methods found on class com.ihs.stock.web.controller.StarterController: {public void com.ihs.stock.web.controller.StarterController.get()={[/start],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.item(org.springframework.web.servlet.ModelAndView)={[/start/additem],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.updateMonthlyRequirement(org.springframework.web.servlet.ModelAndView,java.lang.Integer,int) throws javax.management.InstanceAlreadyExistsException={[/start/updaterquirement/{user}/{location}],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.inventory(org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/start/addinventory],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.ilrGraph(org.springframework.web.servlet.ModelAndView)={[/start/ilrgraph],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.approveRequest(org.springframework.web.servlet.ModelAndView,int,int) throws javax.management.InstanceAlreadyExistsException={[/start/approvereq/{user}/{location}]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.morningEntry(org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer)={[/start/morningentry/{user}/{location}],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)={[/start/mainpage],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.dayEndEntry(java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/start/dayendentry/{location}],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.ilrTable(org.springframework.web.servlet.ModelAndView)={[/start/ilrtable],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.AllReq(java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/start/req/{locationId}],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.searchInventory(org.springframework.web.servlet.ModelAndView)={[/start/searchinventory],methods=[GET]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start],methods=[GET]}" onto public void com.ihs.stock.web.controller.StarterController.get()
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/additem],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.item(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/updaterquirement/{user}/{location}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.updateMonthlyRequirement(org.springframework.web.servlet.ModelAndView,java.lang.Integer,int) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/addinventory],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.inventory(org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/ilrgraph],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.ilrGraph(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/approvereq/{user}/{location}]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.approveRequest(org.springframework.web.servlet.ModelAndView,int,int) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/morningentry/{user}/{location}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.morningEntry(org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/mainpage],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/dayendentry/{location}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.dayEndEntry(java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/ilrtable],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.ilrTable(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/req/{locationId}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.AllReq(java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/searchinventory],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.searchInventory(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 1 request handler methods found on class com.ihs.stock.web.controller.VaccinatorDataAccessController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.VaccinatorDataAccessController.getVaccinatorBalanceStats(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView,javax.servlet.http.HttpSession) throws javax.management.InstanceAlreadyExistsException={[/vacDataAccess/balance],methods=[GET]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/vacDataAccess/balance],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.VaccinatorDataAccessController.getVaccinatorBalanceStats(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView,javax.servlet.http.HttpSession) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 1 request handler methods found on class com.ihs.stock.web.controller.VaccinatorUpdateController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.VaccinatorUpdateController.dailyEntryMorning(com.ihs.stock.api.model.ILRDailyStatus,org.springframework.validation.BindingResult,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView,int,int) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException={[/vaccinator/dailymorningentry/{user}/{location}],methods=[POST]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/vaccinator/dailymorningentry/{user}/{location}],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.VaccinatorUpdateController.dailyEntryMorning(com.ihs.stock.api.model.ILRDailyStatus,org.springframework.validation.BindingResult,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView,int,int) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 3 request handler methods found on class com.ihs.stock.web.rest.DailyStatsResource: {public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.DailyStatsResource.delete(java.lang.String,com.ihs.stock.api.model.DailyStats) throws java.text.ParseException={[/dailystats/delete/{identifier}],methods=[DELETE],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.DailyStatsResource.getDailyStats(java.lang.String,com.ihs.stock.api.model.Consumer) throws java.text.ParseException={[/dailystats/{identifier}],methods=[GET],produces=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.DailyStatsResource.getAllDailyStats()={[/dailystats/],methods=[GET],produces=[application/json]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/dailystats/delete/{identifier}],methods=[DELETE],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.DailyStats> com.ihs.stock.web.rest.DailyStatsResource.delete(java.lang.String,com.ihs.stock.api.model.DailyStats) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/dailystats/{identifier}],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.DailyStats> com.ihs.stock.web.rest.DailyStatsResource.getDailyStats(java.lang.String,com.ihs.stock.api.model.Consumer) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/dailystats/],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.ihs.stock.api.model.DailyStats>> com.ihs.stock.web.rest.DailyStatsResource.getAllDailyStats()
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 2 request handler methods found on class com.ihs.stock.web.rest.ILRDailyStatusResource: {public java.lang.String com.ihs.stock.web.rest.ILRDailyStatusResource.add(java.util.List) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException={[/ilrws/add],methods=[POST]}, public java.util.List com.ihs.stock.web.rest.ILRDailyStatusResource.getForMonth(org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer,java.lang.Integer) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException={[/ilrws/view/{location}/{month}/{year}],methods=[GET]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/ilrws/add],methods=[POST]}" onto public java.lang.String com.ihs.stock.web.rest.ILRDailyStatusResource.add(java.util.List<com.ihs.stock.api.model.ILRDailyStatus>) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/ilrws/view/{location}/{month}/{year}],methods=[GET]}" onto public java.util.List<com.ihs.stock.api.model.ILRDailyStatus> com.ihs.stock.web.rest.ILRDailyStatusResource.getForMonth(org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer,java.lang.Integer) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 5 request handler methods found on class com.ihs.stock.web.rest.InventoryResource: {public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.addInInventory(com.ihs.stock.api.beans.InventoryBean) throws java.lang.Exception={[/inventory/add],methods=[POST],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.getInventory(java.lang.String)={[/inventory/{identifier}],methods=[GET],produces=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.updateInventory(java.lang.String,com.ihs.stock.api.model.Inventory) throws java.text.ParseException={[/inventory/update/{identifier}],methods=[PUT],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.deleteInventory(java.lang.String) throws java.text.ParseException={[/inventory/delete/{identifier}],methods=[DELETE]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.getAllInventory()={[/inventory/],methods=[GET],produces=[application/json]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/add],methods=[POST],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.Inventory> com.ihs.stock.web.rest.InventoryResource.addInInventory(com.ihs.stock.api.beans.InventoryBean) throws java.lang.Exception
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/{identifier}],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.Inventory> com.ihs.stock.web.rest.InventoryResource.getInventory(java.lang.String)
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/update/{identifier}],methods=[PUT],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.Inventory> com.ihs.stock.web.rest.InventoryResource.updateInventory(java.lang.String,com.ihs.stock.api.model.Inventory) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/delete/{identifier}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.Inventory> com.ihs.stock.web.rest.InventoryResource.deleteInventory(java.lang.String) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.ihs.stock.api.model.Inventory>> com.ihs.stock.web.rest.InventoryResource.getAllInventory()
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 1 request handler methods found on class com.ihs.stock.web.rest.ItemResource: {public java.util.List com.ihs.stock.web.rest.ItemResource.getAllItems()={[/item/view],methods=[GET]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/item/view],methods=[GET]}" onto public java.util.List<com.ihs.stock.api.model.Item> com.ihs.stock.web.rest.ItemResource.getAllItems()
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 5 request handler methods found on class com.ihs.stock.web.rest.MonthlyStatsResource: {public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.add(com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException={[/monthlystats/add],methods=[POST],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.update(java.lang.String,com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException={[/monthlystats/update/{identifier}],methods=[PUT],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.delete(java.lang.String,com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException={[/monthlystats/delete/{identifier}],methods=[DELETE],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.getAllMonthlyStats()={[/monthlystats/],methods=[GET],produces=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.getMonthlyStats(java.lang.String,com.ihs.stock.api.model.Consumer) throws java.text.ParseException={[/monthlystats/{identifier}],methods=[GET],produces=[application/json]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/add],methods=[POST],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.ihs.stock.web.rest.MonthlyStatsResource.add(com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/update/{identifier}],methods=[PUT],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.MonthlyStats> com.ihs.stock.web.rest.MonthlyStatsResource.update(java.lang.String,com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/delete/{identifier}],methods=[DELETE],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.MonthlyStats> com.ihs.stock.web.rest.MonthlyStatsResource.delete(java.lang.String,com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.ihs.stock.api.model.MonthlyStats>> com.ihs.stock.web.rest.MonthlyStatsResource.getAllMonthlyStats()
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/{identifier}],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.MonthlyStats> com.ihs.stock.web.rest.MonthlyStatsResource.getMonthlyStats(java.lang.String,com.ihs.stock.api.model.Consumer) throws java.text.ParseException
+2018-01-11 16:39:23 DEBUG RequestMappingHandlerMapping:245 - 1 request handler methods found on class com.ihs.stock.web.rest.RequisitionResource: {public java.lang.String com.ihs.stock.web.rest.RequisitionResource.add(java.lang.Integer,java.lang.Integer,java.util.List) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/req/add/{user}/{location}]}}
+2018-01-11 16:39:23 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/req/add/{user}/{location}]}" onto public java.lang.String com.ihs.stock.web.rest.RequisitionResource.add(java.lang.Integer,java.lang.Integer,java.util.List<com.ihs.stock.api.beans.UpdateRequirementBeanMobile>) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:39:23 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:39:22 PKT 2018]; root of context hierarchy
+2018-01-11 16:39:23 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:39:22 PKT 2018]; root of context hierarchy
+2018-01-11 16:39:23 DEBUG ExceptionHandlerExceptionResolver:262 - Looking for exception mappings: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:39:22 PKT 2018]; root of context hierarchy
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:71 - Looking for URL mappings in application context: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:39:22 PKT 2018]; root of context hierarchy
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'addController': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'generalDataViewController': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'ILRController': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'starterController': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'vaccinatorDataAccessController': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'vaccinatorUpdateController': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalRequiredAnnotationProcessor': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalCommonAnnotationProcessor': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.event.internalEventListenerProcessor': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.event.internalEventListenerFactory': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'dailyStatsResource': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'ILRDailyStatusResource': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'inventoryResource': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'itemResource': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'monthlyStatsResource': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'requisitionResource': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'dailyMorningEntryValidator': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'inventoryFormValidator': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'vaccinatorMonthlyUpdateValidator': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'contentNegotiationManager': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'mvcCorsConfigurations': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.format.support.FormattingConversionServiceFactoryBean#0': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'mvcUriComponentsContributor': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.MappedInterceptor#0': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'viewResolver': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'messageSource': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'jsonMessageConverter': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'environment': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'systemProperties': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'systemEnvironment': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'servletContext': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'servletConfig': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'contextParameters': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'contextAttributes': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry': no URL paths identified
+2018-01-11 16:39:23 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'applicationEventMulticaster': no URL paths identified
+2018-01-11 16:39:23 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:39:22 PKT 2018]; root of context hierarchy
+2018-01-11 16:39:23 DEBUG XmlWebApplicationContext:784 - Unable to locate LifecycleProcessor with name 'lifecycleProcessor': using default [org.springframework.context.support.DefaultLifecycleProcessor@3047801]
+2018-01-11 16:39:23 DEBUG DispatcherServlet:511 - Unable to locate MultipartResolver with name 'multipartResolver': no multipart request handling provided
+2018-01-11 16:39:23 DEBUG DispatcherServlet:533 - Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@68d50738]
+2018-01-11 16:39:23 DEBUG DispatcherServlet:555 - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@1c00c6f2]
+2018-01-11 16:39:23 DEBUG DispatcherServlet:692 - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1b11cfb6]
+2018-01-11 16:39:24 DEBUG DispatcherServlet:753 - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@16f11bc0]
+2018-01-11 16:39:24 DEBUG DispatcherServlet:568 - Published WebApplicationContext of servlet 'mvc-dispatcher' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.mvc-dispatcher]
+2018-01-11 16:39:24 INFO  DispatcherServlet:508 - FrameworkServlet 'mvc-dispatcher': initialization completed in 1561 ms
+2018-01-11 16:39:24 DEBUG DispatcherServlet:141 - Servlet 'mvc-dispatcher' configured successfully
+2018-01-11 16:39:24 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/mainpage.htm]
+2018-01-11 16:39:24 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/mainpage.htm
+2018-01-11 16:39:24 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)]
+2018-01-11 16:39:24 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/mainpage.htm] is: -1
+2018-01-11 16:39:24 INFO  Version:37 - HCANN000001: Hibernate Commons Annotations {4.0.1.Final}
+2018-01-11 16:39:24 INFO  Version:41 - HHH000412: Hibernate Core {4.1.6.Final}
+2018-01-11 16:39:24 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2018-01-11 16:39:24 INFO  Environment:342 - HHH000021: Bytecode provider name : javassist
+2018-01-11 16:39:24 INFO  Configuration:1929 - HHH000043: Configuring from resource: /hibernate.cfg.xml
+2018-01-11 16:39:24 INFO  Configuration:1948 - HHH000040: Configuration resource: /hibernate.cfg.xml
+2018-01-11 16:39:24 WARN  DTDEntityResolver:74 - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+2018-01-11 16:39:24 INFO  Configuration:2070 - HHH000041: Configured SessionFactory: null
+2018-01-11 16:39:25 INFO  DriverManagerConnectionProviderImpl:96 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-01-11 16:39:25 INFO  DriverManagerConnectionProviderImpl:130 - HHH000115: Hibernate connection pool size: 20
+2018-01-11 16:39:25 INFO  DriverManagerConnectionProviderImpl:133 - HHH000006: Autocommit mode: true
+2018-01-11 16:39:25 INFO  DriverManagerConnectionProviderImpl:147 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/stock_management]
+2018-01-11 16:39:25 INFO  DriverManagerConnectionProviderImpl:152 - HHH000046: Connection properties: {useUnicode=true, user=root, password=****, autocommit=true, characterEncoding=UTF-8, charSet=UTF-8}
+2018-01-11 16:39:25 INFO  Dialect:125 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2018-01-11 16:39:25 INFO  LobCreatorBuilder:94 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2018-01-11 16:39:25 INFO  TransactionFactoryInitiator:68 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-01-11 16:39:25 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2018-01-11 16:39:25 INFO  SchemaUpdate:182 - HHH000228: Running hbm2ddl schema update
+2018-01-11 16:39:25 INFO  SchemaUpdate:193 - HHH000102: Fetching database metadata
+2018-01-11 16:39:25 INFO  SchemaUpdate:205 - HHH000396: Updating schema
+2018-01-11 16:39:25 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.consumer
+2018-01-11 16:39:25 INFO  TableMetadata:66 - HHH000037: Columns: [consumer_id, date_edited, date_created, name, location, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.daily_stats
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, year, date_created, used_quantity, daily_statsid, wasted_containers, used_containers, month, voided, wasted_quantity, user_location, day, user, voided_by, date_today, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.ilr_daily_status
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [dayendtime, datetoday, date_edited, year, date_created, opening_temprature, morningtmstatus, morningtime, dayendtmstatus, location_id, month, closing_temprature, ilr_identifier, voided, id, morningilrstatus, day, user, voided_by, dayendilrstatus, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.inventory
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, total_container, year, inventory_id, date_created, prev_month_balance, wasted_containers, used_containers, month, current_month_container, voided, consumer_location, day, parent_location, voided_by, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, item_id, date_created, type_id, enclosed_quantity, description, manufacturer, expiry_unit, name, short_name, barcode, brand, expiry_after_opening, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [name, barcode, primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [itemattributetype, item, date_edited, attribute_id, date_created, value, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute_type
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [item_attribute_typeid, description, attribute_name, category, display_name]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_type
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, type_id, date_created, item_type, description, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [item_type, primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.location
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, datevoided, createddate, latitude, description, otheridentifier, shortname, voidreason, lasteditedbyuserid, voidedby, locationid, name, voided, locationtype, fullname, parentlocation, lastediteddate, longitude]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk]
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk, name, primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattribute
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, locationattributetypeid, lasteditedbyuserid, typevalue1, createddate, typevalue2, locationid, locationattributeid, lastediteddate, value, typename]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, primary, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattributetype
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [locationattributetypeid, createdbyuserid, lasteditedbyuserid, createddate, datatype, displayname, description, attributename, category, lastediteddate]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationtype
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, lasteditedbyuserid, createddate, level, locationtypeid, description, lastediteddate, iseditable, typename]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [typename, primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.monthly_stats
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [mon_id, balance_containers, item, date_edited, initial_containers, year, date_created, initial_quantity, expiry_date, balance_quantity, month, manufacture_date, total_containers, total_quantity, consumer, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk]
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk, primary]
+2018-01-11 16:39:26 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.requisition
+2018-01-11 16:39:26 INFO  TableMetadata:66 - HHH000037: Columns: [item, comments, quantity, date_edited, year, approval_status, date_created, requisition_location, requisition_id, month, requisition_by, voided, approval_reference, user_location, day, voided_by, date_voided]
+2018-01-11 16:39:26 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:26 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:26 INFO  SchemaUpdate:240 - HHH000232: Schema update complete
+2018-01-11 16:39:26 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainpage'; URL [/WEB-INF/stock/forms/mainpage.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:39:26 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'mainpage'
+2018-01-11 16:39:26 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'mainpage'
+2018-01-11 16:39:26 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/mainpage.jsp] in InternalResourceView 'mainpage'
+2018-01-11 16:39:26 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:39:46 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/mainpage.htm]
+2018-01-11 16:39:46 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/mainpage.htm
+2018-01-11 16:39:46 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)]
+2018-01-11 16:39:46 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/mainpage.htm] is: -1
+2018-01-11 16:39:46 INFO  Configuration:1929 - HHH000043: Configuring from resource: /hibernate.cfg.xml
+2018-01-11 16:39:46 INFO  Configuration:1948 - HHH000040: Configuration resource: /hibernate.cfg.xml
+2018-01-11 16:39:46 WARN  DTDEntityResolver:74 - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+2018-01-11 16:39:46 INFO  Configuration:2070 - HHH000041: Configured SessionFactory: null
+2018-01-11 16:39:46 INFO  DriverManagerConnectionProviderImpl:96 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-01-11 16:39:46 INFO  DriverManagerConnectionProviderImpl:130 - HHH000115: Hibernate connection pool size: 20
+2018-01-11 16:39:46 INFO  DriverManagerConnectionProviderImpl:133 - HHH000006: Autocommit mode: true
+2018-01-11 16:39:46 INFO  DriverManagerConnectionProviderImpl:147 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/stock_management]
+2018-01-11 16:39:46 INFO  DriverManagerConnectionProviderImpl:152 - HHH000046: Connection properties: {useUnicode=true, user=root, password=****, autocommit=true, characterEncoding=UTF-8, charSet=UTF-8}
+2018-01-11 16:39:46 INFO  Dialect:125 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2018-01-11 16:39:46 INFO  LobCreatorBuilder:94 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2018-01-11 16:39:46 INFO  TransactionFactoryInitiator:68 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-01-11 16:39:46 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2018-01-11 16:39:46 INFO  SchemaUpdate:182 - HHH000228: Running hbm2ddl schema update
+2018-01-11 16:39:46 INFO  SchemaUpdate:193 - HHH000102: Fetching database metadata
+2018-01-11 16:39:46 INFO  SchemaUpdate:205 - HHH000396: Updating schema
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.consumer
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [consumer_id, date_edited, date_created, name, location, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.daily_stats
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, year, date_created, used_quantity, daily_statsid, wasted_containers, used_containers, month, voided, wasted_quantity, user_location, day, user, voided_by, date_today, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.ilr_daily_status
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [dayendtime, datetoday, date_edited, year, date_created, opening_temprature, morningtmstatus, morningtime, dayendtmstatus, location_id, month, closing_temprature, ilr_identifier, voided, id, morningilrstatus, day, user, voided_by, dayendilrstatus, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.inventory
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, total_container, year, inventory_id, date_created, prev_month_balance, wasted_containers, used_containers, month, current_month_container, voided, consumer_location, day, parent_location, voided_by, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, item_id, date_created, type_id, enclosed_quantity, description, manufacturer, expiry_unit, name, short_name, barcode, brand, expiry_after_opening, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [name, barcode, primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [itemattributetype, item, date_edited, attribute_id, date_created, value, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute_type
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [item_attribute_typeid, description, attribute_name, category, display_name]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_type
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, type_id, date_created, item_type, description, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [item_type, primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.location
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, datevoided, createddate, latitude, description, otheridentifier, shortname, voidreason, lasteditedbyuserid, voidedby, locationid, name, voided, locationtype, fullname, parentlocation, lastediteddate, longitude]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk]
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk, name, primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattribute
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, locationattributetypeid, lasteditedbyuserid, typevalue1, createddate, typevalue2, locationid, locationattributeid, lastediteddate, value, typename]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, primary, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattributetype
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [locationattributetypeid, createdbyuserid, lasteditedbyuserid, createddate, datatype, displayname, description, attributename, category, lastediteddate]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationtype
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, lasteditedbyuserid, createddate, level, locationtypeid, description, lastediteddate, iseditable, typename]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [typename, primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.monthly_stats
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [mon_id, balance_containers, item, date_edited, initial_containers, year, date_created, initial_quantity, expiry_date, balance_quantity, month, manufacture_date, total_containers, total_quantity, consumer, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk]
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk, primary]
+2018-01-11 16:39:46 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.requisition
+2018-01-11 16:39:46 INFO  TableMetadata:66 - HHH000037: Columns: [item, comments, quantity, date_edited, year, approval_status, date_created, requisition_location, requisition_id, month, requisition_by, voided, approval_reference, user_location, day, voided_by, date_voided]
+2018-01-11 16:39:46 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:46 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:46 INFO  SchemaUpdate:240 - HHH000232: Schema update complete
+2018-01-11 16:39:46 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainpage'; URL [/WEB-INF/stock/forms/mainpage.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:39:46 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'mainpage'
+2018-01-11 16:39:46 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'mainpage'
+2018-01-11 16:39:46 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/mainpage.jsp] in InternalResourceView 'mainpage'
+2018-01-11 16:39:46 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:39:48 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/updaterquirement/1/1.htm]
+2018-01-11 16:39:48 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/updaterquirement/1/1.htm
+2018-01-11 16:39:48 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.updateMonthlyRequirement(org.springframework.web.servlet.ModelAndView,java.lang.Integer,int) throws javax.management.InstanceAlreadyExistsException]
+2018-01-11 16:39:48 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/updaterquirement/1/1.htm] is: -1
+2018-01-11 16:39:49 INFO  Configuration:1929 - HHH000043: Configuring from resource: /hibernate.cfg.xml
+2018-01-11 16:39:49 INFO  Configuration:1948 - HHH000040: Configuration resource: /hibernate.cfg.xml
+2018-01-11 16:39:49 WARN  DTDEntityResolver:74 - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+2018-01-11 16:39:49 INFO  Configuration:2070 - HHH000041: Configured SessionFactory: null
+2018-01-11 16:39:49 INFO  DriverManagerConnectionProviderImpl:96 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-01-11 16:39:49 INFO  DriverManagerConnectionProviderImpl:130 - HHH000115: Hibernate connection pool size: 20
+2018-01-11 16:39:49 INFO  DriverManagerConnectionProviderImpl:133 - HHH000006: Autocommit mode: true
+2018-01-11 16:39:49 INFO  DriverManagerConnectionProviderImpl:147 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/stock_management]
+2018-01-11 16:39:49 INFO  DriverManagerConnectionProviderImpl:152 - HHH000046: Connection properties: {useUnicode=true, user=root, password=****, autocommit=true, characterEncoding=UTF-8, charSet=UTF-8}
+2018-01-11 16:39:49 INFO  Dialect:125 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2018-01-11 16:39:49 INFO  LobCreatorBuilder:94 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2018-01-11 16:39:49 INFO  TransactionFactoryInitiator:68 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-01-11 16:39:49 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2018-01-11 16:39:49 INFO  SchemaUpdate:182 - HHH000228: Running hbm2ddl schema update
+2018-01-11 16:39:49 INFO  SchemaUpdate:193 - HHH000102: Fetching database metadata
+2018-01-11 16:39:49 INFO  SchemaUpdate:205 - HHH000396: Updating schema
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.consumer
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [consumer_id, date_edited, date_created, name, location, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.daily_stats
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, year, date_created, used_quantity, daily_statsid, wasted_containers, used_containers, month, voided, wasted_quantity, user_location, day, user, voided_by, date_today, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.ilr_daily_status
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [dayendtime, datetoday, date_edited, year, date_created, opening_temprature, morningtmstatus, morningtime, dayendtmstatus, location_id, month, closing_temprature, ilr_identifier, voided, id, morningilrstatus, day, user, voided_by, dayendilrstatus, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.inventory
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, total_container, year, inventory_id, date_created, prev_month_balance, wasted_containers, used_containers, month, current_month_container, voided, consumer_location, day, parent_location, voided_by, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, item_id, date_created, type_id, enclosed_quantity, description, manufacturer, expiry_unit, name, short_name, barcode, brand, expiry_after_opening, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [name, barcode, primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [itemattributetype, item, date_edited, attribute_id, date_created, value, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute_type
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [item_attribute_typeid, description, attribute_name, category, display_name]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_type
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, type_id, date_created, item_type, description, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [item_type, primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.location
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, datevoided, createddate, latitude, description, otheridentifier, shortname, voidreason, lasteditedbyuserid, voidedby, locationid, name, voided, locationtype, fullname, parentlocation, lastediteddate, longitude]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk]
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk, name, primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattribute
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, locationattributetypeid, lasteditedbyuserid, typevalue1, createddate, typevalue2, locationid, locationattributeid, lastediteddate, value, typename]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, primary, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattributetype
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [locationattributetypeid, createdbyuserid, lasteditedbyuserid, createddate, datatype, displayname, description, attributename, category, lastediteddate]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationtype
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, lasteditedbyuserid, createddate, level, locationtypeid, description, lastediteddate, iseditable, typename]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [typename, primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.monthly_stats
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [mon_id, balance_containers, item, date_edited, initial_containers, year, date_created, initial_quantity, expiry_date, balance_quantity, month, manufacture_date, total_containers, total_quantity, consumer, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk]
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk, primary]
+2018-01-11 16:39:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.requisition
+2018-01-11 16:39:49 INFO  TableMetadata:66 - HHH000037: Columns: [item, comments, quantity, date_edited, year, approval_status, date_created, requisition_location, requisition_id, month, requisition_by, voided, approval_reference, user_location, day, voided_by, date_voided]
+2018-01-11 16:39:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:39:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:39:49 INFO  SchemaUpdate:240 - HHH000232: Schema update complete
+2018-01-11 16:39:49 DEBUG DispatcherServlet:1044 - Null ModelAndView returned to DispatcherServlet with name 'mvc-dispatcher': assuming HandlerAdapter completed request handling
+2018-01-11 16:39:49 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:40:22 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/mainpage.htm]
+2018-01-11 16:40:22 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/mainpage.htm
+2018-01-11 16:40:22 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)]
+2018-01-11 16:40:22 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/mainpage.htm] is: -1
+2018-01-11 16:40:22 INFO  Configuration:1929 - HHH000043: Configuring from resource: /hibernate.cfg.xml
+2018-01-11 16:40:22 INFO  Configuration:1948 - HHH000040: Configuration resource: /hibernate.cfg.xml
+2018-01-11 16:40:22 WARN  DTDEntityResolver:74 - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+2018-01-11 16:40:22 INFO  Configuration:2070 - HHH000041: Configured SessionFactory: null
+2018-01-11 16:40:22 INFO  DriverManagerConnectionProviderImpl:96 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-01-11 16:40:22 INFO  DriverManagerConnectionProviderImpl:130 - HHH000115: Hibernate connection pool size: 20
+2018-01-11 16:40:22 INFO  DriverManagerConnectionProviderImpl:133 - HHH000006: Autocommit mode: true
+2018-01-11 16:40:22 INFO  DriverManagerConnectionProviderImpl:147 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/stock_management]
+2018-01-11 16:40:22 INFO  DriverManagerConnectionProviderImpl:152 - HHH000046: Connection properties: {useUnicode=true, user=root, password=****, autocommit=true, characterEncoding=UTF-8, charSet=UTF-8}
+2018-01-11 16:40:22 INFO  Dialect:125 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2018-01-11 16:40:22 INFO  LobCreatorBuilder:94 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2018-01-11 16:40:22 INFO  TransactionFactoryInitiator:68 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-01-11 16:40:22 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2018-01-11 16:40:22 INFO  SchemaUpdate:182 - HHH000228: Running hbm2ddl schema update
+2018-01-11 16:40:22 INFO  SchemaUpdate:193 - HHH000102: Fetching database metadata
+2018-01-11 16:40:22 INFO  SchemaUpdate:205 - HHH000396: Updating schema
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.consumer
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [consumer_id, date_edited, date_created, name, location, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.daily_stats
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, year, date_created, used_quantity, daily_statsid, wasted_containers, used_containers, month, voided, wasted_quantity, user_location, day, user, voided_by, date_today, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.ilr_daily_status
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [dayendtime, datetoday, date_edited, year, date_created, opening_temprature, morningtmstatus, morningtime, dayendtmstatus, location_id, month, closing_temprature, ilr_identifier, voided, id, morningilrstatus, day, user, voided_by, dayendilrstatus, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.inventory
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, total_container, year, inventory_id, date_created, prev_month_balance, wasted_containers, used_containers, month, current_month_container, voided, consumer_location, day, parent_location, voided_by, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, item_id, date_created, type_id, enclosed_quantity, description, manufacturer, expiry_unit, name, short_name, barcode, brand, expiry_after_opening, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [name, barcode, primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [itemattributetype, item, date_edited, attribute_id, date_created, value, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute_type
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [item_attribute_typeid, description, attribute_name, category, display_name]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_type
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, type_id, date_created, item_type, description, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [item_type, primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.location
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, datevoided, createddate, latitude, description, otheridentifier, shortname, voidreason, lasteditedbyuserid, voidedby, locationid, name, voided, locationtype, fullname, parentlocation, lastediteddate, longitude]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk]
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk, name, primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattribute
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, locationattributetypeid, lasteditedbyuserid, typevalue1, createddate, typevalue2, locationid, locationattributeid, lastediteddate, value, typename]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, primary, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattributetype
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [locationattributetypeid, createdbyuserid, lasteditedbyuserid, createddate, datatype, displayname, description, attributename, category, lastediteddate]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationtype
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, lasteditedbyuserid, createddate, level, locationtypeid, description, lastediteddate, iseditable, typename]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [typename, primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.monthly_stats
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [mon_id, balance_containers, item, date_edited, initial_containers, year, date_created, initial_quantity, expiry_date, balance_quantity, month, manufacture_date, total_containers, total_quantity, consumer, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk]
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk, primary]
+2018-01-11 16:40:22 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.requisition
+2018-01-11 16:40:22 INFO  TableMetadata:66 - HHH000037: Columns: [item, comments, quantity, date_edited, year, approval_status, date_created, requisition_location, requisition_id, month, requisition_by, voided, approval_reference, user_location, day, voided_by, date_voided]
+2018-01-11 16:40:22 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:40:22 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:40:22 INFO  SchemaUpdate:240 - HHH000232: Schema update complete
+2018-01-11 16:40:22 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainpage'; URL [/WEB-INF/stock/forms/mainpage.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:40:22 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'mainpage'
+2018-01-11 16:40:22 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'mainpage'
+2018-01-11 16:40:22 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/mainpage.jsp] in InternalResourceView 'mainpage'
+2018-01-11 16:40:22 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:40:24 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/updaterquirement/2/2.htm]
+2018-01-11 16:40:24 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/updaterquirement/2/2.htm
+2018-01-11 16:40:24 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.updateMonthlyRequirement(org.springframework.web.servlet.ModelAndView,java.lang.Integer,int) throws javax.management.InstanceAlreadyExistsException]
+2018-01-11 16:40:24 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/updaterquirement/2/2.htm] is: -1
+2018-01-11 16:40:24 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'updateRequirement'; URL [/WEB-INF/stock/forms/updateRequirement.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:40:24 DEBUG JstlView:432 - Added model object 'location' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:40:24 DEBUG JstlView:432 - Added model object 'user' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:40:24 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'updateRequirement'
+2018-01-11 16:40:24 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:40:24 DEBUG JstlView:432 - Added model object 'town' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:40:24 DEBUG JstlView:432 - Added model object 'cLoc' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:40:24 DEBUG JstlView:432 - Added model object 'item' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:40:24 DEBUG JstlView:432 - Added model object 'id' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:40:24 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/updateRequirement.jsp] in InternalResourceView 'updateRequirement'
+2018-01-11 16:40:24 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:40:29 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing POST request for [/stock-web/add/updatereq/2.htm]
+2018-01-11 16:40:29 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /add/updatereq/2.htm
+2018-01-11 16:40:29 DEBUG RequestMappingHandlerMapping:320 - Did not find handler method for [/add/updatereq/2.htm]
+2018-01-11 16:40:29 WARN  PageNotFound:1172 - No mapping found for HTTP request with URI [/stock-web/add/updatereq/2.htm] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:40:29 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:41:03 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/mainpage.htm]
+2018-01-11 16:41:03 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/mainpage.htm
+2018-01-11 16:41:03 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)]
+2018-01-11 16:41:03 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/mainpage.htm] is: -1
+2018-01-11 16:41:03 INFO  Configuration:1929 - HHH000043: Configuring from resource: /hibernate.cfg.xml
+2018-01-11 16:41:03 INFO  Configuration:1948 - HHH000040: Configuration resource: /hibernate.cfg.xml
+2018-01-11 16:41:03 WARN  DTDEntityResolver:74 - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+2018-01-11 16:41:03 INFO  Configuration:2070 - HHH000041: Configured SessionFactory: null
+2018-01-11 16:41:04 INFO  DriverManagerConnectionProviderImpl:96 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-01-11 16:41:04 INFO  DriverManagerConnectionProviderImpl:130 - HHH000115: Hibernate connection pool size: 20
+2018-01-11 16:41:04 INFO  DriverManagerConnectionProviderImpl:133 - HHH000006: Autocommit mode: true
+2018-01-11 16:41:04 INFO  DriverManagerConnectionProviderImpl:147 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/stock_management]
+2018-01-11 16:41:04 INFO  DriverManagerConnectionProviderImpl:152 - HHH000046: Connection properties: {useUnicode=true, user=root, password=****, autocommit=true, characterEncoding=UTF-8, charSet=UTF-8}
+2018-01-11 16:41:04 INFO  Dialect:125 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2018-01-11 16:41:04 INFO  LobCreatorBuilder:94 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2018-01-11 16:41:04 INFO  TransactionFactoryInitiator:68 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-01-11 16:41:04 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2018-01-11 16:41:04 INFO  SchemaUpdate:182 - HHH000228: Running hbm2ddl schema update
+2018-01-11 16:41:04 INFO  SchemaUpdate:193 - HHH000102: Fetching database metadata
+2018-01-11 16:41:04 INFO  SchemaUpdate:205 - HHH000396: Updating schema
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.consumer
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [consumer_id, date_edited, date_created, name, location, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.daily_stats
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, year, date_created, used_quantity, daily_statsid, wasted_containers, used_containers, month, voided, wasted_quantity, user_location, day, user, voided_by, date_today, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.ilr_daily_status
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [dayendtime, datetoday, date_edited, year, date_created, opening_temprature, morningtmstatus, morningtime, dayendtmstatus, location_id, month, closing_temprature, ilr_identifier, voided, id, morningilrstatus, day, user, voided_by, dayendilrstatus, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.inventory
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, total_container, year, inventory_id, date_created, prev_month_balance, wasted_containers, used_containers, month, current_month_container, voided, consumer_location, day, parent_location, voided_by, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, item_id, date_created, type_id, enclosed_quantity, description, manufacturer, expiry_unit, name, short_name, barcode, brand, expiry_after_opening, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [name, barcode, primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [itemattributetype, item, date_edited, attribute_id, date_created, value, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute_type
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [item_attribute_typeid, description, attribute_name, category, display_name]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_type
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, type_id, date_created, item_type, description, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [item_type, primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.location
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, datevoided, createddate, latitude, description, otheridentifier, shortname, voidreason, lasteditedbyuserid, voidedby, locationid, name, voided, locationtype, fullname, parentlocation, lastediteddate, longitude]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk]
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk, name, primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattribute
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, locationattributetypeid, lasteditedbyuserid, typevalue1, createddate, typevalue2, locationid, locationattributeid, lastediteddate, value, typename]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, primary, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattributetype
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [locationattributetypeid, createdbyuserid, lasteditedbyuserid, createddate, datatype, displayname, description, attributename, category, lastediteddate]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationtype
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, lasteditedbyuserid, createddate, level, locationtypeid, description, lastediteddate, iseditable, typename]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [typename, primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.monthly_stats
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [mon_id, balance_containers, item, date_edited, initial_containers, year, date_created, initial_quantity, expiry_date, balance_quantity, month, manufacture_date, total_containers, total_quantity, consumer, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk]
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk, primary]
+2018-01-11 16:41:04 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.requisition
+2018-01-11 16:41:04 INFO  TableMetadata:66 - HHH000037: Columns: [item, comments, quantity, date_edited, year, approval_status, date_created, requisition_location, requisition_id, month, requisition_by, voided, approval_reference, user_location, day, voided_by, date_voided]
+2018-01-11 16:41:04 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:41:04 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:41:04 INFO  SchemaUpdate:240 - HHH000232: Schema update complete
+2018-01-11 16:41:04 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainpage'; URL [/WEB-INF/stock/forms/mainpage.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:41:04 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'mainpage'
+2018-01-11 16:41:04 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'mainpage'
+2018-01-11 16:41:04 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/mainpage.jsp] in InternalResourceView 'mainpage'
+2018-01-11 16:41:04 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:41:05 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/updaterquirement/2/2.htm]
+2018-01-11 16:41:05 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/updaterquirement/2/2.htm
+2018-01-11 16:41:05 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.updateMonthlyRequirement(org.springframework.web.servlet.ModelAndView,java.lang.Integer,int) throws javax.management.InstanceAlreadyExistsException]
+2018-01-11 16:41:05 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/updaterquirement/2/2.htm] is: -1
+2018-01-11 16:41:05 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'updateRequirement'; URL [/WEB-INF/stock/forms/updateRequirement.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:41:05 DEBUG JstlView:432 - Added model object 'location' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:05 DEBUG JstlView:432 - Added model object 'user' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:05 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'updateRequirement'
+2018-01-11 16:41:05 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:41:05 DEBUG JstlView:432 - Added model object 'town' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:41:05 DEBUG JstlView:432 - Added model object 'cLoc' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:41:05 DEBUG JstlView:432 - Added model object 'item' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:41:05 DEBUG JstlView:432 - Added model object 'id' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:05 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/updateRequirement.jsp] in InternalResourceView 'updateRequirement'
+2018-01-11 16:41:06 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:41:10 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing POST request for [/stock-web/add/updatereq/2/2.htm]
+2018-01-11 16:41:10 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /add/updatereq/2/2.htm
+2018-01-11 16:41:10 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addRequirement(com.ihs.stock.api.beans.UpdateRequirementBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException]
+2018-01-11 16:41:10 WARN  DataBinder:68 - Skipping URI variable 'location' since the request contains a bind value with the same name.
+2018-01-11 16:41:10 WARN  DataBinder:68 - Skipping URI variable 'location' since the request contains a bind value with the same name.
+2018-01-11 16:41:10 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'updateRequirement'; URL [/WEB-INF/stock/forms/updateRequirement.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'location' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'userID' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'reqList' of type [com.ihs.stock.api.beans.UpdateRequirementBean] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.reqList' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'town' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'cLoc' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'item' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'id' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'user' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:432 - Added model object 'message' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:41:10 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/updateRequirement.jsp] in InternalResourceView 'updateRequirement'
+2018-01-11 16:41:10 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:41:34 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing POST request for [/stock-web/add/updatereq/2/2.htm]
+2018-01-11 16:41:34 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /add/updatereq/2/2.htm
+2018-01-11 16:41:34 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addRequirement(com.ihs.stock.api.beans.UpdateRequirementBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException]
+2018-01-11 16:41:34 WARN  DataBinder:68 - Skipping URI variable 'location' since the request contains a bind value with the same name.
+2018-01-11 16:41:34 WARN  DataBinder:68 - Skipping URI variable 'location' since the request contains a bind value with the same name.
+2018-01-11 16:41:34 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'updateRequirement'; URL [/WEB-INF/stock/forms/updateRequirement.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'location' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'userID' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'reqList' of type [com.ihs.stock.api.beans.UpdateRequirementBean] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.reqList' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'town' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'cLoc' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'item' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'id' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'user' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:432 - Added model object 'message' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:41:34 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/updateRequirement.jsp] in InternalResourceView 'updateRequirement'
+2018-01-11 16:41:34 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:42:46 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/add/updatereq/2/2.htm]
+2018-01-11 16:42:46 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /add/updatereq/2/2.htm
+2018-01-11 16:42:46 DEBUG ExceptionHandlerExceptionResolver:133 - Resolving exception from handler [null]: org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
+2018-01-11 16:42:46 DEBUG ResponseStatusExceptionResolver:133 - Resolving exception from handler [null]: org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
+2018-01-11 16:42:46 DEBUG DefaultHandlerExceptionResolver:133 - Resolving exception from handler [null]: org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported
+2018-01-11 16:42:46 WARN  PageNotFound:215 - Request method 'GET' not supported
+2018-01-11 16:42:46 DEBUG DispatcherServlet:1044 - Null ModelAndView returned to DispatcherServlet with name 'mvc-dispatcher': assuming HandlerAdapter completed request handling
+2018-01-11 16:42:46 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:42:49 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/mainpage.htm]
+2018-01-11 16:42:49 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/mainpage.htm
+2018-01-11 16:42:49 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)]
+2018-01-11 16:42:49 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/mainpage.htm] is: -1
+2018-01-11 16:42:49 INFO  Configuration:1929 - HHH000043: Configuring from resource: /hibernate.cfg.xml
+2018-01-11 16:42:49 INFO  Configuration:1948 - HHH000040: Configuration resource: /hibernate.cfg.xml
+2018-01-11 16:42:49 WARN  DTDEntityResolver:74 - HHH000223: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/. Use namespace http://www.hibernate.org/dtd/ instead. Refer to Hibernate 3.6 Migration Guide!
+2018-01-11 16:42:49 INFO  Configuration:2070 - HHH000041: Configured SessionFactory: null
+2018-01-11 16:42:49 INFO  DriverManagerConnectionProviderImpl:96 - HHH000402: Using Hibernate built-in connection pool (not for production use!)
+2018-01-11 16:42:49 INFO  DriverManagerConnectionProviderImpl:130 - HHH000115: Hibernate connection pool size: 20
+2018-01-11 16:42:49 INFO  DriverManagerConnectionProviderImpl:133 - HHH000006: Autocommit mode: true
+2018-01-11 16:42:49 INFO  DriverManagerConnectionProviderImpl:147 - HHH000401: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/stock_management]
+2018-01-11 16:42:49 INFO  DriverManagerConnectionProviderImpl:152 - HHH000046: Connection properties: {useUnicode=true, user=root, password=****, autocommit=true, characterEncoding=UTF-8, charSet=UTF-8}
+2018-01-11 16:42:49 INFO  Dialect:125 - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+2018-01-11 16:42:49 INFO  LobCreatorBuilder:94 - HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [3] less than 4
+2018-01-11 16:42:49 INFO  TransactionFactoryInitiator:68 - HHH000399: Using default transaction strategy (direct JDBC transactions)
+2018-01-11 16:42:49 INFO  ASTQueryTranslatorFactory:48 - HHH000397: Using ASTQueryTranslatorFactory
+2018-01-11 16:42:49 INFO  SchemaUpdate:182 - HHH000228: Running hbm2ddl schema update
+2018-01-11 16:42:49 INFO  SchemaUpdate:193 - HHH000102: Fetching database metadata
+2018-01-11 16:42:49 INFO  SchemaUpdate:205 - HHH000396: Updating schema
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.consumer
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [consumer_id, date_edited, date_created, name, location, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.daily_stats
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, year, date_created, used_quantity, daily_statsid, wasted_containers, used_containers, month, voided, wasted_quantity, user_location, day, user, voided_by, date_today, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.ilr_daily_status
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [dayendtime, datetoday, date_edited, year, date_created, opening_temprature, morningtmstatus, morningtime, dayendtmstatus, location_id, month, closing_temprature, ilr_identifier, voided, id, morningilrstatus, day, user, voided_by, dayendilrstatus, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.inventory
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [item, date_edited, total_container, year, inventory_id, date_created, prev_month_balance, wasted_containers, used_containers, month, current_month_container, voided, consumer_location, day, parent_location, voided_by, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, item_id, date_created, type_id, enclosed_quantity, description, manufacturer, expiry_unit, name, short_name, barcode, brand, expiry_after_opening, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [name, barcode, primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [itemattributetype, item, date_edited, attribute_id, date_created, value, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_attribute_type
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [item_attribute_typeid, description, attribute_name, category, display_name]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.item_type
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [date_edited, type_id, date_created, item_type, description, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [item_type, primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.location
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, datevoided, createddate, latitude, description, otheridentifier, shortname, voidreason, lasteditedbyuserid, voidedby, locationid, name, voided, locationtype, fullname, parentlocation, lastediteddate, longitude]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk]
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [location_parentlocation_location_locationid_fk, loaction_locationtypeid_locationtype_locationtypeid_fk, name, primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattribute
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, locationattributetypeid, lasteditedbyuserid, typevalue1, createddate, typevalue2, locationid, locationattributeid, lastediteddate, value, typename]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [locattr_locattrtypeid_locattrtype_locattrtypeid_fk, primary, locationattribute_locationid_location_locationid_fk]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationattributetype
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [locationattributetypeid, createdbyuserid, lasteditedbyuserid, createddate, datatype, displayname, description, attributename, category, lastediteddate]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.locationtype
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [createdbyuserid, lasteditedbyuserid, createddate, level, locationtypeid, description, lastediteddate, iseditable, typename]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [typename, primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.monthly_stats
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [mon_id, balance_containers, item, date_edited, initial_containers, year, date_created, initial_quantity, expiry_date, balance_quantity, month, manufacture_date, total_containers, total_quantity, consumer, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk]
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [monthlystats_consumerid_consumer_mappedid_fk, monthlystats_itemid_item_mappedid_fk, primary]
+2018-01-11 16:42:49 INFO  TableMetadata:65 - HHH000261: Table found: stock_management.requisition
+2018-01-11 16:42:49 INFO  TableMetadata:66 - HHH000037: Columns: [item, comments, quantity, date_edited, year, approval_status, date_created, requisition_location, requisition_id, month, requisition_by, voided, approval_reference, user_location, day, voided_by, date_voided]
+2018-01-11 16:42:49 INFO  TableMetadata:68 - HHH000108: Foreign keys: []
+2018-01-11 16:42:49 INFO  TableMetadata:69 - HHH000126: Indexes: [primary]
+2018-01-11 16:42:49 INFO  SchemaUpdate:240 - HHH000232: Schema update complete
+2018-01-11 16:42:49 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainpage'; URL [/WEB-INF/stock/forms/mainpage.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:42:49 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'mainpage'
+2018-01-11 16:42:49 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'mainpage'
+2018-01-11 16:42:49 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/mainpage.jsp] in InternalResourceView 'mainpage'
+2018-01-11 16:42:49 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:42:50 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing GET request for [/stock-web/start/updaterquirement/2/2.htm]
+2018-01-11 16:42:50 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /start/updaterquirement/2/2.htm
+2018-01-11 16:42:50 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.updateMonthlyRequirement(org.springframework.web.servlet.ModelAndView,java.lang.Integer,int) throws javax.management.InstanceAlreadyExistsException]
+2018-01-11 16:42:50 DEBUG DispatcherServlet:951 - Last-Modified value for [/stock-web/start/updaterquirement/2/2.htm] is: -1
+2018-01-11 16:42:50 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'updateRequirement'; URL [/WEB-INF/stock/forms/updateRequirement.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:42:50 DEBUG JstlView:432 - Added model object 'location' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:42:50 DEBUG JstlView:432 - Added model object 'user' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:42:50 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'updateRequirement'
+2018-01-11 16:42:50 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:42:50 DEBUG JstlView:432 - Added model object 'town' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:42:50 DEBUG JstlView:432 - Added model object 'cLoc' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:42:50 DEBUG JstlView:432 - Added model object 'item' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:42:50 DEBUG JstlView:432 - Added model object 'id' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:42:50 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/updateRequirement.jsp] in InternalResourceView 'updateRequirement'
+2018-01-11 16:42:51 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:42:55 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'mvc-dispatcher' processing POST request for [/stock-web/add/updatereq/2/2.htm]
+2018-01-11 16:42:55 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /add/updatereq/2/2.htm
+2018-01-11 16:42:55 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addRequirement(com.ihs.stock.api.beans.UpdateRequirementBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException]
+2018-01-11 16:42:55 WARN  DataBinder:68 - Skipping URI variable 'location' since the request contains a bind value with the same name.
+2018-01-11 16:42:55 WARN  DataBinder:68 - Skipping URI variable 'location' since the request contains a bind value with the same name.
+2018-01-11 16:42:55 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'updateRequirement'; URL [/WEB-INF/stock/forms/updateRequirement.jsp]] in DispatcherServlet with name 'mvc-dispatcher'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'location' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'userID' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'reqList' of type [com.ihs.stock.api.beans.UpdateRequirementBean] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.reqList' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'modelAndView' of type [org.springframework.web.servlet.ModelAndView] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'org.springframework.validation.BindingResult.modelAndView' of type [org.springframework.validation.BeanPropertyBindingResult] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'town' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'cLoc' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'item' of type [java.util.ArrayList] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'id' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'user' of type [java.lang.Integer] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:432 - Added model object 'message' of type [java.lang.String] to request in view with name 'updateRequirement'
+2018-01-11 16:42:55 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/stock/forms/updateRequirement.jsp] in InternalResourceView 'updateRequirement'
+2018-01-11 16:42:55 DEBUG DispatcherServlet:1000 - Successfully completed request
+2018-01-11 16:44:24 INFO  XmlWebApplicationContext:987 - Closing WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:39:22 PKT 2018]; root of context hierarchy
+2018-01-11 16:44:25 DEBUG DispatcherServlet:118 - Initializing servlet 'mvc-dispatcher'
+2018-01-11 16:44:25 DEBUG StandardServletEnvironment:109 - Adding [servletConfigInitParams] PropertySource with lowest search precedence
+2018-01-11 16:44:25 DEBUG StandardServletEnvironment:109 - Adding [servletContextInitParams] PropertySource with lowest search precedence
+2018-01-11 16:44:25 DEBUG StandardServletEnvironment:109 - Adding [jndiProperties] PropertySource with lowest search precedence
+2018-01-11 16:44:25 DEBUG StandardServletEnvironment:109 - Adding [systemProperties] PropertySource with lowest search precedence
+2018-01-11 16:44:25 DEBUG StandardServletEnvironment:109 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2018-01-11 16:44:25 DEBUG StandardServletEnvironment:124 - Initialized StandardServletEnvironment with PropertySources [servletConfigInitParams,servletContextInitParams,jndiProperties,systemProperties,systemEnvironment]
+2018-01-11 16:44:25 INFO  DispatcherServlet:489 - FrameworkServlet 'mvc-dispatcher': initialization started
+2018-01-11 16:44:25 DEBUG DispatcherServlet:617 - Servlet with name 'mvc-dispatcher' will try to create custom WebApplicationContext context of class 'org.springframework.web.context.support.XmlWebApplicationContext', using parent context [null]
+2018-01-11 16:44:25 DEBUG StandardServletEnvironment:174 - Replacing [servletContextInitParams] PropertySource with [servletContextInitParams]
+2018-01-11 16:44:25 DEBUG StandardServletEnvironment:174 - Replacing [servletConfigInitParams] PropertySource with [servletConfigInitParams]
+2018-01-11 16:44:25 INFO  XmlWebApplicationContext:582 - Refreshing WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:44:25 PKT 2018]; root of context hierarchy
+2018-01-11 16:44:25 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from ServletContext resource [/WEB-INF/mvc-dispatcher-servlet.xml]
+2018-01-11 16:44:25 DEBUG XmlWebApplicationContext:616 - Bean factory for WebApplicationContext for namespace 'mvc-dispatcher-servlet': org.springframework.beans.factory.support.DefaultListableBeanFactory@1056cd80: defining beans [addController,generalDataViewController,ILRController,starterController,vaccinatorDataAccessController,vaccinatorUpdateController,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.event.internalEventListenerProcessor,org.springframework.context.event.internalEventListenerFactory,dailyStatsResource,ILRDailyStatusResource,inventoryResource,itemResource,monthlyStatsResource,requisitionResource,dailyMorningEntryValidator,inventoryFormValidator,vaccinatorMonthlyUpdateValidator,contentNegotiationManager,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping,mvcCorsConfigurations,org.springframework.format.support.FormattingConversionServiceFactoryBean#0,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter,mvcUriComponentsContributor,org.springframework.web.servlet.handler.MappedInterceptor#0,org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0,org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0,org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,viewResolver,messageSource,org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0,jsonMessageConverter]; root of factory hierarchy
+2018-01-11 16:44:26 DEBUG XmlWebApplicationContext:723 - Using MessageSource [org.springframework.context.support.ReloadableResourceBundleMessageSource: basenames=[/WEB-INF/message]]
+2018-01-11 16:44:26 DEBUG XmlWebApplicationContext:757 - Unable to locate ApplicationEventMulticaster with name 'applicationEventMulticaster': using default [org.springframework.context.event.SimpleApplicationEventMulticaster@1d3597d6]
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:195 - Looking for request mappings in application context: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:44:25 PKT 2018]; root of context hierarchy
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 6 request handler methods found on class com.ihs.stock.web.controller.AddController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItemAttributes(com.ihs.stock.api.beans.AddItemAttributeBean,org.springframework.web.servlet.ModelAndView) throws java.text.ParseException={[/add/itemattr],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItemAttributeType(com.ihs.stock.api.model.ItemAttributeType,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView)={[/add/attributetype],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addInInventory(com.ihs.stock.api.beans.InventoryBean,org.springframework.validation.BindingResult,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/add/inventory],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.approveReq(com.ihs.stock.api.beans.ApproveRequirementBean,org.springframework.validation.BindingResult,java.lang.Integer,java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException={[/add/approvereq/{user}/{locationId}]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItems(com.ihs.stock.api.beans.AddItemBean,org.springframework.validation.BindingResult,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView) throws java.text.ParseException={[/add/item],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addRequirement(com.ihs.stock.api.beans.UpdateRequirementBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/add/updatereq/{userID}/{location}],methods=[POST]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/itemattr],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItemAttributes(com.ihs.stock.api.beans.AddItemAttributeBean,org.springframework.web.servlet.ModelAndView) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/attributetype],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItemAttributeType(com.ihs.stock.api.model.ItemAttributeType,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/inventory],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addInInventory(com.ihs.stock.api.beans.InventoryBean,org.springframework.validation.BindingResult,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/approvereq/{user}/{locationId}]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.approveReq(com.ihs.stock.api.beans.ApproveRequirementBean,org.springframework.validation.BindingResult,java.lang.Integer,java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/item],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addItems(com.ihs.stock.api.beans.AddItemBean,org.springframework.validation.BindingResult,javax.servlet.http.HttpSession,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/add/updatereq/{userID}/{location}],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.AddController.addRequirement(com.ihs.stock.api.beans.UpdateRequirementBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 4 request handler methods found on class com.ihs.stock.web.controller.GeneralDataViewController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewCurrentMonthStatsLocation(org.springframework.web.servlet.ModelAndView)={[/view/statslocation],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewInventory(org.springframework.web.servlet.ModelAndView)={[/view/inventory],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewAllItems(org.springframework.web.servlet.ModelAndView)={[/view/items],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.searchInventory(com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException={[/view/searchinventory],methods=[POST]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/statslocation],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewCurrentMonthStatsLocation(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/inventory],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewInventory(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/items],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.viewAllItems(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/searchinventory],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.GeneralDataViewController.searchInventory(com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 2 request handler methods found on class com.ihs.stock.web.controller.ILRController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.ILRController.viewilrTable(org.springframework.web.servlet.ModelAndView,com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult)={[/view/ilrtable],methods=[POST]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.ILRController.viewGraph(org.springframework.web.servlet.ModelAndView,com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult)={[/view/ilrgraph],methods=[POST]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/ilrtable],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.ILRController.viewilrTable(org.springframework.web.servlet.ModelAndView,com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/view/ilrgraph],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.ILRController.viewGraph(org.springframework.web.servlet.ModelAndView,com.ihs.stock.api.beans.SearchBean,org.springframework.validation.BindingResult)
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 12 request handler methods found on class com.ihs.stock.web.controller.StarterController: {public void com.ihs.stock.web.controller.StarterController.get()={[/start],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.item(org.springframework.web.servlet.ModelAndView)={[/start/additem],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.updateMonthlyRequirement(org.springframework.web.servlet.ModelAndView,java.lang.Integer,int) throws javax.management.InstanceAlreadyExistsException={[/start/updaterquirement/{user}/{location}],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.inventory(org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/start/addinventory],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.ilrGraph(org.springframework.web.servlet.ModelAndView)={[/start/ilrgraph],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.approveRequest(org.springframework.web.servlet.ModelAndView,int,int) throws javax.management.InstanceAlreadyExistsException={[/start/approvereq/{user}/{location}]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.morningEntry(org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer)={[/start/morningentry/{user}/{location}],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)={[/start/mainpage],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.dayEndEntry(java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/start/dayendentry/{location}],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.ilrTable(org.springframework.web.servlet.ModelAndView)={[/start/ilrtable],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.AllReq(java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/start/req/{locationId}],methods=[GET]}, public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.searchInventory(org.springframework.web.servlet.ModelAndView)={[/start/searchinventory],methods=[GET]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start],methods=[GET]}" onto public void com.ihs.stock.web.controller.StarterController.get()
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/additem],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.item(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/updaterquirement/{user}/{location}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.updateMonthlyRequirement(org.springframework.web.servlet.ModelAndView,java.lang.Integer,int) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/addinventory],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.inventory(org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/ilrgraph],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.ilrGraph(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/approvereq/{user}/{location}]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.approveRequest(org.springframework.web.servlet.ModelAndView,int,int) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/morningentry/{user}/{location}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.morningEntry(org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/mainpage],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.mainPage(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/dayendentry/{location}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.dayEndEntry(java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/ilrtable],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.ilrTable(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/req/{locationId}],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.AllReq(java.lang.Integer,org.springframework.web.servlet.ModelAndView) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/start/searchinventory],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.StarterController.searchInventory(org.springframework.web.servlet.ModelAndView)
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 1 request handler methods found on class com.ihs.stock.web.controller.VaccinatorDataAccessController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.VaccinatorDataAccessController.getVaccinatorBalanceStats(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView,javax.servlet.http.HttpSession) throws javax.management.InstanceAlreadyExistsException={[/vacDataAccess/balance],methods=[GET]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/vacDataAccess/balance],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.VaccinatorDataAccessController.getVaccinatorBalanceStats(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView,javax.servlet.http.HttpSession) throws javax.management.InstanceAlreadyExistsException
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 1 request handler methods found on class com.ihs.stock.web.controller.VaccinatorUpdateController: {public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.VaccinatorUpdateController.dailyEntryMorning(com.ihs.stock.api.model.ILRDailyStatus,org.springframework.validation.BindingResult,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView,int,int) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException={[/vaccinator/dailymorningentry/{user}/{location}],methods=[POST]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/vaccinator/dailymorningentry/{user}/{location}],methods=[POST]}" onto public org.springframework.web.servlet.ModelAndView com.ihs.stock.web.controller.VaccinatorUpdateController.dailyEntryMorning(com.ihs.stock.api.model.ILRDailyStatus,org.springframework.validation.BindingResult,javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.web.servlet.ModelAndView,int,int) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 3 request handler methods found on class com.ihs.stock.web.rest.DailyStatsResource: {public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.DailyStatsResource.delete(java.lang.String,com.ihs.stock.api.model.DailyStats) throws java.text.ParseException={[/dailystats/delete/{identifier}],methods=[DELETE],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.DailyStatsResource.getDailyStats(java.lang.String,com.ihs.stock.api.model.Consumer) throws java.text.ParseException={[/dailystats/{identifier}],methods=[GET],produces=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.DailyStatsResource.getAllDailyStats()={[/dailystats/],methods=[GET],produces=[application/json]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/dailystats/delete/{identifier}],methods=[DELETE],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.DailyStats> com.ihs.stock.web.rest.DailyStatsResource.delete(java.lang.String,com.ihs.stock.api.model.DailyStats) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/dailystats/{identifier}],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.DailyStats> com.ihs.stock.web.rest.DailyStatsResource.getDailyStats(java.lang.String,com.ihs.stock.api.model.Consumer) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/dailystats/],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.ihs.stock.api.model.DailyStats>> com.ihs.stock.web.rest.DailyStatsResource.getAllDailyStats()
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 2 request handler methods found on class com.ihs.stock.web.rest.ILRDailyStatusResource: {public java.lang.String com.ihs.stock.web.rest.ILRDailyStatusResource.add(java.util.List) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException={[/ilrws/add],methods=[POST]}, public java.util.List com.ihs.stock.web.rest.ILRDailyStatusResource.getForMonth(org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer,java.lang.Integer) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException={[/ilrws/view/{location}/{month}/{year}],methods=[GET]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/ilrws/add],methods=[POST]}" onto public java.lang.String com.ihs.stock.web.rest.ILRDailyStatusResource.add(java.util.List<com.ihs.stock.api.model.ILRDailyStatus>) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/ilrws/view/{location}/{month}/{year}],methods=[GET]}" onto public java.util.List<com.ihs.stock.api.model.ILRDailyStatus> com.ihs.stock.web.rest.ILRDailyStatusResource.getForMonth(org.springframework.web.servlet.ModelAndView,java.lang.Integer,java.lang.Integer,java.lang.Integer) throws java.text.ParseException,javax.management.InstanceAlreadyExistsException
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 5 request handler methods found on class com.ihs.stock.web.rest.InventoryResource: {public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.addInInventory(com.ihs.stock.api.beans.InventoryBean) throws java.lang.Exception={[/inventory/add],methods=[POST],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.getInventory(java.lang.String)={[/inventory/{identifier}],methods=[GET],produces=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.updateInventory(java.lang.String,com.ihs.stock.api.model.Inventory) throws java.text.ParseException={[/inventory/update/{identifier}],methods=[PUT],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.deleteInventory(java.lang.String) throws java.text.ParseException={[/inventory/delete/{identifier}],methods=[DELETE]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.InventoryResource.getAllInventory()={[/inventory/],methods=[GET],produces=[application/json]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/add],methods=[POST],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.Inventory> com.ihs.stock.web.rest.InventoryResource.addInInventory(com.ihs.stock.api.beans.InventoryBean) throws java.lang.Exception
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/{identifier}],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.Inventory> com.ihs.stock.web.rest.InventoryResource.getInventory(java.lang.String)
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/update/{identifier}],methods=[PUT],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.Inventory> com.ihs.stock.web.rest.InventoryResource.updateInventory(java.lang.String,com.ihs.stock.api.model.Inventory) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/delete/{identifier}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.Inventory> com.ihs.stock.web.rest.InventoryResource.deleteInventory(java.lang.String) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/inventory/],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.ihs.stock.api.model.Inventory>> com.ihs.stock.web.rest.InventoryResource.getAllInventory()
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 1 request handler methods found on class com.ihs.stock.web.rest.ItemResource: {public java.util.List com.ihs.stock.web.rest.ItemResource.getAllItems()={[/item/view],methods=[GET]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/item/view],methods=[GET]}" onto public java.util.List<com.ihs.stock.api.model.Item> com.ihs.stock.web.rest.ItemResource.getAllItems()
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 5 request handler methods found on class com.ihs.stock.web.rest.MonthlyStatsResource: {public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.add(com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException={[/monthlystats/add],methods=[POST],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.update(java.lang.String,com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException={[/monthlystats/update/{identifier}],methods=[PUT],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.delete(java.lang.String,com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException={[/monthlystats/delete/{identifier}],methods=[DELETE],consumes=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.getAllMonthlyStats()={[/monthlystats/],methods=[GET],produces=[application/json]}, public org.springframework.http.ResponseEntity com.ihs.stock.web.rest.MonthlyStatsResource.getMonthlyStats(java.lang.String,com.ihs.stock.api.model.Consumer) throws java.text.ParseException={[/monthlystats/{identifier}],methods=[GET],produces=[application/json]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/add],methods=[POST],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<java.lang.Void> com.ihs.stock.web.rest.MonthlyStatsResource.add(com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/update/{identifier}],methods=[PUT],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.MonthlyStats> com.ihs.stock.web.rest.MonthlyStatsResource.update(java.lang.String,com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/delete/{identifier}],methods=[DELETE],consumes=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.MonthlyStats> com.ihs.stock.web.rest.MonthlyStatsResource.delete(java.lang.String,com.ihs.stock.api.model.MonthlyStats) throws java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<java.util.List<com.ihs.stock.api.model.MonthlyStats>> com.ihs.stock.web.rest.MonthlyStatsResource.getAllMonthlyStats()
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/monthlystats/{identifier}],methods=[GET],produces=[application/json]}" onto public org.springframework.http.ResponseEntity<com.ihs.stock.api.model.MonthlyStats> com.ihs.stock.web.rest.MonthlyStatsResource.getMonthlyStats(java.lang.String,com.ihs.stock.api.model.Consumer) throws java.text.ParseException
+2018-01-11 16:44:26 DEBUG RequestMappingHandlerMapping:245 - 1 request handler methods found on class com.ihs.stock.web.rest.RequisitionResource: {public java.lang.String com.ihs.stock.web.rest.RequisitionResource.add(java.lang.Integer,java.lang.Integer,java.util.List) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException={[/req/add/{user}/{location}]}}
+2018-01-11 16:44:26 INFO  RequestMappingHandlerMapping:543 - Mapped "{[/req/add/{user}/{location}]}" onto public java.lang.String com.ihs.stock.web.rest.RequisitionResource.add(java.lang.Integer,java.lang.Integer,java.util.List<com.ihs.stock.api.beans.UpdateRequirementBeanMobile>) throws javax.management.InstanceAlreadyExistsException,java.text.ParseException
+2018-01-11 16:44:26 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:44:25 PKT 2018]; root of context hierarchy
+2018-01-11 16:44:26 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:44:25 PKT 2018]; root of context hierarchy
+2018-01-11 16:44:26 DEBUG ExceptionHandlerExceptionResolver:262 - Looking for exception mappings: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:44:25 PKT 2018]; root of context hierarchy
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:71 - Looking for URL mappings in application context: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:44:25 PKT 2018]; root of context hierarchy
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'addController': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'generalDataViewController': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'ILRController': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'starterController': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'vaccinatorDataAccessController': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'vaccinatorUpdateController': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalRequiredAnnotationProcessor': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalCommonAnnotationProcessor': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.internalPersistenceAnnotationProcessor': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.event.internalEventListenerProcessor': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.event.internalEventListenerFactory': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'dailyStatsResource': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'ILRDailyStatusResource': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'inventoryResource': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'itemResource': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'monthlyStatsResource': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'requisitionResource': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'dailyMorningEntryValidator': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'inventoryFormValidator': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'vaccinatorMonthlyUpdateValidator': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'contentNegotiationManager': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'mvcCorsConfigurations': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.format.support.FormattingConversionServiceFactoryBean#0': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'mvcUriComponentsContributor': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.MappedInterceptor#0': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver#0': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.annotation.ResponseStatusExceptionResolver#0': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver#0': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'viewResolver': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'messageSource': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter#0': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'jsonMessageConverter': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'environment': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'systemProperties': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'systemEnvironment': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'servletContext': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'servletConfig': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'contextParameters': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'contextAttributes': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'org.springframework.context.annotation.ConfigurationClassPostProcessor.importRegistry': no URL paths identified
+2018-01-11 16:44:26 DEBUG BeanNameUrlHandlerMapping:86 - Rejected bean name 'applicationEventMulticaster': no URL paths identified
+2018-01-11 16:44:26 INFO  RequestMappingHandlerAdapter:534 - Looking for @ControllerAdvice: WebApplicationContext for namespace 'mvc-dispatcher-servlet': startup date [Thu Jan 11 16:44:25 PKT 2018]; root of context hierarchy
+2018-01-11 16:44:26 DEBUG XmlWebApplicationContext:784 - Unable to locate LifecycleProcessor with name 'lifecycleProcessor': using default [org.springframework.context.support.DefaultLifecycleProcessor@618723fa]
+2018-01-11 16:44:26 DEBUG DispatcherServlet:511 - Unable to locate MultipartResolver with name 'multipartResolver': no multipart request handling provided
+2018-01-11 16:44:26 DEBUG DispatcherServlet:533 - Unable to locate LocaleResolver with name 'localeResolver': using default [org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver@55d97022]
+2018-01-11 16:44:26 DEBUG DispatcherServlet:555 - Unable to locate ThemeResolver with name 'themeResolver': using default [org.springframework.web.servlet.theme.FixedThemeResolver@30a29abf]
+2018-01-11 16:44:26 DEBUG DispatcherServlet:692 - Unable to locate RequestToViewNameTranslator with name 'viewNameTranslator': using default [org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5c10a7e5]
+2018-01-11 16:44:26 DEBUG DispatcherServlet:753 - Unable to locate FlashMapManager with name 'flashMapManager': using default [org.springframework.web.servlet.support.SessionFlashMapManager@77ba8cb5]
+2018-01-11 16:44:26 DEBUG DispatcherServlet:568 - Published WebApplicationContext of servlet 'mvc-dispatcher' as ServletContext attribute with name [org.springframework.web.servlet.FrameworkServlet.CONTEXT.mvc-dispatcher]
+2018-01-11 16:44:26 INFO  DispatcherServlet:508 - FrameworkServlet 'mvc-dispatcher': initialization completed in 1020 ms
+2018-01-11 16:44:26 DEBUG DispatcherServlet:141 - Servlet 'mvc-dispatcher' configured successfully
