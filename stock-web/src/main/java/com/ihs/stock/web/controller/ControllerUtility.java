@@ -49,20 +49,18 @@ import com.ihs.stock.api.model.Item.ExpiryUnit;
 import com.ihs.stock.api.model.ItemAttributeType;
 import com.ihs.stock.api.model.ItemType;
 
-
-
 public class ControllerUtility {
 
 	public static ModelAndView setInventoryForm(ModelAndView modelAndView)
 			throws InstanceAlreadyExistsException, ParseException {
-		
+
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		List<String> i = (List<String>) scSTK.itemDAO.getAllItems();
-		
+
 		scSTK.closeSession();
 		modelAndView.addObject("items", i);
 		LocationServiceContext sc = LocationContext.getServices();
-		
+
 		List<Location> loc = sc.getLocationService().getAllLocation(false, null);
 		sc.closeSession();
 
@@ -80,7 +78,7 @@ public class ControllerUtility {
 	}
 
 	public static ModelAndView setAddItemForm(ModelAndView modelAndView) {
-		
+
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		try {
 			List<ItemType> types = (List<ItemType>) scSTK.itemTypeDAO.getAllItemTypes();
@@ -101,9 +99,9 @@ public class ControllerUtility {
 
 			modelAndView.addObject("attrBean", new AddItemAttributeBean());
 			modelAndView.addObject("items", items);
-	        modelAndView.addObject("type", types);	
+			modelAndView.addObject("type", types);
 			modelAndView.setViewName("add_items");
-		
+
 			return modelAndView;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -114,40 +112,42 @@ public class ControllerUtility {
 
 	}
 
-//	public static ModelAndView setMonthlyUpdateform(ModelAndView modelAndView, int vac) {
-//		
-//		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
-//		try {
-//			Consumer consumer = scSTK.consumerDAO.getById(vac);
-//			Location loc = consumer.getlocation();
-//			List<Inventory> inventory = (List<Inventory>) scSTK.inventoryDAO.getBalanceForLocationAllItems(loc);
-//			List<String> items = new ArrayList<String>();
-//			for (int i = 0; i < inventory.size(); i++) {
-//				Item item = scSTK.itemDAO.getById(inventory.get(i).getitem());
-//				items.add(item.getname());
-//			}
-//			/// modelAndView.addObject("monthlyupdate", new
-//			/// MonthlyUpdateVaccinatorBean());
-//			modelAndView.addObject("items", items);
-//			modelAndView.setViewName("update_monthlyStats");
-//
-//			return modelAndView;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			scSTK.closeSession();
-//		}
-//		return null;
-//	}
+	// public static ModelAndView setMonthlyUpdateform(ModelAndView
+	// modelAndView, int vac) {
+	//
+	// ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+	// try {
+	// Consumer consumer = scSTK.consumerDAO.getById(vac);
+	// Location loc = consumer.getlocation();
+	// List<Inventory> inventory = (List<Inventory>)
+	// scSTK.inventoryDAO.getBalanceForLocationAllItems(loc);
+	// List<String> items = new ArrayList<String>();
+	// for (int i = 0; i < inventory.size(); i++) {
+	// Item item = scSTK.itemDAO.getById(inventory.get(i).getitem());
+	// items.add(item.getname());
+	// }
+	// /// modelAndView.addObject("monthlyupdate", new
+	// /// MonthlyUpdateVaccinatorBean());
+	// modelAndView.addObject("items", items);
+	// modelAndView.setViewName("update_monthlyStats");
+	//
+	// return modelAndView;
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// } finally {
+	// scSTK.closeSession();
+	// }
+	// return null;
+	// }
 
-	public static ModelAndView setDailyEntryMorningForm(ModelAndView modelAndView, int vac , int loc) {
+	public static ModelAndView setDailyEntryMorningForm(ModelAndView modelAndView, int vac, int loc) {
 		List<Status> arrayList = new ArrayList<Status>();
 		for (Status eu : Status.values()) {
 			arrayList.add(eu);
 		}
 		modelAndView.addObject("array", arrayList);
-        modelAndView.addObject("user", vac);
-        modelAndView.addObject("loc", loc);
+		modelAndView.addObject("user", vac);
+		modelAndView.addObject("loc", loc);
 		modelAndView.setViewName("daily_morningEntry");
 
 		return modelAndView;
@@ -156,7 +156,6 @@ public class ControllerUtility {
 	public static ModelAndView setDailyEntryDayEnd(ModelAndView modelAndView, int loc)
 			throws InstanceAlreadyExistsException, ParseException {
 
-		
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		try {
 			Calendar cal = Calendar.getInstance();
@@ -195,7 +194,6 @@ public class ControllerUtility {
 
 	public static ModelAndView setSearchInventory(ModelAndView modelAndView) {
 
-		
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		try {
 			List<Integer> months = scSTK.inventoryDAO.getDistinctMonths();
@@ -221,174 +219,168 @@ public class ControllerUtility {
 
 	}
 
-	public static ModelAndView updateMonthlyRequirement(/* ModelAndView mD , */int locationId , int user)
+	public static ModelAndView updateMonthlyRequirement(/* ModelAndView mD , */int locationId, int user)
 			throws InstanceAlreadyExistsException {
 		LocationServiceContext sc = LocationContext.getServices();
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
-		try
-		{
+		try {
 			Location location = sc.getLocationService().findLocationById(locationId, false, null);
 			List<Location> childLocations = sc.getLocationService().getAllChildLocations(locationId, false, null);
 			List<String> loc = new ArrayList<String>();
-//			if(sc.getLocationService().getAllChildLocations(childLocations.get(0).getLocationId(), false, null).size() < 1)
-//			{
-//				for(int j = 0 ; j < childLocations.size() ; j++)
-//				{
-//					loc.add(childLocations.get(j).getName());
-//				}
-//			}
-//			else
-//			{
-				for (int i = 0 ; i < childLocations.size() ; i++) {
-					List<Location> UCLocations = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
-					for(int j = 0 ; j < UCLocations.size() ; j++)
-					{
+			if (childLocations.get(0).getLocationType().getLocationTypeId() != 3) {
+				for (int j = 0; j < childLocations.size(); j++) {
+					loc.add(childLocations.get(j).getName());
+				}
+			} else {
+				for (int i = 0; i < childLocations.size(); i++) {
+					List<Location> UCLocations = sc.getLocationService()
+							.getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+					for (int j = 0; j < UCLocations.size(); j++) {
 						loc.add(UCLocations.get(j).getName());
 					}
 
 				}
-	//		}
-			
+			}
+
 			ModelAndView mD = new ModelAndView();
 			Collections.sort(loc, Collator.getInstance());
 			mD.addObject("town", location.getName());
 			mD.addObject("cLoc", loc);
-		
-			
+
 			mD.addObject("item", scSTK.itemDAO.getAllItems());
 			mD.addObject("id", locationId);
-			mD.addObject("user" , user);
+			mD.addObject("user", user);
 			mD.setViewName("updateRequirement");
 			return mD;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally
-		{
+		} finally {
 			scSTK.closeSession();
 			sc.closeSession();
 		}
 		return null;
 
 	}
-	public static ModelAndView setRequirement(ModelAndView mD, int locationId)
-			throws InstanceAlreadyExistsException {
-		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
+
+	public static ModelAndView setRequirement(ModelAndView mD, int locationId) throws InstanceAlreadyExistsException {
+		// SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
 		LocationServiceContext sc = LocationContext.getServices();
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
-	    try
-	    {
-	    	Location location = sc.getLocationService().findLocationById(locationId, false, null);
-			List<Location> UCs = sc.getLocationService().getAllChildLocations(locationId, false, null);
-			HashMap<String, ArrayList<Requisition>> map = new HashMap<String , ArrayList<Requisition>>();
+		try {
+			Location location = sc.getLocationService().findLocationById(locationId, false, null);
+			List<Location> childLocations = sc.getLocationService().getAllChildLocations(locationId, false, null);
+			HashMap<String, ArrayList<Requisition>> map = new HashMap<String, ArrayList<Requisition>>();
 			List<Location> vacCenter = new ArrayList<Location>();
 			List<Item> items = (List<Item>) scSTK.itemDAO.getallItems();
-			for(int i = 0 ; i < UCs.size() ; i++)
-			{
-				List<Requisition> allUCReq = new ArrayList<Requisition>();
-				List<Location> vaccinationcenter = sc.getLocationService().getAllChildLocations(UCs.get(i).getLocationId(), false, null);
-				vacCenter.addAll(vaccinationcenter);
-				for(int j= 0 ; j < vaccinationcenter.size() ; j++)
-				{
-					List<Requisition> requisitions = scSTK.requisitionDAO.getForLocationAllMonths(vaccinationcenter.get(j).getLocationId());
-					
-					allUCReq.addAll(requisitions);
+			if (childLocations.get(0).getLocationType().getLocationTypeId() != 3) {
+				vacCenter.addAll(childLocations);
+				for (int i = 0; i < childLocations.size(); i++) {
+					List<Requisition> requisitions = scSTK.requisitionDAO
+							.getForLocationAllMonths(childLocations.get(i).getLocationId());
+					if (requisitions.size() > 0) {
+						map.put(childLocations.get(i).getName(), (ArrayList<Requisition>) requisitions);
+					}
 				}
-			
-			//	List<Requisition> requisitions = scSTK.requisitionDAO.getForLocationAllMonths(childLocations.get(i));
-				if(allUCReq.size() > 0)
-				{
-					map.put(UCs.get(i).getName(), (ArrayList<Requisition>) allUCReq);
+			} else {
+				for (int i = 0; i < childLocations.size(); i++) {
+					List<Requisition> allUCReq = new ArrayList<Requisition>();
+					List<Location> vaccinationcenter = sc.getLocationService()
+							.getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+					vacCenter.addAll(vaccinationcenter);
+					for (int j = 0; j < vaccinationcenter.size(); j++) {
+						List<Requisition> requisitions = scSTK.requisitionDAO
+								.getForLocationAllMonths(vaccinationcenter.get(j).getLocationId());
+
+						allUCReq.addAll(requisitions);
+					}
+
+					if (allUCReq.size() > 0) {
+						map.put(childLocations.get(i).getName(), (ArrayList<Requisition>) allUCReq);
+					}
+
 				}
-				
 			}
-			mD.addObject("vacCenter" , vacCenter);
-	    	mD.addObject("locId", location);
+
+			mD.addObject("vacCenter", vacCenter);
+			mD.addObject("locId", location);
 			mD.addObject("req", map);
-			mD.addObject("i" , items);
+			mD.addObject("i", items);
 			mD.setViewName("requisition");
-			return mD;	
-	    }
-	    catch(Exception e)
-	    {
-	    	e.printStackTrace();
-	    }
-	    finally
-	    {
-	    	scSTK.closeSession();
-	    	sc.closeSession();			
-	    }
+			return mD;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			scSTK.closeSession();
+			sc.closeSession();
+		}
 		return null;
 	}
 
-	public static ModelAndView setRequirementApproval(ModelAndView mD, int locationId , int user)
+	public static ModelAndView setRequirementApproval(ModelAndView mD, int locationId, int user)
 			throws InstanceAlreadyExistsException {
 
-		
 		LocationServiceContext sc = LocationContext.getServices();
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
-		try
-		{
+		try {
 			Location location = sc.getLocationService().findLocationById(locationId, false, null);
 			List<Location> childLocations = sc.getLocationService().getAllChildLocations(locationId, false, null);
-			int arbSize = 0;
 			List<Location> vacCenter = new ArrayList<Location>();
 			List<Requisition> requisitionsUnApproved = new ArrayList<Requisition>();
 			List<Item> items = (List<Item>) scSTK.itemDAO.getallItems();
-			for(int i = 0 ; i < childLocations.size() ; i++)
-			{
-				List<Location> vaccinationcenter = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
-				vacCenter.addAll(vaccinationcenter);
-			    for(int j = 0 ; j < vaccinationcenter.size() ; j++)
-			    {
-			    	requisitionsUnApproved.addAll( scSTK.requisitionDAO.getForLocationPending(vaccinationcenter.get(j).getLocationId())) ;
-			    }
-				
-				//requisitionsUnApproved.addAll(scSTK.requisitionDAO.getForLocationPending(childLocations.get(i).getLocationId()));
-				
+			if (childLocations.get(0).getLocationType().getLocationTypeId() != 3) {
+				vacCenter.addAll(childLocations);
+				for (int i = 0; i < childLocations.size(); i++) {
+					requisitionsUnApproved
+							.addAll(scSTK.requisitionDAO.getForLocationPending(childLocations.get(i).getLocationId()));
+				}
+			} else {
+				for (int i = 0; i < childLocations.size(); i++) {
+					List<Location> vaccinationcenter = sc.getLocationService()
+							.getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+					vacCenter.addAll(vaccinationcenter);
+					for (int j = 0; j < vaccinationcenter.size(); j++) {
+						requisitionsUnApproved.addAll(
+								scSTK.requisitionDAO.getForLocationPending(vaccinationcenter.get(j).getLocationId()));
+					}
+
+				}
 			}
-	    	mD.addObject("locId", (Location)location);
+
+			mD.addObject("locId", (Location) location);
 			mD.addObject("req", requisitionsUnApproved);
-			mD.addObject("vacCenter" , vacCenter);
+			mD.addObject("vacCenter", vacCenter);
 			mD.addObject("user", user);
-			mD.addObject("i" , items);
+			mD.addObject("i", items);
 			ApproveRequirementBean arb = new ApproveRequirementBean(requisitionsUnApproved.size());
 			mD.addObject("urb", arb.getcheck());
 			mD.setViewName("approve_req");
 			return mD;
-			
-		}
-		catch(Exception e)
-		{
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally
-		{
+		} finally {
 			scSTK.closeSession();
 			sc.closeSession();
 		}
-	    return null;
+		return null;
 
 	}
-	
-	
+
 	public static ModelAndView setDonePage(ModelAndView mD) {
 
 		mD.setViewName("done");
 		return mD;
 	}
-	
+
 	public static ModelAndView setSearchILRGraph(ModelAndView modelAndView) {
-		
+
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		LocationServiceContext sc = LocationContext.getServices();
-		try
-		{
+		try {
 			List<Integer> months = scSTK.ilrDailyStatusDAO.getDistinctMonths();
 			List<Integer> years = scSTK.ilrDailyStatusDAO.getDistinctYears();
 			List<Location> locationsObj = sc.getLocationService().findLocationByLocationType(12, false, null);
-			
+
 			List<String> locations = new ArrayList<String>();
 			for (int i = 0; i < locationsObj.size(); i++) {
 				locations.add(locationsObj.get(i).getName());
@@ -403,28 +395,24 @@ public class ControllerUtility {
 			modelAndView.setViewName("ilrGraph");
 
 			return modelAndView;
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally
-		{
+		} finally {
 			sc.closeSession();
 			scSTK.closeSession();
 		}
 		return null;
 	}
-public static ModelAndView setTempratureMonitoringILRTable(ModelAndView modelAndView) {
-		
+
+	public static ModelAndView setTempratureMonitoringILRTable(ModelAndView modelAndView) {
+
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		LocationServiceContext sc = LocationContext.getServices();
-		try
-		{
+		try {
 			List<Integer> months = scSTK.ilrDailyStatusDAO.getDistinctMonths();
 			List<Integer> years = scSTK.ilrDailyStatusDAO.getDistinctYears();
 			List<Location> locationsObj = sc.getLocationService().findLocationByLocationType(12, false, null);
-			
+
 			List<String> locations = new ArrayList<String>();
 			for (int i = 0; i < locationsObj.size(); i++) {
 				locations.add(locationsObj.get(i).getName());
@@ -439,18 +427,13 @@ public static ModelAndView setTempratureMonitoringILRTable(ModelAndView modelAnd
 			modelAndView.setViewName("ilrTable");
 
 			return modelAndView;
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally
-		{
+		} finally {
 			sc.closeSession();
 			scSTK.closeSession();
 		}
 		return null;
 	}
-
 
 }
