@@ -35,7 +35,16 @@
         <property name="basename" value="/WEB-INF/message" />
     </bean>
 	
-	
+	<bean id="dwrController" class="org.springframework.web.servlet.mvc.ServletWrappingController">
+		<property name="servletClass">
+			<value>org.directwebremoting.servlet.DwrServlet</value>
+		</property>
+		<property name="initParameters">
+			<props>
+				<prop key="debug">true</prop>
+			</props>
+		</property>
+	</bean>
 <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
 			<list>

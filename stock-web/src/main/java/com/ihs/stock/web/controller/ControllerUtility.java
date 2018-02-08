@@ -15,6 +15,7 @@ import java.util.Set;
 import com.ihs.stock.api.context.SessionFactoryUtil;
 import javax.management.InstanceAlreadyExistsException;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -54,6 +55,7 @@ public class ControllerUtility {
 	public static ModelAndView setInventoryForm(ModelAndView modelAndView)
 			throws InstanceAlreadyExistsException, ParseException {
 
+		
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		List<String> i = (List<String>) scSTK.itemDAO.getAllItems();
 

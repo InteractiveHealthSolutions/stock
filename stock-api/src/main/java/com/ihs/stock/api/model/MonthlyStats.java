@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ForeignKey;
 
-@Entity 
+@Entity
 @Table(name = "monthly_Stats")
 
 public class MonthlyStats {
@@ -25,212 +25,171 @@ public class MonthlyStats {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mon_id")
 	private int monId;
-	
-	
-	@Column(name = "month")
-	private Integer month;
-	
-	@Column(name = "year")
-	private Integer year;
-	
+
+
 	@Column(name = "initial_quantity")
 	private Integer initialQuantity;
-	
+
 	@Column(name = "balance_quantity")
 	private Integer balanceQuantity;
-	
+
 	@Column(name = "initial_containers")
 	private Integer initialContainers;
-	
-	@Column(name = "balance_containers")
-	private Integer balanceContainers; //remaining from next month
-	
-	@Column(name = "total_containers")
-	private Integer totalContainers; //last month's balance + current month's initials
-	
+
 	@Column(name = "total_quantity")
 	private Integer totalQuantity;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "expiry_date")
-	private Date expiryDate ;
-	
+	private Date expiryDate;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "manufacture_date")
 	private Date manufactureDate;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "receival_date")
+	private Date receivalDate;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_created")
 	private Date dateCreated;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_edited")
 	private Date dateEdited;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_voided")
 	private Date dateVoided;
+
+	@Column(name = "user")
+	private Integer user;
+
+	@Column(name = "item")
+	private Integer item;
+
 	
+	@Column(name = "location")
+	private Integer location;
 	
-	@ManyToOne(targetEntity = Consumer.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "consumer", nullable=false)
-	@ForeignKey(name = "monthlystats_consumerId_consumer_mappedId_Fk")
-	private Consumer consumer ;
+	@Column(name="inventory_referral")
+	private Integer inventoryReferral;
 	
-	@ManyToOne(targetEntity = Item.class , fetch = FetchType.EAGER)
-	@JoinColumn(name = "item")
-	@ForeignKey(name = "monthlystats_itemId_item_mappedId_FK")
-	private Item item;
-	
-	public void setmonId(int id)
-	{
+	public void setmonId(int id) {
 		this.monId = id;
 	}
-	
-	public int getmonId()
-	{
+
+	public int getmonId() {
 		return monId;
 	}
-	
-	
-	public void setinitialQuantity(Integer ini_antigens)
-	{
+
+	public void setinitialQuantity(Integer ini_antigens) {
 		this.initialQuantity = ini_antigens;
 	}
-	
-	public Integer getinitialQuantity()
-	{
+
+	public Integer getinitialQuantity() {
 		return initialQuantity;
 	}
-	
-	public void setbalanceQuantity(Integer balance)
-	{
+
+	public void setbalanceQuantity(Integer balance) {
 		this.balanceQuantity = balance;
 	}
-	
-	public Integer getbalanceQuantity()
-	{
+
+	public Integer getbalanceQuantity() {
 		return balanceQuantity;
 	}
-	
-	public Integer getinitialContainers()
-	{
+
+	public Integer getinitialContainers() {
 		return initialContainers;
 	}
-	
-	public void setinitialContainersCount(Integer ini_vials)
-	{
+
+	public void setinitialContainersCount(Integer ini_vials) {
 		this.initialContainers = ini_vials;
 	}
-	
-	public Integer getbalanceContainers()
-	{
-		return balanceContainers;
-	}
-	
-	public void setbalanceContainers(Integer balance)
-	{
-		this.balanceContainers = balance;
-	}
-	
-	public Integer gettotalQuantity()
-	{
+
+	public Integer gettotalQuantity() {
 		return totalQuantity;
 	}
-	
-	public void settotalQuantity(Integer total_antigens)
-	{
-		this.totalQuantity = total_antigens; 
+
+	public void settotalQuantity(Integer total_antigens) {
+		this.totalQuantity = total_antigens;
 	}
-	
-	public Integer gettotalContainers()
-	{
-		return totalContainers;
+
+	public Integer getuser() {
+		return user;
 	}
-	
-	public void settotalContainers(Integer vials)
-	{
-		this.totalContainers = vials;
+
+	public void setuser(Integer vac) {
+		this.user = vac;
 	}
-	public void setwastedVials(Integer total_vials)
-	{
-		this.totalContainers = total_vials;
-	}
-	
-	public Consumer getconsumer()
-	{
-		return consumer;
-	}
-	
-	public void setconsumer(Consumer vac)
-	{
-		this.consumer = vac;
-	}
-	
-	public Item getitem()
-	{
+
+	public Integer getitem() {
 		return item;
 	}
-	
-	public void setitem(Item vac)
-	{
-		this.item = vac;
+
+	public void setitem(Integer item) {
+		this.item = item;
 	}
-	
-	public Integer getmonth()
-	{
-		return month;
-	}
-	
-	public void setmonth(Integer mon)
-	{
-		month = mon;
-	}
-	
-	public void setyear(Integer yr)
-	{
-		year = yr;
-	}
-	public Integer getyear()
-	{
-		return year;
-	}
-	
-	public void setexpiryDate(Date date)
-	{
+public Date getRreceivalDate() {
+	return receivalDate;
+}
+
+public void setreceivalDate(Date receivalDate) {
+	this.receivalDate = receivalDate;
+}
+	public void setexpiryDate(Date date) {
 		this.expiryDate = date;
 	}
-	
-	public void setmanufactureDate(Date date)
-	{
+
+	public void setmanufactureDate(Date date) {
 		this.manufactureDate = date;
 	}
-	
-	public Date getexpiryDate()
-	{
+
+	public Date getexpiryDate() {
 		return expiryDate;
 	}
-	
-	public Date getmanufactureDate()
-	{
+
+	public Date getmanufactureDate() {
 		return manufactureDate;
 	}
+
 	public Date getdateCreated() {
 		return dateCreated;
 	}
+
 	public void setdateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
+
 	public Date getdateEdited() {
 		return dateEdited;
 	}
+
 	public void setdateEdited(Date dateEdited) {
 		this.dateEdited = dateEdited;
 	}
+
 	public Date getdateVoided() {
 		return dateVoided;
 	}
+
 	public void setdateVoided(Date dateVoided) {
 		this.dateVoided = dateVoided;
+	}
+	public Integer getinventoryReferral() {
+		return inventoryReferral;
+	}
+	
+	public void setinventoryReferral(Integer inventoryReferral) {
+		this.inventoryReferral = inventoryReferral;
+	}
+	
+	public Integer getlocation() {
+		return location;
+	}
+	
+	public void setlocation(Integer location) {
+		this.location = location;
 	}
 }

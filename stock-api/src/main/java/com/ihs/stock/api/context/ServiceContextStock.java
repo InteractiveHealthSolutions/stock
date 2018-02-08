@@ -31,8 +31,10 @@ public class ServiceContextStock {
 
 	public DAORequisition requisitionDAO;
 
+    public DAOCustomQuery customQueryDAO;
 
-
+    public DAOMonthlyStats monthlyStatsDAO;
+    
 	ServiceContextStock(SessionFactory sf)
 	{
 		session =sf.openSession();
@@ -46,8 +48,8 @@ public class ServiceContextStock {
 		itemAttributeTypeDAO = new DAOItemAttributeType(session);
 		itemTypeDAO = new DAOItemType(session);
 		requisitionDAO = new DAORequisition(session);
-		
-		
+		customQueryDAO = new DAOCustomQuery(session);
+		monthlyStatsDAO = new DAOMonthlyStats(session);
 		
 	}
 	public void beginTransaction()

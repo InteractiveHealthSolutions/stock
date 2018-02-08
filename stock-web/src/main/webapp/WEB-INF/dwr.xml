@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://directwebremoting.org/schema/dwr20.dtd">
+
+<dwr>
+
+	<allow>
+		
+		<create creator="new" javascript="DWRLocationService">
+			<param name="class" value="com.ihs.stock.web.dwr.DWRLocationService" />
+			<include method="getLocationList"/>
+		</create>	
+			</allow>
+	
+	<signatures>
+<![CDATA[
+
+			import java.util.Date;
+			import java.util.ArrayList;
+			import java.util.HashMap;
+			import java.util.List;
+			import java.util.Map;
+			import org.json.JSONArray;
+			import org.json.JSONObject;  
+		]]>
+
+	</signatures>
+  	
+</dwr>

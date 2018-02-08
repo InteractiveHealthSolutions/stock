@@ -19,7 +19,7 @@ import com.ihs.stock.api.DAO.DAORequisition;
 import com.ihs.stock.api.beans.AddItemBean;
 import com.ihs.stock.api.beans.DayEndEntryBean;
 import com.ihs.stock.api.beans.InventoryBean;
-import com.ihs.stock.api.beans.MonthlyUpdateVaccinatorBean;
+
 import com.ihs.stock.api.beans.MorningEntryBean;
 import com.ihs.stock.api.beans.SearchBean;
 

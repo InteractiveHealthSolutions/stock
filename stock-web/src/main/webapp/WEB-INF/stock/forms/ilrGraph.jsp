@@ -22,6 +22,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type='text/javascript'
+	src='/stock-web/dwr/interface/DWRLocationService.js'></script>
+<script type='text/javascript' src='/stock-web/dwr/engine.js'></script>
+	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ILRGraph</title>
@@ -35,6 +43,8 @@
 	<script>
 	window.onload = function()
 	{
+		$('#vaccinationcenter').attr('required',true);
+		$('#filterDatefrom').attr('required',true);
 		error();
 		getGraph();
 	}
@@ -49,46 +59,35 @@
 	</script>
 </head>
 <body>
-	<form:form method="POST" modelAttribute="sb" id="searchfrm"
-		action="${pageContext.request.contextPath}/view/ilrgraph.htm">
+<center>
+<form class="searchpalette" id="searchfrm" name="searchfrm" method="post" 
+action = ${pageContext.request.contextPath}/view/ilrgraph.htm>
+<%@ include file="stock_location_selector.jsp" %>
 
-
-		<tr>
-			<td>Select a location*</td>
-			<td><form:select path="locationName">
-					<form:option value="" label="Location" />
-					<form:options items="${locations}" />
-				</form:select></td>
-			<td>Select a year*</td>
-			<td><form:select path="year">
-					<form:option value="" label="Year" />
-					<form:options items="${years}" />
-				</form:select></td>
-			<td>Select a month*</td>
-			<td><form:select path="month">
-					<form:option value="" label="Month" />
-					<form:options items="${months}" />
-				</form:select></td>
-
-			<td><input type="button" value="Search" id="searchbtn"
-				onclick="submitThisForm();" /></td>
-
-		</tr>
-
-		<br>
-		<br>
-		<tr>
-			<form:errors path="" cssStyle="color: #ff0000"></form:errors>
-			<form:errors path="locationName" cssStyle="color: #ff0000"></form:errors>
-			<form:errors path="year" cssStyle="color: #ff0000"></form:errors>
-			<form:errors path="month" cssStyle="color: #ff0000"></form:errors>
-			<c:out value = "${error}"></c:out>
+Date 
+        <input id="filterDatefrom" name="filterDatefrom" bind-value = "${filterDatefrom}" class="calendarbox" value="${filterDatefrom}" size="11" required/> 
+		<input id="filterDateto" name="filterDateto" bind-value="${filterDateto}" class="calendarbox" value="${filterDateto}" size="11" required/>
+		<a class="clearDate" onclick="clearFilterDate();">X</a>
+		<script type="text/javascript">
+	 
+		function clearFilterDate(){	
+			$('input[id^="filterDate"]').val("");
+		}
+		
+		$(function() {
+			$('input[id^="filterDate"]').datepicker({
+		    	duration: '',
+		        constrainInput: false,
+		        maxDate: "+0d",
+		        dateFormat: 'dd-mm-yy',
+		     });
 			
-		</tr>
-
-
-	</form:form>
-
+		});
+		</script>
+		<input type="submit" value="Search" id="searchbtn"
+				 />
+</form>
+</center>
 	<div class="row">
 		<div class=" col-xs-12">
 			<div class="panel panel-default">
@@ -103,19 +102,17 @@
 					<script>
 					function getGraph()
 					{
-						var location = "${loc}";
-						var month = "${mon}";
-						var year = "${yr}";
-						console.log("hereee");
+						var location = "${vaccinationcenter}";
+						var date = "${filterDatefrom}"
 						if((typeof location != 'undefined' && location) &&
-								(typeof month != 'undefined' && month) && (typeof year != 'undefined' && year))
+								(typeof date != 'undefined' && date))
 						{
 							console.log("script");
 							 $.ajax({
                          		 type: "GET",
                          		 crossDomain: "FALSE",
                          		 cache: false,
-                          	     url: "${pageContext.request.contextPath}/ws/ilr/view/${loc.locationId}/${mon}/${yr}",
+                          	     url: "${pageContext.request.contextPath}/ws/ilr/view.htm?province=${province}&division=${division}&city=${city}&town=${town}&uc=${uc}&filterDateto=${filterDateto}&filterDatefrom=${filterDatefrom}",
                          	 success: function (myresp) {
                          		 //	console.log("Chal gayaa :D");
                          	         data3 = (myresp);

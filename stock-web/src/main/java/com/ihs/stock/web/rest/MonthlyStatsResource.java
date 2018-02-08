@@ -15,8 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ihs.stock.api.DAO.DAOMonthlyStats;
+import com.ihs.stock.api.beans.MonthlyReceivalFormBean;
+import com.ihs.stock.api.context.ServiceContextStock;
+import com.ihs.stock.api.context.SessionFactoryUtil;
 import com.ihs.stock.api.model.Consumer;
+import com.ihs.stock.api.model.Inventory;
+import com.ihs.stock.api.model.Item;
 import com.ihs.stock.api.model.MonthlyStats;
+import com.ihs.stock.api.service.MonthlyReceivalUpdateService;
 
 @RestController
 @RequestMapping("/monthlystats")
@@ -24,124 +30,40 @@ public class MonthlyStatsResource {
 	
 
 	@RequestMapping(value = "/add" , method = RequestMethod.POST , consumes = "application/json")
-	public ResponseEntity<Void> add(@RequestBody MonthlyStats ms) throws ParseException
+	public @ResponseBody String add(@RequestBody List<MonthlyReceivalFormBean> ms) throws ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		Date date = sdf.parse(sdf.format(new Date()));
-		ms.setdateCreated(date);
-		DAOMonthlyStats msDAO = new DAOMonthlyStats();
-		msDAO.save(ms);
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
+		String response="";
+		
+		try
+		{
+			for(int i = 0 ; i < ms.size() ; i++)
+			{
+				Item item = scSTK.itemDAO.getByName(ms.get(i).getitemName());
+				/*Inventory inv = scSTK.inventoryDAO.getBalanceForLocationMonthItem(ms.get(i).getlocationId(),item.getitemId());
+				if((inv.gettotalContainers() - ms.get(i).getnoOfVials()) < 0)
+				{
+					response = response+"0";
+				}
+				else
+				{
+*/					MonthlyReceivalUpdateService mrs = new MonthlyReceivalUpdateService();
+					mrs.updateMonthlyReceival(ms.get(i));
+					//response = response + "1";
+				//}
+			}
+		}
+		finally
+		{
+			scSTK.closeSession();
+		}
+		
+		return response;
+		
 	}
 	
 	
-	@RequestMapping(value = "/update/{identifier}" , method = RequestMethod.PUT , consumes = "application/json")
-	public ResponseEntity<MonthlyStats> update(@PathVariable("identifier") String Identifier , @RequestBody MonthlyStats ums) throws ParseException
-	{
-		DAOMonthlyStats msDAO = new DAOMonthlyStats();
-		Integer id = Integer.parseInt(Identifier);
-		MonthlyStats ms = msDAO.getById(id);
-		if(ms == null)
-		{
-			//uuid search
-		}
-		if(ms == null)
-		{
-			return new ResponseEntity<MonthlyStats>(HttpStatus.NOT_FOUND);
-		}
-		
-		if(ums.getconsumer() != null)
-		{
-			ms.setconsumer(ums.getconsumer());
-		}
-		if(ums.getitem() != null)
-		{
-			ms.setitem(ums.getitem());
-		}
-		if(ums.getinitialContainers() != null)
-		{
-			ms.setinitialContainersCount(ums.getinitialContainers());
-		}
-		if(ums.getbalanceContainers() != null)
-		{
-			ms.setbalanceContainers(ums.getbalanceContainers());
-		}
-		if(ums.getbalanceQuantity() != null)
-		{
-			ms.setbalanceQuantity(ums.getbalanceQuantity());
-		}
-		if(ums.gettotalContainers() != null)
-		{
-			ms.settotalContainers(ums.gettotalContainers());
-		}
-		if(ums.gettotalQuantity() != null)
-		{
-			ms.settotalQuantity(ums.gettotalQuantity());
-		}
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		Date date = sdf.parse(sdf.format(new Date()));
-		
-		ms.setdateEdited(date);
-		
-		msDAO.update(ms);
-		
-		return new ResponseEntity<MonthlyStats>(ms,HttpStatus.OK);
-		
-	}
 	
-	@RequestMapping(value = "/delete/{identifier}" , method = RequestMethod.DELETE , consumes = "application/json")
-	public ResponseEntity<MonthlyStats> delete(@PathVariable("identifier") String Identifier , @RequestBody MonthlyStats ums) throws ParseException
-	{
-		DAOMonthlyStats msDAO = new DAOMonthlyStats();
-		Integer id = Integer.parseInt(Identifier);
-		MonthlyStats ms = msDAO.getById(id);
-		if(ms == null)
-		{
-			//search by uuid
-		}
-		if(ms == null)
-		{
-			return new ResponseEntity<MonthlyStats>(HttpStatus.NOT_FOUND);
-		}
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		Date date = sdf.parse(sdf.format(new Date()));
-		
-		ms.setdateVoided(date);
-		
-		msDAO.update(ms);
-		
-		return new ResponseEntity<MonthlyStats>(ms,HttpStatus.OK);
-		
-	}
-	
-	@RequestMapping(value = "/" , method = RequestMethod.GET , produces = "application/json")
-	public ResponseEntity<List<MonthlyStats>> getAllMonthlyStats()
-	{
-		DAOMonthlyStats msDAO = new DAOMonthlyStats();
-		List<MonthlyStats> MonthlyStats = msDAO.getAllMonthLyStats();
-		return new ResponseEntity<List<MonthlyStats>>(MonthlyStats , HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/{identifier}" , method = RequestMethod.GET , produces = "application/json")
-	public ResponseEntity<MonthlyStats> getMonthlyStats(@PathVariable("identifier") String identifier , @RequestBody Consumer con) throws ParseException
-	{
-		DAOMonthlyStats msDAO = new DAOMonthlyStats();
-		Integer id = Integer.parseInt(identifier);
-		
-		MonthlyStats ms = msDAO.getById(id);
-		if(ms == null)
-		{
-			//uuid function
-		}
-		if(ms == null)
-		{
-			return new ResponseEntity<MonthlyStats>(HttpStatus.NOT_FOUND);
-		}
-		
-		return new ResponseEntity<MonthlyStats>(ms , HttpStatus.OK);
-		
-	}
-
 }

@@ -24,10 +24,17 @@
 <br />
 <a href = "${pageContext.request.contextPath}/start/updaterquirement/2/2.htm"><button>Update Requirement</button></a>
 <br>
-<a href = "${pageContext.request.contextPath}/start/ilr.htm"><button>ILR</button></a>
+<a href = "${pageContext.request.contextPath}/view/ilrgraph.htm"><button>ILR graph</button></a>
+<br>
+<br>
+<a href = "${pageContext.request.contextPath}/view/ilrtable.htm"><button>ILR table</button></a>
+<br>
+
+<br />
+<a href = "${pageContext.request.contextPath}/start/approvereq/1/10.htm"><button>Approve Requirement</button></a>
 <br>
 <br />
-<a href = "${pageContext.request.contextPath}/start/approvereq/1/10.htm"><button>App Requirement</button></a>
+<a href = "${pageContext.request.contextPath}/report/monthlyreport.htm"><button>Stock Report</button></a>
 <br>
 
 </body>

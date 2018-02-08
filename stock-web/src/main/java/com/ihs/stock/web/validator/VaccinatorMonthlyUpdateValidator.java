@@ -1,4 +1,4 @@
-package com.ihs.stock.web.validator;
+/*package com.ihs.stock.web.validator;
 
 import java.sql.Date;
 import java.text.DateFormat;
@@ -69,3 +69,4 @@ public class VaccinatorMonthlyUpdateValidator implements Validator {
 	}
 
 }
+*/
