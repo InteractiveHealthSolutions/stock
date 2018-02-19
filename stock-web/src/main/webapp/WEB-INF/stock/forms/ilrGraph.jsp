@@ -103,21 +103,24 @@ Date
 					function getGraph()
 					{
 						var location = "${vaccinationcenter}";
-						var date = "${filterDatefrom}"
+						
+						var date = "${filterDatefrom}";
 						if((typeof location != 'undefined' && location) &&
 								(typeof date != 'undefined' && date))
 						{
 							console.log("script");
+							console.log(location);
 							 $.ajax({
                          		 type: "GET",
                          		 crossDomain: "FALSE",
                          		 cache: false,
-                          	     url: "${pageContext.request.contextPath}/ws/ilr/view.htm?province=${province}&division=${division}&city=${city}&town=${town}&uc=${uc}&filterDateto=${filterDateto}&filterDatefrom=${filterDatefrom}",
+                          	     url: "${pageContext.request.contextPath}/ilrws/view.htm?province=${province}&division=${division}&city=${city}&town=${town}&uc=${uc}&vaccinationcenter=${vaccinationcenter}&filterDateto=${filterDateto}&filterDatefrom=${filterDatefrom}",
                          	 success: function (myresp) {
                          		 //	console.log("Chal gayaa :D");
+                         		 console.log(myresp);
                          	         data3 = (myresp);
                          	         console.log(data3);
-                         	         console.log(data3[0].openingTemprature)
+                         	      //   console.log(data3[0].openingTemprature)
                          	         var openingTemp = [];
                          	         var closingTemp = [];
                          	         var days = [];

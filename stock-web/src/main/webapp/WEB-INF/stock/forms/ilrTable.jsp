@@ -104,19 +104,17 @@ Date
 					<script>
 						function getTable() {
 							var location = "${loc}";
-							var month = "${mon}";
-							var year = "${yr}";
+							var date = "${filterDatefrom}";
 							console.log("hereee");
-							if ((typeof location != 'undefined' && location)
-									&& (typeof month != 'undefined' && month)
-									&& (typeof year != 'undefined' && year)) {
+							if((typeof location != 'undefined' && location) &&
+									(typeof date != 'undefined' && date)) {
 								console.log("script");
 								$
 										.ajax({
 											type : "GET",
 											crossDomain : "FALSE",
 											cache : false,
-											url : "${pageContext.request.contextPath}/ilrws/view.htm?province=${province}&division=${division}&city=${city}&town=${town}&uc=${uc}&filterDateto=${filterDateto}&filterDatefrom=${filterDatefrom}",
+											url : "${pageContext.request.contextPath}/ilrws/view.htm?province=${province}&division=${division}&city=${city}&town=${town}&uc=${uc}&vaccinationcenter=${vaccinationcenter}&filterDateto=${filterDateto}&filterDatefrom=${filterDatefrom}",
 											success : function(myresp) {
 												//	console.log("Chal gayaa :D");
 												data = (myresp);

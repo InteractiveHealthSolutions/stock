@@ -14,73 +14,63 @@ import com.ihs.stock.api.model.ILRDailyStatus.Status;
 
 public class DayEndEntryBean {
 
-	private Double closingTemprature;
+	private Integer location;
 
-	private Status status;
+	private String dateToday;
 	
-	private List<String> itemName;
+	private String itemName;
 
-	private List<Integer> usedQuantityCount;
+	private Integer usedQuantityCount;
 
-	private List<Integer> wastedQuantityCount;
+	private Integer wastedQuantityCount;
 
-	private int vaccinatorId;
+	private Integer vaccinatorId;
 
-	public DayEndEntryBean(int loc , int size) throws InstanceAlreadyExistsException {
-		
-		
-		Integer[] integers = new Integer[size];
-		Arrays.fill(integers, null);
-		usedQuantityCount = Arrays.asList(integers);
-		Integer[] comment = new Integer[size];
-		Arrays.fill(comment, null);
-		wastedQuantityCount = Arrays.asList(comment);
-			
-	}
-	public void setclosingTemprature(Double temp) {
-		this.closingTemprature = temp;
+
+	public void setlocation(Integer temp) {
+		this.location = temp;
 	}
 
-	public Double getclosingTemprature() {
-		return closingTemprature;
+	public Integer getlocation() {
+		return location;
 	}
 
-	public void setitemName(List<String> item) {
+	public void setitemName(String item) {
 		this.itemName = item;
 	}
 
-	public List<String> getitemName() {
+	public String getitemName() {
 		return itemName;
 	}
 
-	public void setusedQuantityCount(List<Integer> qty) {
+	public void setusedQuantityCount(Integer qty) {
 		this.usedQuantityCount = qty;
 	}
 
-	public List<Integer> getusedQuantityCount() {
+	public Integer getusedQuantityCount() {
 		return usedQuantityCount;
 	}
 
-	public void setwastedQuantityCount(List<Integer> qty) {
+	public void setwastedQuantityCount(Integer qty) {
 		this.wastedQuantityCount = qty;
 	}
 
-	public List<Integer> getwastedQuantityCount() {
+	public Integer getwastedQuantityCount() {
 		return wastedQuantityCount;
 	}
 
-	public void setvaccinatorId(int id) {
+	public void setvaccinatorId(Integer id) {
 		this.vaccinatorId = id;
 	}
 
 	public int getvaccinatorId() {
 		return vaccinatorId;
 	}
-	public Status getstatus() {
-		return status;
+	public String getdateToday() {
+		return dateToday;
 	}
 
-	public void setstatus(Status status) {
-		this.status = status;
+	public void setdateToday(String date) {
+		this.dateToday = date;
 	}
 }

@@ -93,14 +93,14 @@ public class StarterController {
 		return ControllerUtility.setDailyEntryMorningForm(mD, user , location);
 	}
 	
-	@RequestMapping(value = "/dayendentry/{location}" , method = RequestMethod.GET)
+	/*@RequestMapping(value = "/dayendentry/{location}" , method = RequestMethod.GET)
 	public ModelAndView dayEndEntry(@PathVariable("location") Integer loc,ModelAndView mD) throws InstanceAlreadyExistsException, ParseException
 	{
 		
 		//mD.addObject("dayendentry", new DayEndEntryBean(loc));
 		return ControllerUtility.setDailyEntryDayEnd(mD, loc);
 	}
-	
+	*/
 	@RequestMapping(value="/searchinventory" , method = RequestMethod.GET)
 	public ModelAndView searchInventory(ModelAndView mD)
 	{

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
 
@@ -27,11 +27,11 @@
 		<property name="hibernate.connection.useUnicode">true</property>
 		<property name="hibernate.connection.characterEncoding">UTF-8</property>
 		<property name="hibernate.connection.charSet">UTF-8</property>
-		
+
 		<property name="hibernate.current_session_context_class">thread</property>
-		
+
 		<mapping class="com.ihs.stock.api.model.Item" />
-		
+
 		<mapping class="com.ihs.stock.api.model.Inventory" />
 		<mapping class="com.ihs.stock.api.model.Requisition" />
 		<mapping class="com.ihs.stock.api.model.Consumer" />
@@ -42,9 +42,9 @@
 		<mapping class="com.ihs.stock.api.model.ItemAttribute" />
 		<mapping class="com.ihs.stock.api.model.ItemAttributeType" />
 		<mapping class="org.ird.unfepi.model.Location" />
-		<mapping class="org.ird.unfepi.model.LocationType" />
+		<mapping class="org.ird.unfepi.model.LocationType" /><!--
 		<mapping class="org.ird.unfepi.model.LocationAttribute" />
 		<mapping class="org.ird.unfepi.model.LocationAttributeType" />
-		
+  -->
 	</session-factory>
 </hibernate-configuration>

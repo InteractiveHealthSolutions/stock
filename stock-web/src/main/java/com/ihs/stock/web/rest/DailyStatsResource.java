@@ -5,9 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.management.InstanceAlreadyExistsException;
+
 import org.hibernate.SessionFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,44 +19,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ihs.stock.api.DAO.DAOConsumer;
-import com.ihs.stock.api.DAO.DAODailyStats;
-import com.ihs.stock.api.DAO.DAOInventory;
-import com.ihs.stock.api.beans.DayEndEntryBeanMobile;
+import com.ihs.stock.api.beans.DayEndEntryBean;
 import com.ihs.stock.api.context.ServiceContextStock;
 import com.ihs.stock.api.context.SessionFactoryUtil;
 import com.ihs.stock.api.model.Consumer;
 import com.ihs.stock.api.model.DailyStats;
-import com.ihs.stock.api.model.Inventory;
 import com.ihs.stock.api.service.DailyEntryService;
 
-@RestController
+@Controller
 @RequestMapping("/dailystats")
 @ResponseBody
 public class DailyStatsResource {
 
 	
-//	@PostMapping(path = "/add/{user}", consumes = "application/json")
-//	public ResponseEntity<HttpStatus> add(@PathVariable("user") Integer user ,@RequestBody List<DayEndEntryBeanMobile> deb) throws ParseException
-//	{
-//		if(deb == null)
-//		{
-//			return new ResponseEntity<HttpStatus>(HttpStatus.NOT_ACCEPTABLE);
-//		}
-//		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
-//		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
-//		Consumer con =  scSTK.consumerDAO.getById(user);
-//		 scSTK.commitTransaction();
-//		 scSTK.closeSession();
-//		if(con == null)
-//		{
-//			return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
-//		}
-//		DailyEntryService des = new DailyEntryService();
-//		des.dayEndEntryMobile(deb, user);
-//		
-//		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-//	}
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String add(@RequestBody List<DayEndEntryBean> deb) throws ParseException, InstanceAlreadyExistsException
+	{
+		if(deb == null)
+		{
+			return "0";
+		}
+		
+		DailyEntryService des = new DailyEntryService();
+		des.dailyStatsEntry(deb);
+		
+	return  "1";
+	}
 	
 	
 	@RequestMapping(value = "/delete/{identifier}" , method = RequestMethod.DELETE , consumes = "application/json")

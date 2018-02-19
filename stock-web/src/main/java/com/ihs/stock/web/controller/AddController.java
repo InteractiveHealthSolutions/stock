@@ -213,7 +213,7 @@ public class AddController {
 			//List<Item> items = (List<Item>) scSTK.itemDAO.getallItems();
 			for(int i = 0 ; i < childLocations.size() ; i++)
 			{
-				List<Location> vaccinationcenter = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+				List<Location> vaccinationcenter =sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
 				vacCenter.addAll(vaccinationcenter);
 			    for(int j = 0 ; j < vaccinationcenter.size() ; j++)
 			    {

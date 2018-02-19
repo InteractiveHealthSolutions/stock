@@ -148,7 +148,19 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<wtpmanifest>true</wtpmanifest>
+					<wtpapplicationxml>true</wtpapplicationxml>
+					<wtpversion>2.0</wtpversion>
+				</configuration>
+			</plugin>
 		</plugins>
+
+
 
 	</build>
 </project>

@@ -21,10 +21,10 @@ public class DailyDayEndEntryValidator implements Validator{
 		ValidationUtils.rejectIfEmpty(errors, "usedQuantityCount", "EmptyField.Invalid");
 		ValidationUtils.rejectIfEmpty(errors, "itemName", "EmptyField.Invalid");
 		ValidationUtils.rejectIfEmpty(errors, "wastedQuantityCount", "EmptyField.Invalid");
-		if(deb.getclosingTemprature() < 0)
-		{
-			errors.rejectValue("openingTempratutre", "Value.NotValid");
-		}
+//		if(deb.getclosingTemprature() < 0)
+//		{
+//			errors.rejectValue("openingTempratutre", "Value.NotValid");
+//		}
 		
 		
 	}

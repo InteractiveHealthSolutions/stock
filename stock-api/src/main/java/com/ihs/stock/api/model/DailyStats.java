@@ -44,16 +44,7 @@ public class DailyStats {
 	
 	@Column(name = "wasted_containers")
 	private Integer wastedContainers;
-	
-	@Column(name="day")
-	private Integer day;
-	
-	@Column(name = "month")
-	private Integer month;
-	
-	@Column(name = "year")
-	private Integer year;
-	
+
 	@Column(name= "voided")
 	private boolean voided;
 	
@@ -157,14 +148,6 @@ public class DailyStats {
 	public Date getdateVoided() {
 		return dateVoided;
 	}
-	public Integer getday() {
-		return day;
-	}
-	
-	public void setday(Integer day) {
-		this.day = day;
-	}
-	
 	public void setvoided(boolean voided) {
 		this.voided = voided;
 	}
@@ -181,5 +164,10 @@ public class DailyStats {
 	public void setvoidedBy(Integer voidedBy) {
 		this.voidedBy = voidedBy;
 	}
-	
+	public void setuserLocation(Integer userLocation) {
+		this.userLocation = userLocation;
+	}
+	public Integer getuserLocation() {
+		return userLocation;
+	}
 }

@@ -155,7 +155,7 @@ public class ControllerUtility {
 		return modelAndView;
 	}
 
-	public static ModelAndView setDailyEntryDayEnd(ModelAndView modelAndView, int loc)
+	/*public static ModelAndView setDailyEntryDayEnd(ModelAndView modelAndView, int loc)
 			throws InstanceAlreadyExistsException, ParseException {
 
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
@@ -192,7 +192,7 @@ public class ControllerUtility {
 		}
 		return null;
 
-	}
+	}*/
 
 	public static ModelAndView setSearchInventory(ModelAndView modelAndView) {
 
@@ -235,8 +235,7 @@ public class ControllerUtility {
 				}
 			} else {
 				for (int i = 0; i < childLocations.size(); i++) {
-					List<Location> UCLocations = sc.getLocationService()
-							.getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+					List<Location> UCLocations = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
 					for (int j = 0; j < UCLocations.size(); j++) {
 						loc.add(UCLocations.get(j).getName());
 					}
@@ -286,8 +285,7 @@ public class ControllerUtility {
 			} else {
 				for (int i = 0; i < childLocations.size(); i++) {
 					List<Requisition> allUCReq = new ArrayList<Requisition>();
-					List<Location> vaccinationcenter = sc.getLocationService()
-							.getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+					List<Location> vaccinationcenter = sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
 					vacCenter.addAll(vaccinationcenter);
 					for (int j = 0; j < vaccinationcenter.size(); j++) {
 						List<Requisition> requisitions = scSTK.requisitionDAO
@@ -337,8 +335,7 @@ public class ControllerUtility {
 				}
 			} else {
 				for (int i = 0; i < childLocations.size(); i++) {
-					List<Location> vaccinationcenter = sc.getLocationService()
-							.getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
+					List<Location> vaccinationcenter =sc.getLocationService().getAllChildLocations(childLocations.get(i).getLocationId(), false, null);
 					vacCenter.addAll(vaccinationcenter);
 					for (int j = 0; j < vaccinationcenter.size(); j++) {
 						requisitionsUnApproved.addAll(

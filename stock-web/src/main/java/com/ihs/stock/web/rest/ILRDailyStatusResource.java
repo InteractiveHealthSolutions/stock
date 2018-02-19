@@ -66,7 +66,7 @@ public class ILRDailyStatusResource {
 	
     
    
-	@RequestMapping(path="/view" , method = RequestMethod.GET /*, produces = "application/json"*/)
+	@RequestMapping(path="/view" , method = RequestMethod.GET , produces = "application/json")
 	public List<ILRDailyStatus> getForMonth(HttpServletRequest req,
 			@RequestParam(value = "province", required = false) String province,
 			@RequestParam(value = "division", required = false) String division,
@@ -83,19 +83,21 @@ public class ILRDailyStatusResource {
      	{
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 			String month = null;
-			String year = null;
+			int year =0;
+			int mon = 0;
 			if (!StringUtils.isEmptyOrWhitespaceOnly(filterDatefrom)) {
 				Date date = sdf.parse(filterDatefrom);
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
-				int mon = cal.get(Calendar.MONTH)+1;
-				year = "'" + cal.get(Calendar.YEAR) + "'";
-				month = "'" + mon + "'";
+			   mon = cal.get(Calendar.MONTH)+1;
+			   year = cal.get(Calendar.YEAR) ;
+			//	year = "'" + cal.get(Calendar.YEAR) + "'";
+				//month = "'" + mon + "'";
 			} else {// to make sure that procedure gets a null value for dates
 				filterDatefrom = null;
 			}
-     		List<ILRDailyStatus> dailyStatus = sc.ilrDailyStatusDAO.getForYearMonthLocation(Integer.parseInt(vaccinationcenter), Integer.parseInt(month), Integer.parseInt(year));
-    		if(dailyStatus == null)
+     		List<ILRDailyStatus> dailyStatus = sc.ilrDailyStatusDAO.getForYearMonthLocation(Integer.parseInt(vaccinationcenter), mon, year);
+    		if(dailyStatus.size() < 0)
          	{
         		return null;
         	}
