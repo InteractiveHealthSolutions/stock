@@ -37,7 +37,7 @@ public class DAOItem {
 		return item != null? item:null;
 	}
 	
-	public List<?> getAllItems()
+	public List<?> getAllItemNames()
 	{
 		Query query = s.createQuery("from Item");
 		List<Item> items = query.list();
@@ -47,7 +47,6 @@ public class DAOItem {
 			
 			itemName.add(items.get(i).getname());
 		}
-		
 		return itemName;
 		
 	}
@@ -68,8 +67,6 @@ public class DAOItem {
 		query.setParameter("in", itemName);
 		List<?> item = query.list();
 		return item.size() > 0 ? true : false;
-		
-		
 	}
 	
 	public void save(Item item)

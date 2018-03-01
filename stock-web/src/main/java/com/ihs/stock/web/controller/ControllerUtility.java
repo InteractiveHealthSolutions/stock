@@ -57,7 +57,7 @@ public class ControllerUtility {
 
 		
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
-		List<String> i = (List<String>) scSTK.itemDAO.getAllItems();
+		List<String> i = (List<String>) scSTK.itemDAO.getAllItemNames();
 
 		scSTK.closeSession();
 		modelAndView.addObject("items", i);
@@ -248,9 +248,10 @@ public class ControllerUtility {
 			mD.addObject("town", location.getName());
 			mD.addObject("cLoc", loc);
 
-			mD.addObject("item", scSTK.itemDAO.getAllItems());
+			mD.addObject("item", scSTK.itemDAO.getAllItemNames());
 			mD.addObject("id", locationId);
 			mD.addObject("user", user);
+			//mD.addObject("reqList", )
 			mD.setViewName("updateRequirement");
 			return mD;
 		} catch (Exception e) {

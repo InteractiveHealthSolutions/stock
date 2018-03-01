@@ -76,6 +76,12 @@ public class MonthlyStats {
 	@Column(name="inventory_referral")
 	private Integer inventoryReferral;
 	
+	@Column(name="reference_number")
+    private String referenceNumber;
+	
+	@Column(name="received_from")
+	private String receivedFrom;
+	
 	public void setmonId(int id) {
 		this.monId = id;
 	}
@@ -191,5 +197,19 @@ public void setreceivalDate(Date receivalDate) {
 	
 	public void setlocation(Integer location) {
 		this.location = location;
+	}
+	public String getreferenceNumber() {
+		return referenceNumber;
+	}
+	
+	public void setreferenceNumber(String referenceNumber) {
+		this.referenceNumber = referenceNumber;
+	}
+	public String getreceivedFrom() {
+		return receivedFrom;
+	}
+	
+	public void setreceivedFrom(String receivedFrom) {
+		this.receivedFrom = receivedFrom;
 	}
 }

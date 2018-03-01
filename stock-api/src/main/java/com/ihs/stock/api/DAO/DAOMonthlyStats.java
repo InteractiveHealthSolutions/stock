@@ -39,15 +39,28 @@ public class DAOMonthlyStats {
 	/*
 	 * this method return current month balance of a vaccinator for a particular item 
 	 */
-	public MonthlyStats getMonthBalance(Consumer con , int month , int year , Item vaccine )
+	public MonthlyStats getMonthBalance(Integer con , int month , int year , Integer vaccine )
 	{
-		Query query = s.createQuery("from MonthlyStats where month = :mon AND year= :yr AND consumer = :v AND item = :vac");
+		Query query = s.createQuery("from MonthlyStats where MONTH(receivalDate) = :mon AND YEAR(receivalDate)= :yr AND user = :v AND item = :vac");
 		query.setParameter("mon", month);
 		query.setParameter("yr", year);
 		query.setParameter("v", con);
 		query.setParameter("vac", vaccine);
 		List<MonthlyStats> vacMonStats =  (List<MonthlyStats>)query.list();
-		return vacMonStats.get(0);
+		
+		return vacMonStats.size() > 0 ? vacMonStats.get(0):null;
+		
+	}
+	public boolean existMonthBalance(Integer con , int month , int year , Integer vaccine )
+	{
+		Query query = s.createQuery("from MonthlyStats where MONTH(receivalDate) = :mon AND YEAR(receivalDate)= :yr AND user = :v AND item = :vac");
+		query.setParameter("mon", month);
+		query.setParameter("yr", year);
+		query.setParameter("v", con);
+		query.setParameter("vac", vaccine);
+		List<MonthlyStats> vacMonStats =  (List<MonthlyStats>)query.list();
+		
+		return vacMonStats.size() > 0 ? true:false;
 		
 	}
 	/*

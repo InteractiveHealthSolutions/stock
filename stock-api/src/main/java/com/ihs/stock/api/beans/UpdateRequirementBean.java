@@ -28,7 +28,7 @@ public class UpdateRequirementBean {
 	public UpdateRequirementBean() {
 		// TODO Auto-generated constructor stub
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
-		String[] integers = new String[scSTK.itemDAO.getallItems().size()];
+		String[] integers = new String[scSTK.itemDAO.getAllItemNames().size()];
 		scSTK.commitTransaction();
 		scSTK.closeSession();
 		Arrays.fill(integers, null);

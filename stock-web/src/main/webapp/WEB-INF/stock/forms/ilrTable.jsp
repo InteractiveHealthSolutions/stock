@@ -12,8 +12,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type='text/javascript'
-	src='/stock-web/dwr/interface/DWRLocationService.js'></script>
-<script type='text/javascript' src='/stock-web/dwr/engine.js'></script>
+	src='${pageContext.request.contextPath}/dwr/interface/DWRLocationService.js'></script>
+<script type='text/javascript' src='${pageContext.request.contextPath}	/dwr/engine.js'></script>
 	
 
 <head>
@@ -23,7 +23,7 @@
 	
 </script>
 <script>
-	var chackB = 1;
+	var checkB = 1;
 	function redirect() {
 
 		window.top.location.href = "${pageContext.request.contextPath}/start/mainpage.htm";

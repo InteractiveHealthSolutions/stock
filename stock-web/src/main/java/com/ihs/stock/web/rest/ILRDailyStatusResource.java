@@ -40,24 +40,33 @@ public class ILRDailyStatusResource {
 		DailyEntryService des = new DailyEntryService();
 		for(int i = 0 ; i < ilr.size() ; i++)
 		{
-					int user = ilr.get(i).getuser();
-					if(ilr.get(i).getopeningTemprature() != null && ilr.get(i).getclosingTemprature() == null)
-					{
-						des.morningEntryILR(ilr.get(i));
-					}
-					else if(ilr.get(i).getclosingTemprature() != null && ilr.get(i).getopeningTemprature() == null)
-					{
-						des.dayEndEntryILR(ilr.get(i));
-					}
-					else if(ilr.get(i).getopeningTemprature() == null && ((ilr.get(i).getMorningILRStatus() != null)|| (ilr.get(i).getmorningTMStatus() !=null)))
-					{
-						des.morningEntryILR(ilr.get(i));
-						
-					}
-					else if(ilr.get(i).getclosingTemprature() == null &&((ilr.get(i).getdayendTMStatus() != null) ||(ilr.get(i).getdayendILRStatus() != null)))
-					{
-						des.dayEndEntryILR(ilr.get(i));
-					}
+			try
+			{
+				int user = ilr.get(i).getuser();
+				if(ilr.get(i).getopeningTemprature() != null && ilr.get(i).getclosingTemprature() == null)
+				{
+					des.morningEntryILR(ilr.get(i));
+				}
+				else if(ilr.get(i).getclosingTemprature() != null && ilr.get(i).getopeningTemprature() == null)
+				{
+					des.dayEndEntryILR(ilr.get(i));
+				}
+				else if(ilr.get(i).getopeningTemprature() == null && ((ilr.get(i).getMorningILRStatus() != null)|| (ilr.get(i).getmorningTMStatus() !=null)))
+				{
+					des.morningEntryILR(ilr.get(i));
+					
+				}
+				else if(ilr.get(i).getclosingTemprature() == null &&((ilr.get(i).getdayendTMStatus() != null) ||(ilr.get(i).getdayendILRStatus() != null)))
+				{
+					des.dayEndEntryILR(ilr.get(i));
+				}
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				//return "0";
+			}
+					
 		}
 		return "1";
 		
@@ -66,7 +75,7 @@ public class ILRDailyStatusResource {
 	
     
    
-	@RequestMapping(path="/view" , method = RequestMethod.GET , produces = "application/json")
+	@RequestMapping(path="/view" , method = RequestMethod.GET /*, produces = "application/json"*/)
 	public List<ILRDailyStatus> getForMonth(HttpServletRequest req,
 			@RequestParam(value = "province", required = false) String province,
 			@RequestParam(value = "division", required = false) String division,

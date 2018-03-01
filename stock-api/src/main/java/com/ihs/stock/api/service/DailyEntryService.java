@@ -66,25 +66,29 @@ public class DailyEntryService {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public void dailyStatsEntry(List<DayEndEntryBean> deb) throws ParseException, InstanceAlreadyExistsException {
 		
 		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
 
 		try {
-			dailyStats = new DailyStats();
+			//dailyStats = new DailyStats();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = sdf.parse(sdf.format(new Date()));
-			// dailyStats.setdateCreated(date);
+			
 
 			Item item;
 			for (int i = 0; i < deb.size(); i++) {
 
 				try {
+					Date date = sdf.parse(sdf.format(new Date()));
+					
 					dailyStats = new DailyStats();
+					dailyStats.setdateCreated(date);
+					date = sdf.parse(deb.get(i).getdateToday());
 					item = sc.itemDAO.getByName(deb.get(i).getitemName());
 					dailyStats.setitem(item.getitemId());
 					dailyStats.setuser(deb.get(i).getvaccinatorId());
-					dailyStats.setdateCreated(date);
+					dailyStats.setdateToday(date);
 					dailyStats.setuserLocation(deb.get(i).getlocation());
 					dailyStats.setwastedQuantity(deb.get(i).getwastedQuantityCount());
 					dailyStats.setusedQuantity(deb.get(i).getwastedQuantityCount());

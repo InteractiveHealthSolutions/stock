@@ -20,8 +20,10 @@ public class MonthlyReceivalFormBean {
 	
 	private Integer totalDosesReceived;
 	
-	private Integer balanceInHand;
+	private String referenceNumber;
 	
+	private String receivedFrom;
+	private Integer balanceInHand;	
    public void setitemName(String item) {
 		this.itemName = item;
 	}
@@ -93,5 +95,19 @@ public class MonthlyReceivalFormBean {
 	}
 	public Integer getlocationId() {
 		return locationId;
+	}
+	public String getreferenceNumber() {
+		return referenceNumber;
+	}
+	
+	public void setreferenceNumber(String referenceNumber) {
+		this.referenceNumber = referenceNumber;
+	}
+	public String getreceivedFrom() {
+		return receivedFrom;
+	}
+	
+	public void setreceivedFrom(String receivedFrom) {
+		this.receivedFrom = receivedFrom;
 	}
 }

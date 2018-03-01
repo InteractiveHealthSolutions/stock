@@ -170,4 +170,10 @@ public class DailyStats {
 	public Integer getuserLocation() {
 		return userLocation;
 	}
+	public void setdateToday(Date dateToday) {
+		this.dateToday = dateToday;
+	}
+	public Date getdateToday() {
+		return dateToday;
+	}
 }
