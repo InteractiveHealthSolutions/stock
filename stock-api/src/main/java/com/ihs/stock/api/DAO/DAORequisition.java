@@ -125,7 +125,18 @@ public class DAORequisition {
 		return req == null? null:req;
 		
 	}
-	
+	public List<Requisition> getForLocationItemMonthYear(int location , int item , int month , int year)
+	{
+		Query query = s.createQuery("from Requisition where requisitionLocation = :loc AND item = :i AND "
+				+ "month = :mon AND year = :yr AND voided = :v");
+		query.setParameter("loc", location);
+		query.setParameter("i", item);
+		query.setParameter("mon", month);
+		query.setParameter("yr", year);
+		query.setParameter("v", false);
+		List<Requisition> list = query.list();
+		return list;
+	}
 
 
 	public Requisition update(Requisition requisition) {

@@ -8,6 +8,8 @@ public class UpdateRequirementBeanMobile {
 	
 	private String comment;
 	
+	private String requisitionDate;
+	
 	public void setcomment(String comments) {
 		this.comment = comments;
 	}
@@ -31,4 +33,11 @@ public class UpdateRequirementBeanMobile {
 		return item;
 	}
 	
+	 public void setrequisitionDate(String requisitionDate) {
+		this.requisitionDate = requisitionDate;
+	}
+	 
+	 public String getrequisitionDate() {
+		return requisitionDate;
+	}
 }

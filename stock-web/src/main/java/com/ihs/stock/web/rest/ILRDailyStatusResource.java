@@ -90,7 +90,7 @@ public class ILRDailyStatusResource {
 		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
 		try
      	{
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 			String month = null;
 			int year =0;
 			int mon = 0;

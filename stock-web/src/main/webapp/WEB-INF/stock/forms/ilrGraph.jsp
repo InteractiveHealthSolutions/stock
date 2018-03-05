@@ -65,26 +65,24 @@ action = ${pageContext.request.contextPath}/view/ilrgraph.htm>
 <%@ include file="stock_location_selector.jsp" %>
 
 Date 
-        <input id="filterDatefrom" name="filterDatefrom" bind-value = "${filterDatefrom}" class="calendarbox" value="${filterDatefrom}" size="11" required/> 
-		<input id="filterDateto" name="filterDateto" bind-value="${filterDateto}" class="calendarbox" value="${filterDateto}" size="11" required/>
-		<a class="clearDate" onclick="clearFilterDate();">X</a>
-		<script type="text/javascript">
-	 
-		function clearFilterDate(){	
-			$('input[id^="filterDate"]').val("");
-		}
-		
-		$(function() {
-			$('input[id^="filterDate"]').datepicker({
-		    	duration: '',
-		        constrainInput: false,
-		        maxDate: "+0d",
-		        dateFormat: 'dd-mm-yy',
-		     });
-			
-		});
-		</script>
-		<input type="submit" value="Search" id="searchbtn"
+       <input type="month" id="filterDatefrom"value="${filterDatefrom}" name="filterDatefrom" required> 
+		<!-- <a class="clearDate" onclick="clearFilterDate();">X</a>
+			<script type="text/javascript">
+				function clearFilterDate() {
+					$('input[id^="filterDate"]').val("");
+				}
+
+				$(function() {
+					$('input[id^="filterDate"]').datepicker({
+						duration : '',
+						constrainInput : false,
+						maxDate : "+0d",
+						dateFormat : 'dd-mm-yy',
+					});
+
+				});
+			</script>
+			 --><input type="submit" value="Search" id="searchbtn"
 				 />
 </form>
 </center>

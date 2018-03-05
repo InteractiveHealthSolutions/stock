@@ -4,12 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
+
 
 import com.ihs.stock.api.beans.MonthlyReceivalFormBean;
 import com.ihs.stock.api.context.ServiceContextStock;
 import com.ihs.stock.api.context.SessionFactoryUtil;
-import com.ihs.stock.api.model.Inventory;
+
 import com.ihs.stock.api.model.Item;
 import com.ihs.stock.api.model.MonthlyStats;
 import com.mysql.jdbc.StringUtils;
@@ -67,13 +67,21 @@ public class MonthlyReceivalUpdateService {
 				boolean check = scSTK.monthlyStatsDAO.existMonthBalance(mfb.getuserId(), mon - 1, year, item.getitemId());
 				if (check == true) {
 					MonthlyStats msP = scSTK.monthlyStatsDAO.getMonthBalance(mfb.getuserId(), mon - 1, year, item.getitemId());
-					ms.settotalQuantity(msP.getbalanceQuantity() + mfb.gettotalDosesReceived());
-					System.out.println(mfb.gettotalDosesReceived());
-					System.out.println(msP.getbalanceQuantity());
-				} else {
+					if(msP.getbalanceQuantity() != null)
+					{
+						ms.settotalQuantity(msP.getbalanceQuantity() + mfb.gettotalDosesReceived());
+					}
+					else
+					{
+						ms.settotalQuantity(mfb.gettotalDosesReceived());
+					}
+					
+				} 
+				else
+				{
 					ms.settotalQuantity(mfb.gettotalDosesReceived());
 				}
-				scSTK.monthlyStatsDAO.save(ms);
+			//	scSTK.monthlyStatsDAO.save(ms);
 				return ms;
 				
 			}
@@ -86,7 +94,7 @@ public class MonthlyReceivalUpdateService {
 			
 		} 
 		finally {
-			scSTK.commitTransaction();
+		//	scSTK.commitTransaction();
 			scSTK.closeSession();
 			
 		}

@@ -221,17 +221,16 @@ public class AddInInventoryService {
 
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = sdf.parse(sdf.format(new Date()));
+			
 			Calendar cal = Calendar.getInstance();
-			int month = cal.get(Calendar.MONTH) + 1;
-			int year = cal.get(Calendar.YEAR);
-			int day = cal.get(Calendar.DAY_OF_MONTH);
+			
 			for (int i = 0; i < urb.size(); i++) {
 				req = new Requisition();
 				Item item = scSTK.itemDAO.getByName(urb.get(i).getitem());
 				if (item == null) {
 					item = scSTK.itemDAO.getById(Integer.parseInt(urb.get(i).getitem()));
 				}
+				Date date = sdf.parse(sdf.format(new Date()));
 				req.setitem(item.getitemId());
 				req.setRequisitionBy(userId);
 				// req.setuserLocation(locationId);
@@ -240,9 +239,23 @@ public class AddInInventoryService {
 				req.setRequisitionLocation(locationId);
 				req.setquantity((urb.get(i)).getquantity());
 				req.setdateCreated(date);
+				date = sdf.parse(urb.get(i).getrequisitionDate());
+				req.setrequisitionDate(date);
+				cal.setTime(date);
+				int month = cal.get(Calendar.MONTH)+1;
+				int year = cal.get(Calendar.YEAR);
 				req.setmonth(month);
 				req.setyear(year);
-				req.setDay(day);
+				req.setDay(cal.get(Calendar.DAY_OF_MONTH));
+				List<Requisition> list = scSTK.requisitionDAO.getForLocationItemMonthYear(locationId, item.getitemId(), month, year);
+				if(list.size() > 0)
+				{
+					for(int j = 0 ; j < list.size() ; j++)
+					{
+						list.get(j).setvoided(true);
+						scSTK.requisitionDAO.update(list.get(j));
+					}
+				}
 				req.setapprovalStatus("Pending");
 				scSTK.requisitionDAO.save(req);
 			}

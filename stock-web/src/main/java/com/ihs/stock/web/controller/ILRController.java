@@ -81,14 +81,14 @@ public class ILRController {
 			@RequestParam(value = "uc", required = false) String UC,
 			@RequestParam(value = "vaccinationcenter", required = false) String vaccinationcenter,
 			@RequestParam(value = "filterDatefrom", required = false) String filterDatefrom,
-			@RequestParam(value = "filterDateto", required = false) String filterDateto, ModelAndView modelAndView)
+			ModelAndView modelAndView)
 			throws ParseException {
 
 		// modelAndView = ControllerUtility.setSearchILRGraph(modelAndView);
 		// SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
 		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
 		LocationServiceContext scL = LocationContext.getServices();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 
 		try {
 			if (vaccinationcenter != null && filterDatefrom != null) {
@@ -110,7 +110,7 @@ public class ILRController {
 
 				List<ILRDailyStatus> dailyStatus = sc.ilrDailyStatusDAO.getForYearMonthLocation(
 						location.getLocationId(), Integer.parseInt(month), Integer.parseInt(year));
-				modelAndView.addObject("filterDateto", filterDateto);
+			//	modelAndView.addObject("filterDateto", filterDateto);
 				modelAndView.addObject("filterDatefrom", filterDatefrom);
 				modelAndView.addObject("province", province);
 				modelAndView.addObject("division", division);
@@ -125,9 +125,9 @@ public class ILRController {
 
 					return modelAndView;
 				}
-				sdf = new SimpleDateFormat("yyyy-MM-dd");
-				filterDatefrom = new SimpleDateFormat("dd-MM-YYYY").format(sdf.parse(filterDatefrom));
-				filterDateto = new SimpleDateFormat("dd-MM-YYYY").format(sdf.parse(filterDateto));
+			//	sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//	filterDatefrom = new SimpleDateFormat("dd-MM-YYYY").format(sdf.parse(filterDatefrom));
+		//		filterDateto = new SimpleDateFormat("dd-MM-YYYY").format(sdf.parse(filterDateto));
 				modelAndView.addObject("loc", location);
 				modelAndView.addObject("mon", month);
 				modelAndView.addObject("yr", year);
@@ -157,10 +157,10 @@ public class ILRController {
 			@RequestParam(value = "uc", required = false) String UC,
 			@RequestParam(value = "vaccinationcenter", required = false) String vaccinationcenter,
 			@RequestParam(value = "filterDatefrom", required = false) String filterDatefrom,
-			@RequestParam(value = "filterDateto", required = false) String filterDateto, ModelAndView modelAndView) {
+			ModelAndView modelAndView) {
 		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
 		LocationServiceContext scL = LocationContext.getServices();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 		try {
 			if (vaccinationcenter != null && filterDatefrom != null) {
 
@@ -178,7 +178,7 @@ public class ILRController {
 				}
 				List<ILRDailyStatus> dailyStatus = sc.ilrDailyStatusDAO.getForYearMonthLocation(
 						location.getLocationId(), Integer.parseInt(month), Integer.parseInt(year));
-				modelAndView.addObject("filterDateto", filterDateto);
+			//	modelAndView.addObject("filterDateto", filterDateto);
 				modelAndView.addObject("filterDatefrom", filterDatefrom);
 				modelAndView.addObject("province", province);
 				modelAndView.addObject("division", division);
@@ -192,9 +192,9 @@ public class ILRController {
 					modelAndView.setViewName("ilrTable");
 					return modelAndView;
 				}
-				sdf = new SimpleDateFormat("yyyy-MM-dd");
-				filterDatefrom = new SimpleDateFormat("dd-MM-YYYY").format(sdf.parse(filterDatefrom));
-				filterDateto = new SimpleDateFormat("dd-MM-YYYY").format(sdf.parse(filterDateto));
+				//sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//	filterDatefrom = new SimpleDateFormat("dd-MM-YYYY").format(sdf.parse(filterDatefrom));
+	//			filterDateto = new SimpleDateFormat("dd-MM-YYYY").format(sdf.parse(filterDateto));
 				modelAndView.addObject("loc", location);
 				modelAndView.addObject("mon", month);
 				modelAndView.addObject("yr", year);

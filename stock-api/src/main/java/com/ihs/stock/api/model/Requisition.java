@@ -60,6 +60,10 @@ public class Requisition {
 	@Column(name="requisition_location")
 	private Integer requisitionLocation ;
 	
+	@Column(name="requisition_date")
+	@Temporal(TemporalType.DATE)
+	private Date requisitionDate ;
+	
 	@Column(name="date_created")
 	@Temporal(TemporalType.DATE)
 	private Date dateCreated ;
@@ -200,6 +204,13 @@ public class Requisition {
 		this.requisitionLocation = requisitionLocation;
 	}
 	
+    public void setrequisitionDate(Date requisitionDate) {
+		this.requisitionDate = requisitionDate;
+	}
+    
+    public Date getrequisitionDate() {
+		return requisitionDate;
+	}
 	
 	
 	 
