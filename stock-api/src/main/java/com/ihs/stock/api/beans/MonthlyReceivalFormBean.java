@@ -7,9 +7,7 @@ public class MonthlyReceivalFormBean {
 	private Integer locationId;
 	
 	private String itemName;
-
-	private Integer noOfVials;
-
+	
 	private String expiryDate;
 
 	private String manufactureDate;
@@ -23,7 +21,11 @@ public class MonthlyReceivalFormBean {
 	private String referenceNumber;
 	
 	private String receivedFrom;
+	
 	private Integer balanceInHand;	
+	
+	private Integer vialsConsumed;
+	
    public void setitemName(String item) {
 		this.itemName = item;
 	}
@@ -39,14 +41,7 @@ public class MonthlyReceivalFormBean {
 	public void setreceivalDate(String receivalDate) {
 		this.receivalDate = receivalDate;
 	}
-	public void setnoOfVials(Integer vials) {
-		this.noOfVials = vials;
-	}
-
-	public Integer getnoOfVials() {
-		return noOfVials;
-	}
-
+	
 	public void setexpiryDate(String expiry) {
 		this.expiryDate = expiry;
 	}
@@ -109,5 +104,12 @@ public class MonthlyReceivalFormBean {
 	
 	public void setreceivedFrom(String receivedFrom) {
 		this.receivedFrom = receivedFrom;
+	}
+	public Integer getvialsConsumed() {
+		return vialsConsumed;
+	}
+	
+	public void setvialsConsumed(Integer vialsConsumed) {
+		this.vialsConsumed = vialsConsumed;
 	}
 }

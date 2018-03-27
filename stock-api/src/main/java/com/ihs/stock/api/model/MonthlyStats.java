@@ -32,12 +32,18 @@ public class MonthlyStats {
 
 	@Column(name = "balance_quantity")
 	private Integer balanceQuantity;
+	
+	@Column(name = "balance_container")
+	private Integer balanceContainer;
 
 	@Column(name = "initial_containers")
 	private Integer initialContainers;
 
 	@Column(name = "total_quantity")
 	private Integer totalQuantity;
+	
+	@Column(name = "total_container")
+	private Integer totalContainer;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "expiry_date")
@@ -211,5 +217,20 @@ public void setreceivalDate(Date receivalDate) {
 	
 	public void setreceivedFrom(String receivedFrom) {
 		this.receivedFrom = receivedFrom;
+	}
+	public void setbalanceContainer(Integer balanceContainer) {
+		this.balanceContainer = balanceContainer;
+	}
+	
+	public Integer getbalanceContainer() {
+		return balanceContainer;
+	}
+	
+	public void settotalContainer(Integer totalContainer) {
+		this.totalContainer = totalContainer;
+	}
+	
+	public Integer gettotalContainer() {
+		return totalContainer;
 	}
 }

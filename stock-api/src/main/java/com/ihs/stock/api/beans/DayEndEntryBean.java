@@ -26,6 +26,7 @@ public class DayEndEntryBean {
 
 	private Integer vaccinatorId;
 
+	private Integer vialsConsumed;
 
 	public void setlocation(Integer temp) {
 		this.location = temp;
@@ -72,5 +73,13 @@ public class DayEndEntryBean {
 
 	public void setdateToday(String date) {
 		this.dateToday = date;
+	}
+	
+	public Integer getvialsConsumed() {
+		return vialsConsumed;
+	}
+	
+	public void setvialsConsumed(Integer vialsConsumed) {
+		this.vialsConsumed = vialsConsumed;
 	}
 }

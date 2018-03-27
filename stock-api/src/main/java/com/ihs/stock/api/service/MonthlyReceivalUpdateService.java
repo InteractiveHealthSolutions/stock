@@ -49,12 +49,14 @@ public class MonthlyReceivalUpdateService {
 				// inv.settotalContainers(inv.gettotalContainers()-mfb.getnoOfVials());
 				// scSTK.inventoryDAO.update(inv);
 				ms.setitem(item.getitemId());
-				ms.setinitialContainersCount(mfb.getnoOfVials());
+				ms.setinitialContainersCount(mfb.getvialsConsumed());
 				ms.setinitialQuantity(mfb.gettotalDosesReceived());
 				Integer mon = null;
 				Integer year = null;
 				ms.setreferenceNumber(mfb.getreferenceNumber());
 				ms.setreceivedFrom(mfb.getreceivedFrom());
+			
+				
 				if (!StringUtils.isEmptyOrWhitespaceOnly(mfb.getreceivalDate())) {
 					date = sdf.parse(mfb.getreceivalDate());
 					Calendar cal = Calendar.getInstance();
@@ -75,11 +77,22 @@ public class MonthlyReceivalUpdateService {
 					{
 						ms.settotalQuantity(mfb.gettotalDosesReceived());
 					}
+					if(msP.getbalanceContainer() != null)
+					{
+						ms.settotalContainer(msP.getbalanceContainer() +mfb.getvialsConsumed());
+					}
+					else
+					{
+						ms.settotalContainer(mfb.getvialsConsumed());
+					}
+					
 					
 				} 
 				else
 				{
 					ms.settotalQuantity(mfb.gettotalDosesReceived());
+					ms.settotalContainer(mfb.getvialsConsumed());
+					
 				}
 			//	scSTK.monthlyStatsDAO.save(ms);
 				return ms;

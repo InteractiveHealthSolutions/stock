@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.management.InstanceAlreadyExistsException;
-import javax.tools.DocumentationTool.Location;
+
 
 import org.hibernate.SessionFactory;
 
@@ -20,6 +20,7 @@ import com.ihs.stock.api.model.DailyStats;
 import com.ihs.stock.api.model.ILRDailyStatus;
 import com.ihs.stock.api.model.Inventory;
 import com.ihs.stock.api.model.Item;
+import com.ihs.stock.api.model.MonthlyStats;
 
 public class DailyEntryService {
 
@@ -66,7 +67,7 @@ public class DailyEntryService {
 
 	}
 
-	@SuppressWarnings("deprecation")
+	
 	public void dailyStatsEntry(List<DayEndEntryBean> deb) throws ParseException, InstanceAlreadyExistsException {
 		
 		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
@@ -92,7 +93,8 @@ public class DailyEntryService {
 					dailyStats.setuserLocation(deb.get(i).getlocation());
 					dailyStats.setwastedQuantity(deb.get(i).getwastedQuantityCount());
 					dailyStats.setusedQuantity(deb.get(i).getwastedQuantityCount());
-					int quantityInAContainer = item.getenclosedQuantity();
+					dailyStats.setusedContainers(deb.get(i).getvialsConsumed());
+					/*int quantityInAContainer = item.getenclosedQuantity();
 					int containerUsed = 0;
 					int containerWasted = 0;
 					int quantityUsed = deb.get(i).getusedQuantityCount();
@@ -122,8 +124,8 @@ public class DailyEntryService {
 						}
 						dailyStats.setwastedContainers(0);
 					}
-
-					sc.dailyStatsDAO.save(dailyStats);
+*/
+					
 					/*int totalContainers = containerUsed + containerWasted;
 					int totalQuantity = quantityUsed + quantityWasted;
 
@@ -133,7 +135,35 @@ public class DailyEntryService {
 					inventory.setusedContainers(inventory.getusedContainers() + containerUsed);
 					inventory.settotalContainers(inventory.gettotalContainers() - totalContainers);
 					sc.inventoryDAO.update(inventory);*/
-
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(date);
+					int month = cal.get(Calendar.MONTH) + 1;
+					int year = cal.get(Calendar.YEAR);
+					MonthlyStats ms = sc.monthlyStatsDAO.getMonthBalance(deb.get(i).getvaccinatorId(), month, year, item.getitemId());
+					if(ms != null)
+					{
+			
+							if(ms.gettotalQuantity() != null)
+							{
+								int leftOverQuantity = ms.gettotalQuantity() - (deb.get(i).getusedQuantityCount()+deb.get(i).getwastedQuantityCount());
+								int leftOverContainers = ms.gettotalContainer() - deb.get(i).getvialsConsumed();
+								if(leftOverQuantity < 0 || leftOverContainers < 0)
+								{
+									dailyStats.setvoided(true);
+									Exception e = new Exception("Invalid daily Summary");
+									e.printStackTrace();
+								}
+								else
+								{
+									ms.settotalQuantity(leftOverQuantity);
+									ms.settotalContainer(leftOverContainers);
+									sc.monthlyStatsDAO.update(ms);
+								}
+								
+							}
+					}
+					sc.dailyStatsDAO.save(dailyStats);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

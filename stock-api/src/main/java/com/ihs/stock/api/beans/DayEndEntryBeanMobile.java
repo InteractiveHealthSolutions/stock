@@ -7,7 +7,7 @@ public class DayEndEntryBeanMobile {
 	private Integer quantityWasted;
 	
 	private Integer quantityUsed;
-	
+	private Integer vialsConsumed;
 	public Integer getquantityUsed() {
 		return quantityUsed;
 	}
@@ -28,5 +28,12 @@ public class DayEndEntryBeanMobile {
 	
 	public String getitem() {
 		return item;
+	}
+	public Integer getvialsConsumed() {
+		return vialsConsumed;
+	}
+	
+	public void setvialsConsumed(Integer vialsConsumed) {
+		this.vialsConsumed = vialsConsumed;
 	}
 }
