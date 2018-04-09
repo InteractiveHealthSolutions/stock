@@ -81,6 +81,7 @@ public class DailyEntryService {
 			for (int i = 0; i < deb.size(); i++) {
 
 				try {
+					
 					Date date = sdf.parse(sdf.format(new Date()));
 					
 					dailyStats = new DailyStats();

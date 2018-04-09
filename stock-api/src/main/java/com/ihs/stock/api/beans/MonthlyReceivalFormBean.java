@@ -24,7 +24,7 @@ public class MonthlyReceivalFormBean {
 	
 	private Integer balanceInHand;	
 	
-	private Integer vialsConsumed;
+	private Integer vialsReceived;
 	
    public void setitemName(String item) {
 		this.itemName = item;
@@ -105,11 +105,11 @@ public class MonthlyReceivalFormBean {
 	public void setreceivedFrom(String receivedFrom) {
 		this.receivedFrom = receivedFrom;
 	}
-	public Integer getvialsConsumed() {
-		return vialsConsumed;
+	public Integer getvialsReceived() {
+		return vialsReceived;
 	}
 	
-	public void setvialsConsumed(Integer vialsConsumed) {
-		this.vialsConsumed = vialsConsumed;
+	public void setvialsReceived(Integer vialsConsumed) {
+		this.vialsReceived = vialsConsumed;
 	}
 }

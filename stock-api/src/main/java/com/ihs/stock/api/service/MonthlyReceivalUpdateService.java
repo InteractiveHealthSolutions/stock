@@ -34,7 +34,7 @@ public class MonthlyReceivalUpdateService {
 					date = sdf.parse(mfb.getexpiryDate());
 					ms.setexpiryDate(date);
 				}
-				if(!mfb.getexpiryDate().equals(""))
+				if(!mfb.getmanufactureDate().equals(""))
 				{
 					date = sdf.parse(mfb.getmanufactureDate());
 					ms.setmanufactureDate(date);
@@ -49,13 +49,12 @@ public class MonthlyReceivalUpdateService {
 				// inv.settotalContainers(inv.gettotalContainers()-mfb.getnoOfVials());
 				// scSTK.inventoryDAO.update(inv);
 				ms.setitem(item.getitemId());
-				ms.setinitialContainersCount(mfb.getvialsConsumed());
+				ms.setinitialContainersCount(mfb.getvialsReceived());
 				ms.setinitialQuantity(mfb.gettotalDosesReceived());
 				Integer mon = null;
 				Integer year = null;
 				ms.setreferenceNumber(mfb.getreferenceNumber());
 				ms.setreceivedFrom(mfb.getreceivedFrom());
-			
 				
 				if (!StringUtils.isEmptyOrWhitespaceOnly(mfb.getreceivalDate())) {
 					date = sdf.parse(mfb.getreceivalDate());
@@ -79,11 +78,11 @@ public class MonthlyReceivalUpdateService {
 					}
 					if(msP.getbalanceContainer() != null)
 					{
-						ms.settotalContainer(msP.getbalanceContainer() +mfb.getvialsConsumed());
+						ms.settotalContainer(msP.getbalanceContainer() +mfb.getvialsReceived());
 					}
 					else
 					{
-						ms.settotalContainer(mfb.getvialsConsumed());
+						ms.settotalContainer(mfb.getvialsReceived());
 					}
 					
 					
@@ -91,7 +90,7 @@ public class MonthlyReceivalUpdateService {
 				else
 				{
 					ms.settotalQuantity(mfb.gettotalDosesReceived());
-					ms.settotalContainer(mfb.getvialsConsumed());
+					ms.settotalContainer(mfb.getvialsReceived());
 					
 				}
 			//	scSTK.monthlyStatsDAO.save(ms);

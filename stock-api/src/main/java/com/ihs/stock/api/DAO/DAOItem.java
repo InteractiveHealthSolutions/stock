@@ -53,7 +53,7 @@ public class DAOItem {
 	public List<?> getallItems()
 	{
 	
-		Query query = s.createQuery("from Item where dateVoided = null and itemType=1");
+		Query query = s.createQuery("from Item where dateVoided = null");
 		
 		List<Item> items = query.list();
 		
