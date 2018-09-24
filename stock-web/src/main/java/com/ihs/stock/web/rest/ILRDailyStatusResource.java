@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +32,7 @@ import com.mysql.jdbc.StringUtils;
 public class ILRDailyStatusResource {
 
 	@RequestMapping(value="/add" , method = RequestMethod.POST /*, consumes = "application/json" , produces = "application/json"*/)
+	@ResponseBody
 	public String add( @RequestBody List<ILRDailyStatus> ilr) throws ParseException, InstanceAlreadyExistsException
 	{
 		if(ilr == null)
@@ -77,6 +79,7 @@ public class ILRDailyStatusResource {
     
    
 	@RequestMapping(path="/view" , method = RequestMethod.GET /*, produces = "application/json"*/)
+	@ResponseBody
 	public List<ILRDailyStatus> getForMonth(HttpServletRequest req,
 			@RequestParam(value = "province", required = false) String province,
 			@RequestParam(value = "division", required = false) String division,

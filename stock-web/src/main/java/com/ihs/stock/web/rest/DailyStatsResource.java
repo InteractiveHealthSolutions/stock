@@ -32,6 +32,7 @@ public class DailyStatsResource {
 
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@ResponseBody
 	public String add(@RequestBody List<DayEndEntryBean> deb) throws ParseException, InstanceAlreadyExistsException
 	{
 		if(deb == null)
