@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 import org.ird.unfepi.context.LocationContext;
 import org.ird.unfepi.context.LocationServiceContext;
 import org.ird.unfepi.model.Location;

@@ -6,7 +6,7 @@ public class MonthlyReceivalFormBean {
 	
 	private Integer locationId;
 	
-	private String itemName;
+	private Integer noOfVials;
 	
 	private String expiryDate;
 
@@ -14,26 +14,71 @@ public class MonthlyReceivalFormBean {
 	
 	private String receivalDate;
 	
-	private Integer dosesInAVial;
-	
-	private Integer totalDosesReceived;
-	
 	private String referenceNumber;
 	
 	private String receivedFrom;
+	/*
+	 * Below fields are required in 
+	 * the new monthly summary form
+	 */
+	private String vaccineName;
 	
-	private Integer balanceInHand;	
-	
-	private Integer vialsReceived;
-	
-   public void setitemName(String item) {
-		this.itemName = item;
-	}
+	private Integer closingBalance;	
 
-	public String getitemName() {
-		return itemName;
+	private Integer dosesConsumed;
+	
+	private Integer dosesReceived;
+	
+	private Integer dosesWasted;
+	
+	private Integer openingBalance;
+	
+	
+	public String getvaccineName() {
+		return vaccineName;
 	}
-
+	public Integer getclosingBalance() {
+		return closingBalance;
+	}
+	
+	public void setclosingBalance(Integer closingBalance) {
+		this.closingBalance = closingBalance;
+	}
+	public void setdosesConsumed(Integer dosesConsumed) {
+		this.dosesConsumed = dosesConsumed;
+	}
+	
+	public Integer getdosesConsumed() {
+		return dosesConsumed;
+	}
+	
+	public void setdosesReceived(Integer dosesReceived) {
+		this.dosesReceived = dosesReceived;
+	}
+	
+	public Integer getdosesReceived() {
+		return dosesReceived;
+	}
+	
+	public Integer getdosesWasted() {
+		return dosesWasted;
+	}
+	
+	public void setDoseswasted(Integer dosesWasted) {
+		this.dosesWasted = dosesWasted;
+	}
+	
+	public Integer getopeningBalance() {
+		return openingBalance;
+	}
+	
+	public void setopeningBalance(Integer openingBalance) {
+		this.openingBalance = openingBalance;
+	}
+	
+	public void setvaccineName(String vaccineName) {
+		this.vaccineName = vaccineName;
+	}
 	public String getreceivalDate() {
 		return receivalDate;
 	}
@@ -58,27 +103,7 @@ public class MonthlyReceivalFormBean {
 		return manufactureDate;
 	}
 	
-	public void setbalanceInHand(Integer balanceInHand) {
-		this.balanceInHand = balanceInHand;
-	}
 	
-	public void setdosesInAVial(Integer dosesInAVial) {
-		this.dosesInAVial = dosesInAVial;
-	}
-	
-	public void settotalDosesReceived(Integer totalDosesReceived) {
-		this.totalDosesReceived = totalDosesReceived;
-	}
-	
-	public Integer getbalanceInHand() {
-		return balanceInHand;
-	}
-	public Integer getdosesInAVial() {
-		return dosesInAVial;
-	}
-	public Integer gettotalDosesReceived() {
-		return totalDosesReceived;
-	}
 	public void setuserId(Integer userId) {
 		this.userId = userId;
 	}
@@ -105,11 +130,11 @@ public class MonthlyReceivalFormBean {
 	public void setreceivedFrom(String receivedFrom) {
 		this.receivedFrom = receivedFrom;
 	}
-	public Integer getvialsReceived() {
-		return vialsReceived;
+	public Integer getnoOfVials() {
+		return noOfVials;
 	}
 	
-	public void setvialsReceived(Integer vialsConsumed) {
-		this.vialsReceived = vialsConsumed;
+	public void setnoOfVials(Integer vialsConsumed) {
+		this.noOfVials = vialsConsumed;
 	}
 }

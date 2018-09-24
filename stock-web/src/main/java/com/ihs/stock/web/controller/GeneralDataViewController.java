@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.management.InstanceAlreadyExistsException;
 
-import org.hibernate.HibernateException;
 import org.ird.unfepi.model.Location;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

@@ -10,7 +10,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.SessionFactory;
 import org.ird.unfepi.context.LocationContext;
 import org.ird.unfepi.context.LocationServiceContext;
 import org.ird.unfepi.model.Location;

@@ -40,7 +40,7 @@ public class StarterController {
 	@RequestMapping(value="/mainpage" , method = RequestMethod.GET)
 	public ModelAndView mainPage(ModelAndView mD)
 	{
-       SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
+      SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, null);
 	   mD.setViewName("mainpage");
 	   return mD;
 	}

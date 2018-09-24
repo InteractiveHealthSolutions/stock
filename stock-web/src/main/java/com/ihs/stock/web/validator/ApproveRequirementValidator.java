@@ -2,7 +2,6 @@ package com.ihs.stock.web.validator;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

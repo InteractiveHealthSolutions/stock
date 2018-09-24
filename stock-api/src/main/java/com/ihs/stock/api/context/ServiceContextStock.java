@@ -3,7 +3,6 @@ package com.ihs.stock.api.context;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.service.jdbc.connections.internal.DatasourceConnectionProviderImpl;
 
 import com.ihs.stock.api.DAO.*;
 

@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.management.InstanceAlreadyExistsException;
 
-import org.hibernate.SessionFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -50,7 +49,7 @@ public class DailyStatsResource {
 	@RequestMapping(value = "/delete/{identifier}" , method = RequestMethod.DELETE , consumes = "application/json")
 	public ResponseEntity<DailyStats> delete(@PathVariable("identifier") String Identifier , @RequestBody DailyStats uDS) throws ParseException
 	{
-		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		Integer id = Integer.parseInt(Identifier);
 		DailyStats ds = scSTK.dailyStatsDAO.getDailyStatsbyId(id);
@@ -78,7 +77,7 @@ public class DailyStatsResource {
 	@RequestMapping(value = "/" , method = RequestMethod.GET , produces = "application/json")
 	public ResponseEntity<List<DailyStats>> getAllDailyStats()
 	{
-		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		List<DailyStats> dailyStats = scSTK.dailyStatsDAO.getAllDailyStats();
 		scSTK.commitTransaction();
@@ -89,7 +88,7 @@ public class DailyStatsResource {
 	@RequestMapping(value = "/{identifier}" , method = RequestMethod.GET , produces = "application/json")
 	public ResponseEntity<DailyStats> getDailyStats(@PathVariable("identifier") String identifier , @RequestBody Consumer con) throws ParseException
 	{
-		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		Integer id = Integer.parseInt(identifier);
 		

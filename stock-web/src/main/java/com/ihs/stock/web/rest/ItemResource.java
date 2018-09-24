@@ -2,15 +2,17 @@ package com.ihs.stock.web.rest;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ihs.stock.api.context.ServiceContextStock;
 import com.ihs.stock.api.context.SessionFactoryUtil;
 import com.ihs.stock.api.model.Item;
 
-@RestController
+@Controller
 @RequestMapping("/item")
 
 public class ItemResource {
@@ -97,7 +99,7 @@ public class ItemResource {
 //	}
 
 	@RequestMapping(value="/view" , method = RequestMethod.GET )
-	public List<Item> getAllItems() {
+	public @ResponseBody List<Item> getAllItems() {
 		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
 		
 		List<Item> itemList = (List<Item>) sc.itemDAO.getallItems();

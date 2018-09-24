@@ -5,14 +5,12 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import com.ihs.stock.api.model.Consumer;
 import com.ihs.stock.api.model.Item;
 
 import com.ihs.stock.api.model.MonthlyStats;
-import com.ihs.stock.api.service.SessionFactoryUtil;
+
 
 public class DAOMonthlyStats {
 

@@ -14,14 +14,14 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- Assume test is the database name -->
 		<property name="hibernate.connection.url">
-			jdbc:mysql://localhost:3306/stock_management
+			jdbc:mysql://localhost:3310/stock_management
 		</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.connection.username">
 			root
 		</property>
 		<property name="hibernate.connection.password">
-			ihs_dev
+			123456
 		</property>
 		<property name="connection.autocommit">true</property>
 		<property name="hibernate.connection.useUnicode">true</property>

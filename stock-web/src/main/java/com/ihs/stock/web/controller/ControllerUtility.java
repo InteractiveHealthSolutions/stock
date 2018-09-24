@@ -16,9 +16,7 @@ import com.ihs.stock.api.context.SessionFactoryUtil;
 import javax.management.InstanceAlreadyExistsException;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+
 import org.ird.unfepi.context.LocationContext;
 import org.ird.unfepi.context.LocationServiceContext;
 import org.ird.unfepi.model.Location;

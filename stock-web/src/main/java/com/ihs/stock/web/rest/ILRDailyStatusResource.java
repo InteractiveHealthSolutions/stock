@@ -9,6 +9,7 @@ import java.util.List;
 import javax.management.InstanceAlreadyExistsException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,8 +25,8 @@ import com.ihs.stock.api.model.ILRDailyStatus;
 import com.ihs.stock.api.service.DailyEntryService;
 import com.mysql.jdbc.StringUtils;
 
-@RestController
-@CrossOrigin//(origins = {"http://localhost:8080"}, maxAge = 4800, allowCredentials = "false")
+@Controller
+//@CrossOrigin//(origins = {"http://localhost:8080"}, maxAge = 4800, allowCredentials = "false")
 @RequestMapping("/ilrws")
 public class ILRDailyStatusResource {
 

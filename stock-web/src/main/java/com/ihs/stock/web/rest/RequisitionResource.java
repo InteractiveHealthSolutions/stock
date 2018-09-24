@@ -9,6 +9,7 @@ import javax.management.InstanceAlreadyExistsException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -21,7 +22,7 @@ import com.ihs.stock.api.model.Item;
 import com.ihs.stock.api.model.Requisition;
 import com.ihs.stock.api.service.AddInInventoryService;
 
-@RestController
+@Controller
 @RequestMapping("/req")
 public class RequisitionResource {
 	

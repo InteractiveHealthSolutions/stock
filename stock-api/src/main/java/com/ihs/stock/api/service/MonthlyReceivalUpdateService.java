@@ -5,11 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
 import com.ihs.stock.api.beans.MonthlyReceivalFormBean;
 import com.ihs.stock.api.context.ServiceContextStock;
 import com.ihs.stock.api.context.SessionFactoryUtil;
-
 import com.ihs.stock.api.model.Item;
 import com.ihs.stock.api.model.MonthlyStats;
 import com.mysql.jdbc.StringUtils;
@@ -25,11 +23,24 @@ public class MonthlyReceivalUpdateService {
 			try
 			{
 				Date date = sdf.parse(sdf.format(new Date()));
+				
 				ms.setdateCreated(date);
 				ms.setuser(mfb.getuserId());
+				if(mfb.getreceivalDate() != null)
+				{
+					date = sdf.parse(mfb.getreceivalDate());
+					ms.setreceivalDate(date);
+				}
 				ms.setlocation(mfb.getlocationId());
 				
-				if(!mfb.getexpiryDate().equals(""))
+				ms.setClosingBalance(mfb.getclosingBalance());
+				
+				ms.setDosesReceived(mfb.getdosesReceived());
+				ms.setConsumedDoses(mfb.getdosesConsumed());
+				ms.setOpeningBalance(mfb.getclosingBalance());
+				
+				ms.setDosesWasted(mfb.getdosesWasted());
+				/*if(!mfb.getexpiryDate().equals(""))
 				{
 					date = sdf.parse(mfb.getexpiryDate());
 					ms.setexpiryDate(date);
@@ -41,22 +52,22 @@ public class MonthlyReceivalUpdateService {
 				}
 				
 				date = sdf.parse(mfb.getreceivalDate());
-				ms.setreceivalDate(date);
-				item = scSTK.itemDAO.getByName(mfb.getitemName());
+				ms.setreceivalDate(date);*/
+				item = scSTK.itemDAO.getByName(mfb.getvaccineName());
 				// Inventory inv =
 				// scSTK.inventoryDAO.getBalanceForLocationMonthItem(mfb.getlocationId(),item.getitemId());
 				// ms.setinventoryReferral(inv.getinventoryID());
 				// inv.settotalContainers(inv.gettotalContainers()-mfb.getnoOfVials());
 				// scSTK.inventoryDAO.update(inv);
 				ms.setitem(item.getitemId());
-				ms.setinitialContainersCount(mfb.getvialsReceived());
+				/*ms.setinitialContainersCount(mfb.getnoOfVials());
 				ms.setinitialQuantity(mfb.gettotalDosesReceived());
 				Integer mon = null;
 				Integer year = null;
 				ms.setreferenceNumber(mfb.getreferenceNumber());
 				ms.setreceivedFrom(mfb.getreceivedFrom());
-				
-				if (!StringUtils.isEmptyOrWhitespaceOnly(mfb.getreceivalDate())) {
+				*/
+				/*if (!StringUtils.isEmptyOrWhitespaceOnly(mfb.getreceivalDate())) {
 					date = sdf.parse(mfb.getreceivalDate());
 					Calendar cal = Calendar.getInstance();
 					cal.setTime(date);
@@ -78,11 +89,11 @@ public class MonthlyReceivalUpdateService {
 					}
 					if(msP.getbalanceContainer() != null)
 					{
-						ms.settotalContainer(msP.getbalanceContainer() +mfb.getvialsReceived());
+						ms.settotalContainer(msP.getbalanceContainer() +mfb.getnoOfVials());
 					}
 					else
 					{
-						ms.settotalContainer(mfb.getvialsReceived());
+						ms.settotalContainer(mfb.getnoOfVials());
 					}
 					
 					
@@ -90,10 +101,10 @@ public class MonthlyReceivalUpdateService {
 				else
 				{
 					ms.settotalQuantity(mfb.gettotalDosesReceived());
-					ms.settotalContainer(mfb.getvialsReceived());
+					ms.settotalContainer(mfb.getnoOfVials());
 					
 				}
-			//	scSTK.monthlyStatsDAO.save(ms);
+*/			//	scSTK.monthlyStatsDAO.save(ms);
 				return ms;
 				
 			}

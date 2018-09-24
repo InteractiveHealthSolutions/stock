@@ -5,10 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +23,7 @@ import com.ihs.stock.api.context.SessionFactoryUtil;
 import com.ihs.stock.api.model.Inventory;
 import com.ihs.stock.api.service.AddInInventoryService;
 
-@RestController
+@Controller
 @RequestMapping("/inventory")
 @ResponseBody
 public class InventoryResource {
@@ -31,7 +31,7 @@ public class InventoryResource {
 	@RequestMapping(value = "/" , method = RequestMethod.GET , produces = "application/json")
 	public ResponseEntity<List<Inventory>> getAllInventory()
 	{
-		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		
 		List<Inventory> inventories = scSTK.inventoryDAO.getAllInventory();
@@ -43,7 +43,7 @@ public class InventoryResource {
 	@RequestMapping(value = "/{identifier}" , method = RequestMethod.GET , produces = "application/json")
 	public ResponseEntity<Inventory> getInventory(@PathVariable("identifier") String identifier)
 	{
-		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		
 		Integer id = Integer.parseInt(identifier);
@@ -60,7 +60,7 @@ public class InventoryResource {
 	@RequestMapping(value="/update/{identifier}", method = RequestMethod.PUT , consumes = "application/json")
 	public ResponseEntity<Inventory> updateInventory(@PathVariable("identifier") String identifier , @RequestBody Inventory inv) throws ParseException
 	{
-		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		
 		Integer id = Integer.parseInt(identifier);
@@ -93,7 +93,7 @@ public class InventoryResource {
 	@RequestMapping(value = "/delete/{identifier}" , method = RequestMethod.DELETE)
 	public ResponseEntity<Inventory> deleteInventory(@PathVariable("identifier") String identifier) throws ParseException
 	{
-		SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
+		//SessionFactory sf = SessionFactoryUtil.getSessionFactory(null, "stk-hibernate.cfg.xml");
 		ServiceContextStock scSTK = SessionFactoryUtil.getServiceContext();
 		Integer id = Integer.parseInt(identifier);
 		Inventory inv = (Inventory) scSTK.inventoryDAO.getById(id);

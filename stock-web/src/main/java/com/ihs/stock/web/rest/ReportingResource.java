@@ -19,9 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ihs.stock.api.context.ServiceContextStock;
 import com.ihs.stock.api.context.SessionFactoryUtil;
-import com.ihs.web.utils.StringUtilities;
 import com.mysql.jdbc.StringUtils;
-
+import com.ihs.stock.web.utils.StringUtilities;;
 @Controller
 public class ReportingResource {
 

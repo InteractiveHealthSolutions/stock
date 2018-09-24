@@ -18,21 +18,19 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.ForeignKey;
 
 @Entity
-@Table(name = "monthly_Stats")
-
+@Table(name = "monthly_stats")
 public class MonthlyStats {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mon_id")
 	private int monId;
 
-
-	@Column(name = "initial_quantity")
-	private Integer initialQuantity;
+	@Column(name = "opening_balance")
+	private Integer openingBalance;
 
 	@Column(name = "balance_quantity")
 	private Integer balanceQuantity;
-	
+
 	@Column(name = "balance_container")
 	private Integer balanceContainer;
 
@@ -41,9 +39,21 @@ public class MonthlyStats {
 
 	@Column(name = "total_quantity")
 	private Integer totalQuantity;
-	
+
+	@Column(name = "doses_wasted")
+	private Integer dosesWasted;
+
+	@Column(name = "doses_consumed")
+	private Integer consumedDoses;
+
+	@Column(name = "doses_received")
+	private Integer dosesReceived;
+
 	@Column(name = "total_container")
 	private Integer totalContainer;
+
+	@Column(name = "closing_balance")
+	private Integer closingBalance;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "expiry_date")
@@ -75,33 +85,24 @@ public class MonthlyStats {
 	@Column(name = "item")
 	private Integer item;
 
-	
 	@Column(name = "location")
 	private Integer location;
-	
-	@Column(name="inventory_referral")
+
+	@Column(name = "inventory_referral")
 	private Integer inventoryReferral;
-	
-	@Column(name="reference_number")
-    private String referenceNumber;
-	
-	@Column(name="received_from")
+
+	@Column(name = "reference_number")
+	private String referenceNumber;
+
+	@Column(name = "received_from")
 	private String receivedFrom;
-	
+
 	public void setmonId(int id) {
 		this.monId = id;
 	}
 
 	public int getmonId() {
 		return monId;
-	}
-
-	public void setinitialQuantity(Integer ini_antigens) {
-		this.initialQuantity = ini_antigens;
-	}
-
-	public Integer getinitialQuantity() {
-		return initialQuantity;
 	}
 
 	public void setbalanceQuantity(Integer balance) {
@@ -143,13 +144,15 @@ public class MonthlyStats {
 	public void setitem(Integer item) {
 		this.item = item;
 	}
-public Date getRreceivalDate() {
-	return receivalDate;
-}
 
-public void setreceivalDate(Date receivalDate) {
-	this.receivalDate = receivalDate;
-}
+	public Date getRreceivalDate() {
+		return receivalDate;
+	}
+
+	public void setreceivalDate(Date receivalDate) {
+		this.receivalDate = receivalDate;
+	}
+
 	public void setexpiryDate(Date date) {
 		this.expiryDate = date;
 	}
@@ -178,6 +181,46 @@ public void setreceivalDate(Date receivalDate) {
 		return dateEdited;
 	}
 
+	public void setClosingBalance(Integer closingBalance) {
+		this.closingBalance = closingBalance;
+	}
+
+	public Integer getClosingBalance() {
+		return closingBalance;
+	}
+
+	public void setDosesReceived(Integer dosesReceived) {
+		this.dosesReceived = dosesReceived;
+	}
+
+	public void setDosesWasted(Integer dosesWasted) {
+		this.dosesWasted = dosesWasted;
+	}
+
+	public void setConsumedDoses(Integer consumedDoses) {
+		this.consumedDoses = consumedDoses;
+	}
+
+	public Integer getDosesReceived() {
+		return dosesReceived;
+	}
+
+	public Integer getDosesWasted() {
+		return dosesWasted;
+	}
+
+	public Integer getConsumedDoses() {
+		return consumedDoses;
+	}
+
+	public Integer getOpeningBalance() {
+		return openingBalance;
+	}
+
+	public void setOpeningBalance(Integer openingBalance) {
+		this.openingBalance = openingBalance;
+	}
+
 	public void setdateEdited(Date dateEdited) {
 		this.dateEdited = dateEdited;
 	}
@@ -189,47 +232,51 @@ public void setreceivalDate(Date receivalDate) {
 	public void setdateVoided(Date dateVoided) {
 		this.dateVoided = dateVoided;
 	}
+
 	public Integer getinventoryReferral() {
 		return inventoryReferral;
 	}
-	
+
 	public void setinventoryReferral(Integer inventoryReferral) {
 		this.inventoryReferral = inventoryReferral;
 	}
-	
+
 	public Integer getlocation() {
 		return location;
 	}
-	
+
 	public void setlocation(Integer location) {
 		this.location = location;
 	}
+
 	public String getreferenceNumber() {
 		return referenceNumber;
 	}
-	
+
 	public void setreferenceNumber(String referenceNumber) {
 		this.referenceNumber = referenceNumber;
 	}
+
 	public String getreceivedFrom() {
 		return receivedFrom;
 	}
-	
+
 	public void setreceivedFrom(String receivedFrom) {
 		this.receivedFrom = receivedFrom;
 	}
+
 	public void setbalanceContainer(Integer balanceContainer) {
 		this.balanceContainer = balanceContainer;
 	}
-	
+
 	public Integer getbalanceContainer() {
 		return balanceContainer;
 	}
-	
+
 	public void settotalContainer(Integer totalContainer) {
 		this.totalContainer = totalContainer;
 	}
-	
+
 	public Integer gettotalContainer() {
 		return totalContainer;
 	}
