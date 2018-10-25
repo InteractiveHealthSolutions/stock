@@ -4,10 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.management.InstanceAlreadyExistsException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +32,7 @@ import com.mysql.jdbc.StringUtils;
 //@CrossOrigin//(origins = {"http://localhost:8080"}, maxAge = 4800, allowCredentials = "false")
 @RequestMapping("/ilrws")
 public class ILRDailyStatusResource {
-
+     ReportsDownloadResource reportsDownloadResource = new ReportsDownloadResource();
 	@RequestMapping(value="/add" , method = RequestMethod.POST /*, consumes = "application/json" , produces = "application/json"*/)
 	@ResponseBody
 	public String add( @RequestBody List<ILRDailyStatus> ilr) throws ParseException, InstanceAlreadyExistsException
@@ -81,6 +83,7 @@ public class ILRDailyStatusResource {
 	@RequestMapping(path="/view" , method = RequestMethod.GET /*, produces = "application/json"*/)
 	@ResponseBody
 	public List<ILRDailyStatus> getForMonth(HttpServletRequest req,
+			HttpServletResponse resp,
 			@RequestParam(value = "province", required = false) String province,
 			@RequestParam(value = "division", required = false) String division,
 			@RequestParam(value = "city", required = false) String district,
@@ -88,7 +91,9 @@ public class ILRDailyStatusResource {
 			@RequestParam(value = "uc", required = false) String UC,
 			@RequestParam(value = "vaccinationcenter", required = false) String vaccinationcenter,
 			@RequestParam(value = "filterDatefrom", required = false) String filterDatefrom,
-			@RequestParam(value = "filterDateto", required = false) String filterDateto) throws ParseException, InstanceAlreadyExistsException
+			@RequestParam(value = "filterDateto", required = false) String filterDateto,
+			@RequestParam(value = "type", required = false , defaultValue = "") String type,
+			@RequestParam(value = "breadcrumb", required = false) String crumb) throws ParseException, InstanceAlreadyExistsException
 	{
 		
 		ServiceContextStock sc = SessionFactoryUtil.getServiceContext();
@@ -109,12 +114,30 @@ public class ILRDailyStatusResource {
 			} else {// to make sure that procedure gets a null value for dates
 				filterDatefrom = null;
 			}
+			System.out.println("in ilr resource");
      		List<ILRDailyStatus> dailyStatus = sc.ilrDailyStatusDAO.getForYearMonthLocation(Integer.parseInt(vaccinationcenter), mon, year);
-    		if(dailyStatus.size() < 0)
-         	{
-        		return null;
-        	}
-        	return dailyStatus;
+     		if(type.equals("PDF"))
+    		{
+     			System.out.println("in download ilr");
+    			HashMap<String,Object> additionalDetails = new HashMap<String,Object>();
+				additionalDetails.put("Location", crumb);
+				additionalDetails.put("fromDate", new SimpleDateFormat("yyyy-MM").parse(filterDatefrom));
+				//additionalDetails.put("toDate",new SimpleDateFormat("yyyy-MM").parse(filterDateto));
+				additionalDetails.put("totalRows", dailyStatus.size());
+				reportsDownloadResource.generatePDF(resp,dailyStatus  , "Temperature_Monitoring_Chart.jrxml","Temperature_Monitoring_Chart" , additionalDetails);
+				return null;
+
+    		}
+     		else
+     		{
+     			if(dailyStatus.size() < 0)
+             	{
+            		return null;
+            	}
+        	
+            	return dailyStatus;
+     		}
+     		
      	}
 		catch(Exception e)
      	{

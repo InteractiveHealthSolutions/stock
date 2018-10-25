@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="zero_dose_report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="792" leftMargin="25" rightMargin="25" topMargin="20" bottomMargin="20" uuid="cf547c7d-5e61-4005-a464-7d5ac92271bc">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="Location" class="java.lang.String"/>
+	<parameter name="fromDate" class="java.lang.String"/>
+	<parameter name="toDate" class="java.lang.String"/>
+	<parameter name="wMark" class="java.lang.String"/>
+	<parameter name="totalRows" class="java.lang.String"/>
+	<field name="dateToday" class="java.util.Date"/>
+	<field name="morningTime" class="java.util.Date"/>
+	<field name="dayendTime" class="java.util.Date"/>
+	<field name="openingTemprature" class="java.lang.Double"/>
+	<field name="closingTemprature" class="java.lang.Double"/>
+	<pageHeader>
+		<band height="100">
+			<staticText>
+				<reportElement x="62" y="2" width="278" height="30" uuid="82a406e0-8d9d-4a0d-b85a-df73b53cd650"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Temperature Monitoring Chart]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true" bookmarkLevel="1">
+				<reportElement x="7" y="40" width="560" height="37" uuid="006bc71c-cf59-4a23-bc2c-b2e56aa53813"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Location}]]></textFieldExpression>
+				<anchorNameExpression><![CDATA["Location"]]></anchorNameExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true" bookmarkLevel="1">
+				<reportElement x="712" y="40" width="80" height="37" uuid="006bc71c-cf59-4a23-bc2c-b2e56aa53813"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{toDate}]]></textFieldExpression>
+				<anchorNameExpression><![CDATA["toDate"]]></anchorNameExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true" bookmarkLevel="1">
+				<reportElement x="643" y="40" width="80" height="37" uuid="006bc71c-cf59-4a23-bc2c-b2e56aa53813"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fromDate}]]></textFieldExpression>
+				<anchorNameExpression><![CDATA["fromDate"]]></anchorNameExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="60" height="37" uuid="42c96db8-4afd-4834-ba69-6b211df0c42f"/>
+				<imageExpression><![CDATA[$P{wMark}+"/final002.png"]]></imageExpression>
+			</image>
+			<image hAlign="Center">
+				<reportElement x="717" y="-1" width="38" height="37" uuid="42c96db8-4afd-4834-ba69-6b211df0c42f"/>
+				<imageExpression><![CDATA[$P{wMark}+"/epi.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="760" y="1" width="30" height="34" uuid="42c96db8-4afd-4834-ba69-6b211df0c42f"/>
+				<imageExpression><![CDATA[$P{wMark}+"/govtSindh.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="580" y="40" width="57" height="37" uuid="989caa23-22cc-4dd2-8552-17e813b3f0eb"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Date Range:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="700" y="50" width="22" height="17" uuid="8cafca13-abb0-49b6-bce2-357a936c3058"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="70" width="100" height="20" uuid="824e91c4-8ec2-414d-acd2-1b6d084a517d"/>
+				<text><![CDATA[Total Rows:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="640" y="70" width="100" height="30" uuid="c084758c-3ffa-4c9d-83e9-1f0201c9444d"/>
+				<textFieldExpression><![CDATA[$P{totalRows}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="40">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<frame>
+				<reportElement x="0" y="20" width="800" height="20" uuid="ecdfb6e2-0340-4250-b6c5-f0aa4224fc87">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.grid.JSSGridBagLayout"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<frame>
+					<reportElement x="0" y="0" width="800" height="20" uuid="e82a8539-9551-4282-9793-c66ab6b4e01e">
+						<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.grid.JSSGridBagLayout"/>
+						<property name="com.jaspersoft.layout.grid.x" value="-1"/>
+						<property name="com.jaspersoft.layout.grid.y" value="-1"/>
+						<property name="com.jaspersoft.layout.grid.weight.x" value="2.0"/>
+						<property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+						<property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+						<property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+						<property name="com.jaspersoft.layout.grid.weight.fixed" value="false"/>
+					</reportElement>
+					<staticText>
+						<reportElement x="0" y="0" width="183" height="20" uuid="82a406e0-8d9d-4a0d-b85a-df73b53cd650">
+							<property name="com.jaspersoft.layout.grid.x" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.y" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.weight.x" value="2.0"/>
+							<property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+							<property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.weight.fixed" value="false"/>
+						</reportElement>
+						<box topPadding="2" leftPadding="2">
+							<pen lineWidth="0.25"/>
+							<topPen lineWidth="0.25"/>
+							<leftPen lineWidth="0.25"/>
+							<bottomPen lineWidth="0.25"/>
+							<rightPen lineWidth="0.25"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="10" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Date]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="183" y="0" width="183" height="20" uuid="82a406e0-8d9d-4a0d-b85a-df73b53cd650">
+							<property name="com.jaspersoft.layout.grid.x" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.y" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.weight.x" value="2.0"/>
+							<property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+							<property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.weight.fixed" value="false"/>
+						</reportElement>
+						<box topPadding="2" leftPadding="2">
+							<pen lineWidth="0.25"/>
+							<topPen lineWidth="0.25"/>
+							<leftPen lineWidth="0.25"/>
+							<bottomPen lineWidth="0.25"/>
+							<rightPen lineWidth="0.25"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="10" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Check-in Time]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="366" y="0" width="183" height="20" uuid="82a406e0-8d9d-4a0d-b85a-df73b53cd650">
+							<property name="com.jaspersoft.layout.grid.x" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.y" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.weight.x" value="2.0"/>
+							<property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+							<property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.weight.fixed" value="false"/>
+						</reportElement>
+						<box topPadding="2" leftPadding="2">
+							<pen lineWidth="0.25"/>
+							<topPen lineWidth="0.25"/>
+							<leftPen lineWidth="0.25"/>
+							<bottomPen lineWidth="0.25"/>
+							<rightPen lineWidth="0.25"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="10" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Opening Temperature]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="549" y="0" width="183" height="20" uuid="82a406e0-8d9d-4a0d-b85a-df73b53cd650">
+							<property name="com.jaspersoft.layout.grid.x" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.y" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.weight.x" value="2.0"/>
+							<property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+							<property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.weight.fixed" value="false"/>
+						</reportElement>
+						<box topPadding="2" leftPadding="2">
+							<pen lineWidth="0.25"/>
+							<topPen lineWidth="0.25"/>
+							<leftPen lineWidth="0.25"/>
+							<bottomPen lineWidth="0.25"/>
+							<rightPen lineWidth="0.25"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="10" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Check-out Time]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="732" y="0" width="68" height="20" uuid="82a406e0-8d9d-4a0d-b85a-df73b53cd650">
+							<property name="com.jaspersoft.layout.grid.x" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.y" value="-1"/>
+							<property name="com.jaspersoft.layout.grid.weight.x" value="0.75"/>
+							<property name="com.jaspersoft.layout.grid.weight.y" value="1.0"/>
+							<property name="com.jaspersoft.layout.grid.rowspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.colspan" value="1"/>
+							<property name="com.jaspersoft.layout.grid.weight.fixed" value="false"/>
+						</reportElement>
+						<box topPadding="2" leftPadding="2">
+							<pen lineWidth="0.25"/>
+							<topPen lineWidth="0.25"/>
+							<leftPen lineWidth="0.25"/>
+							<bottomPen lineWidth="0.25"/>
+							<rightPen lineWidth="0.25"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="10" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Closing Temperature]]></text>
+					</staticText>
+				</frame>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40">
+			<textField>
+				<reportElement x="0" y="0" width="183" height="40" uuid="09f14f2d-190b-4394-8d59-8d5b9a2c52cb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dateToday}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="183" y="0" width="183" height="40" uuid="bf74382c-82ba-42e2-86fc-9ebb2b9ec7cc"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{morningTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="0" width="183" height="40" uuid="f822f238-b45a-4837-a4ee-a24b37790728"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{openingTemprature}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="549" y="0" width="183" height="40" uuid="37ce3754-56c5-434f-83e5-a13b6e13b507"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dayendTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="732" y="0" width="68" height="40" uuid="ec038a8a-ca3e-4056-b9d3-a9785bcaa0b3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{closingTemprature}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="35">
+			<textField>
+				<reportElement x="320" y="15" width="115" height="20" uuid="de06e2d8-a419-4fb4-951e-81cf85756e03"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Right">
+				<reportElement x="740" y="5" width="60" height="25" uuid="42c96db8-4afd-4834-ba69-6b211df0c42f"/>
+				<imageExpression><![CDATA[$P{wMark}+"/ihnlogo.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>
