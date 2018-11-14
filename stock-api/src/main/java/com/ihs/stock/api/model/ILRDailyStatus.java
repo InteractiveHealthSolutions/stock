@@ -21,7 +21,8 @@ public class ILRDailyStatus {
 
 	public enum Status {
 
-		ILRNonFunctional, ILRNotAvailable, TempratureMonitorNotFunctional, TempratureMonitorNotAvailable, TempratureRecorded
+		ILRNonFunctional, ILRNotAvailable, TempratureMonitorNotFunctional, TempratureMonitorNotAvailable, TempratureRecorded,
+		ElectricityNotAvailable
 
 	};
 
