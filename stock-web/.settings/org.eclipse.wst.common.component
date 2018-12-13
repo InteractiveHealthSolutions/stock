@@ -8,6 +8,9 @@
         <dependent-module archiveName="stock-api-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/stock-api/stock-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="location-management-api-1.0.0a.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/location-management-api/location-management-api">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="stock-web"/>
         <property name="java-output-path" value="/stock-web/target/classes"/>
     </wb-module>
